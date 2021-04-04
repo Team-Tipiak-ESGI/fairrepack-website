@@ -17,6 +17,7 @@ Here is an example of an Apache configuration for the website.
     SetEnv HTTP_MYSQL_USER "root"
     SetEnv HTTP_MYSQL_PASS "root"
     SetEnv HTTP_MYSQL_DB "fairrepack"
+	SetEnv HTTP_MYSQL_SECRET "SECRET" # Change this with a strong secret
 
     <Directory "/some/path/to/folder"> # Allow folder reading, if necessary
         Require all granted
