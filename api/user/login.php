@@ -34,11 +34,15 @@ if (filter_var($email, FILTER_VALIDATE_EMAIL) !== false && strlen($password) >= 
     $token->create(
         ['alg' => 'HS256', 'typ' => 'JWT'],
         [
-            'uuid_user' => $res['uuid_user'],
-            'language' => $res['language'],
-            'user_type' => $res['user_type'],
+            // This is mandatory, used by the client to make identified requests
+            // If not provided, the requests are anonymous
+            'uuid' => $res['uuid_user'],
+            'lang' => $res['language'],
+            'type' => $res['user_type'],
             'username' => $res['username'],
-            'expiry' => time() + 3600
+
+            // This is mandatory, used by the server for validating the token
+            'expiry' => time() + 3600,
         ]
     );
 

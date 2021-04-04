@@ -21,7 +21,13 @@ class Token
     private array $payload;
     private array $headers;
 
-    function create($headers, $payload): string
+    /**
+     * Create a new token from given data
+     * @param array $headers
+     * @param array $payload
+     * @return string Token
+     */
+    function create(array $headers, array $payload): string
     {
         //build the headers
         $this->headers = $headers;
@@ -40,7 +46,11 @@ class Token
         return $this->token;
     }
 
-    function import($token)
+    /**
+     * Import token
+     * @param string $token
+     */
+    function import(string $token)
     {
         $this->token = $token;
 
@@ -55,6 +65,10 @@ class Token
         $this->signature = base64url_decode($this->payload_encoded);
     }
 
+    /**
+     * Verify if token is valid
+     * @return bool Token is valid
+     */
     function validate(): bool
     {
         if ($this->payload['expiry'] < time()) {
@@ -67,8 +81,19 @@ class Token
         return $signature_encoded == $this->signature_encoded;
     }
 
+    /**
+     * @return string The token
+     */
     function get(): string
     {
         return $this->token;
+    }
+
+    /**
+     * @return array The payload as an array
+     */
+    public function getPayload(): array
+    {
+        return $this->payload;
     }
 }

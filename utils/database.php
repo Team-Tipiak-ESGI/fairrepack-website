@@ -57,11 +57,12 @@ function databaseUpdate(PDO $db, string $sql, array $params): ?bool
     return null;
 }
 
-function databaseDelete(PDO $db, string $sql, array $params): ?bool
+function databaseDelete(PDO $db, string $sql, array $params): ?int
 {
     $statement = $db->prepare($sql);
     if ($statement) {
-        return $statement->execute($params);
+        $res = $statement->execute($params);
+        return $statement->rowCount();
     }
     return null;
 }
