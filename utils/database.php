@@ -2,23 +2,24 @@
 
 function getDatabaseConnection(): PDO
 {
-    $driver = "mysql";
-    $host = "localhost";
-    $port = 3306; // default 3306
-    $db = "fairrepack";
-    $user = "root";
-    $password = "";
+    $driver = $_SERVER["HTTP_MYSQL_DRIVER"] ?? "mysql";
+    $host = $_SERVER["HTTP_MYSQL_HOST"] ?? "localhost";
+    $port = $_SERVER["HTTP_MYSQL_PORT"] ?? 3306; // default 3306
+    $db = $_SERVER["HTTP_MYSQL_DB"] ?? "fairrepack";
+    $user = $_SERVER["HTTP_MYSQL_USER"] ?? "root";
+    $password = $_SERVER["HTTP_MYSQL_PASS"] ?? "root";
+
     return new PDO("$driver:host=$host;port=$port;dbname=$db;charset=utf8",
         $user,
         $password);
 }
 
 /**
- * Permet d'inserer des data en base
+ * Permet d'insérer des data en base
  * @param PDO $db Une reference sur la base
- * @param string $sql La requete
+ * @param string $sql La requête
  * @param array $params Le tableau de params
- * @return string|null  null en cas d'erreur sinon l'id de l'élément inséré.
+ * @return string|null  null en cas d'erreur sinon l'id de l'élément inséré
  */
 function databaseInsert(PDO $db, string $sql, array $params): ?string
 {
@@ -56,7 +57,7 @@ function databaseUpdate(PDO $db, string $sql, array $params): ?bool
     return null;
 }
 
-function databaseDelete(PDO $db, string $sql, array $params): ?string
+function databaseDelete(PDO $db, string $sql, array $params): ?bool
 {
     $statement = $db->prepare($sql);
     if ($statement) {
