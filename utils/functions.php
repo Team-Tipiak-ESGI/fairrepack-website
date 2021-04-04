@@ -1,12 +1,14 @@
 <?php
 
 require_once 'database.php';
+require_once 'UUIDv4.php';
 
 function addProduct(int $reference, string $description, ?string $state, ?string $quality, ?int $warehouse ): ?string
 {
     $db = getDatabaseConnection();
-    $sql = "INSERT INTO PRODUCT (reference , description, state, quality, warehouse) VALUES ( ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO product (uuid_product, reference , description, state, quality, warehouse) VALUES (?, ?, ?, ?, ?, ?)";
     $params = [
+        UUIDv4(),
         $reference,
         $description,
         $state,
