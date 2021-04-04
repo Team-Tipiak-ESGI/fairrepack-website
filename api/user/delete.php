@@ -3,15 +3,11 @@
 require_once __DIR__ . '/../../utils/database.php';
 require_once __DIR__ . '/../../utils/UUIDv4.php';
 require_once __DIR__ . '/../../utils/Token.php';
+require_once __DIR__ . '/../../utils/User.php';
 
-$body = file_get_contents("php://input");
-$_POST = json_decode($body, true);
-header("Content-Type: application/json");
+$token = getToken();
 
-$token = new Token();
-$token->import($_POST["token"]);
-
-if ($token->validate()) {
+if ($token && $token->validate()) {
     $connection = getDatabaseConnection();
 
     $payload = $token->getPayload();
@@ -25,4 +21,6 @@ if ($token->validate()) {
     } else {
         http_response_code(400); // BAD_REQUEST
     }
+} else {
+    http_response_code(400); // BAD_REQUEST
 }
