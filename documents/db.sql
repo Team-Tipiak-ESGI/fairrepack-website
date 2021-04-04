@@ -27,10 +27,13 @@ create table if not exists reference
     brand        varchar(128)  not null,
     name         varchar(128)  not null,
     value        decimal(6, 2) not null,
+    type         int           not null,
     constraint brand_UNIQUE
         unique (brand),
     constraint name_UNIQUE
-        unique (name)
+        unique (name),
+    constraint type
+        foreign key (type) references type (id_type)
 )
     comment 'Product reference';
 
@@ -59,14 +62,15 @@ create table if not exists specification
 create table if not exists user
 (
     id_user   int auto_increment,
-    uuid_user char(36)                                            not null,
-    username  varchar(128)                                        not null,
-    password  char(64)                                            not null,
-    email     varchar(256)                                        not null,
-    avatar    blob                                                null,
-    language  enum ('fr', 'en')                  default 'fr'     not null,
-    address   int                                                 null,
-    user_type enum ('normal', 'seller', 'admin') default 'normal' not null,
+    uuid_user char(36)                                                       not null,
+    username  varchar(128)                                                   not null,
+    password  char(64)                                                       not null,
+    email     varchar(256)                                                   not null,
+    avatar    blob                                                           null,
+    language  enum ('fr', 'en')                  default 'fr'                not null,
+    address   int                                                            null,
+    user_type enum ('normal', 'seller', 'admin') default 'normal'            not null,
+    created   datetime                           default current_timestamp() not null,
     primary key (id_user, uuid_user),
     constraint id_address
         foreign key (address) references address (id_address)
@@ -91,12 +95,9 @@ create table if not exists product
     description  text                                                                             null,
     reference    int                                                                              not null,
     warehouse    int                                                                              null,
-    type         int                                                                              not null,
     primary key (id_product, uuid_product),
     constraint reference
         foreign key (reference) references reference (id_reference),
-    constraint type
-        foreign key (type) references type (id_type),
     constraint warehouse
         foreign key (warehouse) references warehouse (id_warehouse)
 );
@@ -113,11 +114,12 @@ create table if not exists image
 
 create table if not exists offer
 (
-    user    int           not null,
-    product int           not null,
-    price   decimal(6, 2) null,
-    note    text          null,
-    primary key (user, product),
+    id_offer int auto_increment
+        primary key,
+    user     int           not null,
+    product  int           not null,
+    price    decimal(6, 2) null,
+    note     text          null,
     constraint product
         foreign key (product) references product (id_product),
     constraint user
