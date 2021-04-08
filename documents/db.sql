@@ -63,7 +63,7 @@ create table if not exists user
 (
     id_user   int auto_increment,
     uuid_user char(36)                                                       not null,
-    username  varchar(128)                                                   not null,
+    username  varchar(128)                                                   null,
     password  char(64)                                                       not null,
     email     varchar(256)                                                   not null,
     avatar    blob                                                           null,
@@ -71,6 +71,8 @@ create table if not exists user
     address   int                                                            null,
     user_type enum ('normal', 'seller', 'admin') default 'normal'            not null,
     created   datetime                           default current_timestamp() not null,
+    constraint email_UNIQUE
+        unique (email),
     primary key (id_user, uuid_user),
     constraint id_address
         foreign key (address) references address (id_address)
