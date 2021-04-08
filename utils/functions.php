@@ -11,7 +11,7 @@ function addProduct(int $reference, string $description, ?string $state, ?string
         $description,
         $state,
         $quality,
-        $warehouse,
+        $warehouse
     ];
     return databaseInsert($db, $sql, $params);
 }
@@ -46,3 +46,47 @@ function updateProduct(string $id_product,int $reference, string $description, ?
     ];
     return databaseUpdate($db, $sql, $params);
 }
+
+function addOffer(int $user, int $product, ?float $price, ?string $note ): ?string
+{
+    $db = getDatabaseConnection();
+    $sql = "INSERT INTO offer (user , product, price, note) VALUES ( ?, ?, ?, ?)";
+    $params = [
+        $user,
+        $product,
+        $price,
+        $note
+    ];
+    return databaseInsert($db, $sql, $params);
+}
+
+function getOfferById(string $id_offer): ?array
+{
+    $db = getDatabaseConnection();
+    $sql = "SELECT id_offer, user, product, price, note FROM offer WHERE id_offer = ?";
+    $params = [$id_offer];
+    return databaseFindOne($db, $sql, $params);
+}
+
+function deleteOfferById(string $id_offer): string
+{
+    $db = getDatabaseConnection();
+    $sql = "DELETE FROM offer WHERE id_offer= ?";
+    $params = [$id_offer];
+    return databaseDelete($db, $sql, $params);
+}
+
+function updateOffer(string $id_offer,int $user, string $product, ?float $price, ?string $note): string
+{
+    $db = getDatabaseConnection();
+    $sql = "UPDATE product SET description = ?, state = ?, quality = ?, warehouse = ?, reference = ? WHERE id_product = ?";
+    $params = [
+        $id_offer,
+        $user,
+        $product,
+        $price,
+        $note
+    ];
+    return databaseUpdate($db, $sql, $params);
+}
+
