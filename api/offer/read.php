@@ -30,18 +30,12 @@ if(count($where) > 0) {
     $whereSql = " WHERE " . join(" AND ", $where);
 }
 $db = getDatabaseConnection();
-$sql = "SELECT id_offer, user, product, price, note FROM offer" . $whereSql . " LIMIT $offset, $limit";
-$statement = $db->prepare($sql);
-if($statement !== false) {
-    $success = $statement->execute($params);
-    if($success) {
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
-        $json = json_encode($rows); // transforme le tableau en JSON
-        header("Content-Type: application/json");
-        echo $json;
-    } else {
-        http_response_code(500);
-    }
+$sql = "SELECT id_offer, user, product, price, note FROM offer " . $whereSql . " LIMIT $offset, $limit";
+$rows = databaseSelectAll($db, $sql, $params);
+header("Content-Type: application/json");
+if (!is_null($rows)) {
+    $json = json_encode($rows); // transforme le tableau en JSON
+    echo $json;
 } else {
     http_response_code(500);
 }

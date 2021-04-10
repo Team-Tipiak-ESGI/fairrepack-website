@@ -34,17 +34,11 @@ $sql = "SELECT uuid_product as id, reference, description, quality, state, r.nam
     JOIN reference r on r.id_reference = product.reference"
     . $whereSql . " LIMIT $offset, $limit";
 
-$statement = $db->prepare($sql);
-if($statement !== false) {
-    $success = $statement->execute($params);
-    if($success) {
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
-        $json = json_encode($rows); // transforme le tableau en JSON
-        header("Content-Type: application/json");
-        echo $json;
-    } else {
-        http_response_code(500);
-    }
+$rows = databaseSelectAll($db, $sql, $params);
+header("Content-Type: application/json");
+if (!is_null($rows)) {
+    $json = json_encode($rows); // transforme le tableau en JSON
+    echo $json;
 } else {
     http_response_code(500);
 }

@@ -45,18 +45,11 @@ $sql = "SELECT r.id_reference as id_reference, brand, r.name, value, t.name as t
     JOIN type t on r.type = t.id_type
     JOIN category c on t.category = c.id_category" . $whereSql . " LIMIT $offset, $limit";
 
-$statement = $db->prepare($sql);
-if ($statement !== false) {
-    $success = $statement->execute($params);
-    if ($success) {
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
-        $json = json_encode($rows); // transforme le tableau en JSON
-        header("Content-Type: application/json");
-        echo $json;
-    } else {
-        http_response_code(500);
-    }
+$rows = databaseSelectAll($db, $sql, $params);
+header("Content-Type: application/json");
+if (!is_null($rows)) {
+    $json = json_encode($rows); // transforme le tableau en JSON
+    echo $json;
 } else {
     http_response_code(500);
 }
-

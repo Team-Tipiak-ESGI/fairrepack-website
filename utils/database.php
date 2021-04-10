@@ -66,3 +66,17 @@ function databaseDelete(PDO $db, string $sql, array $params): ?int
     }
     return null;
 }
+
+function databaseSelectAll(PDO $db, string $sql, array $params = []): ?array
+{
+    $statement = $db->prepare($sql);
+
+    if ($statement !== false) {
+        $success = $statement->execute($params);
+        if ($success) {
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
+
+    return null;
+}
