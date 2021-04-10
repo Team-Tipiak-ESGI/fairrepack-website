@@ -19,7 +19,7 @@ if (filter_var($email, FILTER_VALIDATE_EMAIL) !== false && strlen($password) >= 
     $connection = getDatabaseConnection();
     $hashed_password = hash('sha256', $password);
 
-    $sql = "select uuid_user, language, user_type, username from `user`
+    $sql = "select id_user, uuid_user, language, user_type, username from `user`
             where email = ? and password = ?";
 
     $res = databaseFindOne($connection, $sql, [$email, $hashed_password]);
@@ -49,6 +49,21 @@ if (filter_var($email, FILTER_VALIDATE_EMAIL) !== false && strlen($password) >= 
     http_response_code(200);
 
     echo json_encode(["token" => $token->get()]);
+
+    try {
+        // Log connections
+        $useragent = $_SERVER['HTTP_USER_AGENT'];
+        $remote_address = $_SERVER['REMOTE_ADDR'];
+
+        $sql = "insert into `history_useragent` (useragent) values (?) ON DUPLICATE KEY UPDATE id_history_useragent = LAST_INSERT_ID(id_history_useragent)";
+        $useragent_id = databaseInsert($connection, $sql, [$useragent]);
+
+        $sql = "insert into `history_ip` (ip) values (?) ON DUPLICATE KEY UPDATE id_history_ip = LAST_INSERT_ID(id_history_ip)";
+        $ip_id = databaseInsert($connection, $sql, [$remote_address]);
+
+        $sql = "insert into `history_login` (useragent, ip, user) values (?, ?, ?)";
+        $history_id = databaseInsert($connection, $sql, [$useragent_id, $ip_id, $res['id_user']]);
+    } catch (PDOException $e) {}
 } else {
     http_response_code(400);
 }

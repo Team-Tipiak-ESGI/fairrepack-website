@@ -1,15 +1,15 @@
 create table if not exists address
 (
-    id_address         int             not null
+    id_address      int             not null
         primary key,
-    country            enum ('France') null,
-    owner_name         varchar(256)    null,
-    address_line1      varchar(256)    null,
-    address_line2      varchar(256)    null,
-    city               varchar(256)    null,
-    state              varchar(256)    null,
-    postal_code        varchar(10)     null,
-    phone_number       varchar(256)    null,
+    country         enum ('France') null,
+    owner_name      varchar(256)    null,
+    address_line1   varchar(256)    null,
+    address_line2   varchar(256)    null,
+    city            varchar(256)    null,
+    state           varchar(256)    null,
+    postal_code     varchar(10)     null,
+    phone_number    varchar(256)    null,
     additional_info text            null
 );
 
@@ -18,6 +18,25 @@ create table if not exists category
     id_category int auto_increment
         primary key,
     name        varchar(128) null
+);
+
+create table if not exists history_ip
+(
+    id_history_ip int auto_increment
+        primary key,
+    ip            varchar(45) null,
+    constraint ip_UNIQUE
+        unique (ip)
+)
+    collate = latin1_general_cs;
+
+create table if not exists history_useragent
+(
+    id_history_useragent int auto_increment
+        primary key,
+    useragent            varchar(1024) collate latin1_general_cs null,
+    constraint useragent_UNIQUE
+        unique (useragent)
 );
 
 create table if not exists reference
@@ -76,6 +95,25 @@ create table if not exists user
     primary key (id_user, uuid_user),
     constraint id_address
         foreign key (address) references address (id_address)
+);
+
+create table if not exists history_login
+(
+    id_history_login int auto_increment
+        primary key,
+    user             int                                  not null,
+    date             datetime default current_timestamp() not null,
+    useragent        int                                  null,
+    ip               int                                  null,
+    constraint history_ip
+        foreign key (ip) references history_ip (id_history_ip)
+            on update cascade on delete cascade,
+    constraint history_user
+        foreign key (user) references user (id_user)
+            on update cascade on delete cascade,
+    constraint history_useragent
+        foreign key (useragent) references history_useragent (id_history_useragent)
+            on update cascade on delete cascade
 );
 
 create table if not exists warehouse
