@@ -1,10 +1,5 @@
 <?php
-function validateUser($tok): bool
-{
-    $token = new Token();
-    $token->import($tok);
-    return $token->validate();
-}
+include_once "Token.php";
 
 function getToken(): ?Token
 {

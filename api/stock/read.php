@@ -10,7 +10,9 @@ $sql = "SELECT r.id_reference as reference, r.brand, r.name, count(r.id_referenc
         . (!empty($warehouse) ? " WHERE warehouse = ? " : " ") .
         " GROUP BY r.id_reference";
 
-$rows = databaseSelectAll($db, $sql, [$warehouse]);
+$params = !empty($warehouse) ? [$warehouse] : [];
+
+$rows = databaseSelectAll($db, $sql, $params);
 
 $xml = new SimpleXMLElement('<stocks/>');
 

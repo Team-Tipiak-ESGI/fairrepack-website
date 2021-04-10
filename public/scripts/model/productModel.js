@@ -10,6 +10,13 @@ productModel.create = function(form) {
     authenticatedFetch("/api/product/create.php", "POST", formDataToJSON(formData))
         .then((res) => {
             productVue.buildProductList(document.querySelector("div#productList"));
+        })
+        .catch((res) => {
+            if (res.status === 401) {
+                alert("You are not logged in.");
+            } else {
+                alert("Unknown error.")
+            }
         });
 }
 

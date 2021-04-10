@@ -15,24 +15,27 @@
 
 <header>
     <!-- TODO: Navbar -->
+    <a href="/">Home</a>
+    <a href="/account.html">Account</a>
+    <a href="/products.html">Products</a>
 </header>
 
 <main>
-    <section>
+    <section class="container">
         <form id="accountForm">
-            <label>
+            <label class="d-block mb-3">
                 Email
-                <input name="email">
+                <input name="email" type="email" class="form-control">
             </label>
-            <label>
+            <label class="d-block mb-3">
                 Password
-                <input name="password">
+                <input name="password" type="password" class="form-control">
             </label>
 
-            <button type="button" onclick="UserController.signup()">Signup</button>
-            <button type="button" onclick="UserController.login()">Login</button>
-            <button type="button" onclick="UserController.logout()">Logout</button>
-            <button type="button" onclick="UserController.remove()">Delete</button>
+            <button type="button" class="btn btn-primary" onclick="UserController.signup()">Signup</button>
+            <button type="button" class="btn btn-primary" onclick="UserController.login()">Login</button>
+            <button type="button" class="btn btn-danger" onclick="UserController.logout()">Logout</button>
+            <button type="button" class="btn btn-danger" onclick="UserController.remove()">Delete</button>
         </form>
     </section>
 </main>
