@@ -3,10 +3,10 @@
 require_once 'database.php';
 require_once 'UUIDv4.php';
 
-function addProduct(int $reference, string $description, ?string $state, ?string $quality, ?int $warehouse ): ?string
+function addProduct(string $reference, string $description, ?string $state, ?string $quality, ?int $warehouse): ?string
 {
     $db = getDatabaseConnection();
-    $sql = "INSERT INTO product (uuid_product, reference , description, state, quality, warehouse) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO product (uuid_product, reference, description, state, quality, warehouse) VALUES (?, ?, ?, ?, ?, ?)";
     $params = [
         UUIDv4(),
         $reference,
@@ -34,7 +34,7 @@ function deleteProductById(string $id_product): string
     return databaseDelete($db, $sql, $params);
 }
 
-function updateProduct(string $id_product,int $reference, string $description, ?string $state, ?string $quality, ?int $warehouse ): string
+function updateProduct(string $id_product, int $reference, string $description, ?string $state, ?string $quality, ?int $warehouse): string
 {
     $db = getDatabaseConnection();
     $sql = "UPDATE product SET description = ?, state = ?, quality = ?, warehouse = ?, reference = ? WHERE id_product = ?";
@@ -49,7 +49,7 @@ function updateProduct(string $id_product,int $reference, string $description, ?
     return databaseUpdate($db, $sql, $params);
 }
 
-function addOffer(int $user, int $product, ?float $price, ?string $note ): ?string
+function addOffer(int $user, int $product, ?float $price, ?string $note): ?string
 {
     $db = getDatabaseConnection();
     $sql = "INSERT INTO offer (user , product, price, note) VALUES ( ?, ?, ?, ?)";
@@ -78,7 +78,7 @@ function deleteOfferById(string $id_offer): string
     return databaseDelete($db, $sql, $params);
 }
 
-function updateOffer(string $id_offer,int $user, string $product, ?float $price, ?string $note): string
+function updateOffer(string $id_offer, int $user, string $product, ?float $price, ?string $note): string
 {
     $db = getDatabaseConnection();
     $sql = "UPDATE product SET description = ?, state = ?, quality = ?, warehouse = ?, reference = ? WHERE id_product = ?";

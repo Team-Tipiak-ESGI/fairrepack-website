@@ -30,7 +30,10 @@ if(count($where) > 0) {
     $whereSql = " WHERE " . join(" AND ", $where);
 }
 $db = getDatabaseConnection();
-$sql = "SELECT id_product, reference, description, quality, state, id_offer, price, note, user FROM product JOIN offer ON id_offer = id_product" . $whereSql . " LIMIT $offset, $limit";
+$sql = "SELECT uuid_product as id, reference, description, quality, state, r.name as name, r.brand as brand FROM product
+    JOIN reference r on r.id_reference = product.reference"
+    . $whereSql . " LIMIT $offset, $limit";
+
 $statement = $db->prepare($sql);
 if($statement !== false) {
     $success = $statement->execute($params);
