@@ -1,11 +1,14 @@
+# References types categories
 INSERT INTO category (id_category, name) VALUES (1, 'High-Tech');
 INSERT INTO category (id_category, name) VALUES (2, 'Nourriture');
 
+# References types
 INSERT INTO type (id_type, name, category) VALUES (1, 'Téléphone', 1);
 INSERT INTO type (id_type, name, category) VALUES (2, 'Électroménager', 1);
 INSERT INTO type (id_type, name, category) VALUES (3, 'Bonbons reconditionnés', 2);
 INSERT INTO type (id_type, name, category) VALUES (4, 'Assistant intelligent', 1);
 
+# Product references
 INSERT INTO reference (brand, name, value, type) VALUES ('Soumsoung', 'Galaxy S20', '720', 1);
 INSERT INTO reference (brand, name, value, type) VALUES ('Brandt', 'Frigo2ouf', '550', 2);
 INSERT INTO reference (brand, name, value, type) VALUES ('Seb', 'Cuiseur2ouf', '120', 2);
@@ -16,3 +19,9 @@ INSERT INTO reference (brand, name, value, type) VALUES ('Haribo', 'Tagada', '2'
 INSERT INTO reference (brand, name, value, type) VALUES ('Lutti', 'Débonbon', '2', 3);
 INSERT INTO reference (brand, name, value, type) VALUES ('Amazon', 'Alexa', '30', 4);
 INSERT INTO reference (brand, name, value, type) VALUES ('Huawei', 'Honor 10', '300', 1);
+
+# Addresses
+INSERT INTO address (id_address, country, owner_name, address_line1, city, postal_code) VALUES (1, 'France', 'Mathias', '64 rue Violet', 'Paris', '95350');
+
+# Warehouses
+INSERT INTO warehouse (name, address) VALUES ('Paris', 1);

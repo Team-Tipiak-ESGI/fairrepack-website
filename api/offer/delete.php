@@ -1,5 +1,13 @@
 <?php
 
+require_once __DIR__ . '/../../utils/user.php';
+
+// User not authenticated
+if (!getToken()->validate()) {
+    http_response_code(401);
+    die();
+}
+
 require_once __DIR__ . '/../../utils/functions.php';
 
 $body = file_get_contents("php://input");
