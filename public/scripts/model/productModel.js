@@ -2,22 +2,10 @@ const productModel = {};
 
 /**
  * Create a new product in the database
- * @param {HTMLFormElement} form
+ * @param {string} json
  */
-productModel.create = function(form) {
-    const formData = new FormData(form);
-
-    authenticatedFetch("/api/product/create.php", "POST", formDataToJSON(formData))
-        .then((res) => {
-            productVue.buildProductList(document.querySelector("div#productList"));
-        })
-        .catch((res) => {
-            if (res.status === 401) {
-                alert("You are not logged in.");
-            } else {
-                alert("Unknown error.")
-            }
-        });
+productModel.create = function(json) {
+    return authenticatedFetch("/api/product/create.php", "POST", json);
 }
 
 productModel.update = function(product_id) {

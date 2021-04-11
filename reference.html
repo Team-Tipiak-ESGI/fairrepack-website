@@ -4,7 +4,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>FairRepack — Home</title>
+    <title>FairRepack — Product</title>
 
     <script src="public/scripts/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="public/styles/bootstrap.min.css">
@@ -21,16 +21,10 @@
 </header>
 
 <main>
-    <section>
-        <!-- TODO: Carousel -->
-    </section>
-
-    <section>
-        <!-- TODO: Newest products -->
-    </section>
-
-    <section>
-        <!-- TODO: We buy your products -->
+    <section class="container">
+        <!-- TODO: Display specification -->
+        <h1>Produits</h1>
+        <div id="productList" class="d-flex flew-row flex-wrap justify-content-center"></div>
     </section>
 </main>
 
@@ -38,6 +32,16 @@
     <!-- TODO: Footer -->
 </footer>
 
-<!-- TODO: Use JS for infinite scroll -->
+<script src="public/scripts/utils/utils.js"></script>
+<script src="public/scripts/model/userModel.js"></script>
+<script src="public/scripts/controller/userController.js"></script>
+
+<script src="public/scripts/model/referenceModel.js"></script>
+<script src="public/scripts/vue/referenceVue.js"></script>
+
+<script>
+    const id = new URLSearchParams(window.location.search.substr(1)).get('id');
+    referenceVue.buildProductList(document.querySelector('div#productList'), id);
+</script>
 </body>
 </html>

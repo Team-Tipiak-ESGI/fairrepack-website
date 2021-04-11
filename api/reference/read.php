@@ -34,16 +34,27 @@ if (isset($_GET["type"])) {
     $where[] = "type = ?"; // ? ou :var
     $params[] = $_GET["type"];
 }
+if (isset($_GET["state"])) {
+    $where[] = "p.state = ?"; // ? ou :var
+    $params[] = $_GET["state"];
+}
 
 $whereSql = "";
 if (count($where) > 0) {
-    $whereSql = " WHERE " . join(" AND ", $where);
+    $whereSql = " where " . join(" and ", $where);
 }
 
 $db = getDatabaseConnection();
-$sql = "SELECT r.id_reference as id_reference, brand, r.name, value, t.name as type_name, c.name as category_name FROM reference r
-    JOIN type t on r.type = t.id_type
-    JOIN category c on t.category = c.id_category" . $whereSql . " LIMIT $offset, $limit";
+
+$sql = "select r.uuid_reference as id, brand, r.name, value, t.name as type_name, c.name as category_name,
+        count(p.id_product) as stocks, p.created
+        from reference r
+        left join product p on r.id_reference = p.reference
+        join type t on t.id_type = r.type
+        join category c on c.id_category = t.category "
+        . $whereSql .
+        " group by r.id_reference
+        limit $offset, $limit";
 
 $rows = databaseSelectAll($db, $sql, $params);
 header("Content-Type: application/json");

@@ -14,7 +14,7 @@ $offset = isset($_GET["offset"]) ? intval($_GET["offset"]) : 0;
 $where = [];
 $params = [];
 if(isset($_GET["reference"])) {
-    $where[] = "reference = ?"; // ? ou :var
+    $where[] = "r.uuid_reference = ?"; // ? ou :var
     $params[] = $_GET["reference"];
 }
 if(isset($_GET["state"])) {

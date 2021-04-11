@@ -17,14 +17,14 @@
     <!-- TODO: Navbar -->
     <a href="/">Home</a>
     <a href="/account.html">Account</a>
-    <a href="/products.html">Products</a>
+    <a href="/references.html">Products</a>
 </header>
 
 <main>
     <section class="container">
         <!-- TODO: Display product list -->
 
-        <form id="addProductForm" onsubmit="return (productModel.create(this), false)">
+        <form id="addProductForm" onsubmit="return (productController.create(this), false)">
             <label class="d-block mb-3">
                 Référence
                 <select name="reference" class="form-select"></select>
@@ -49,7 +49,7 @@
             <button type="submit" class="btn btn-primary">Envoyer</button>
         </form>
 
-        <div id="productList" class="d-flex flew-row flex-wrap justify-content-center"></div>
+        <div id="referenceList" class="d-flex flew-row flex-wrap justify-content-center"></div>
     </section>
 </main>
 
@@ -61,14 +61,12 @@
 <script src="public/scripts/model/userModel.js"></script>
 <script src="public/scripts/controller/userController.js"></script>
 
-<script src="public/scripts/vue/productVue.js"></script>
-<script src="public/scripts/model/productModel.js"></script>
-
 <script src="public/scripts/model/referenceModel.js"></script>
+<script src="public/scripts/vue/referenceVue.js"></script>
 
 <script>
-    productVue.buildProductList(document.querySelector("div#productList"));
-    productVue.buildReferenceSelect(document.querySelector("form#addProductForm select[name=reference]"));
+    referenceVue.buildReferenceList(document.querySelector("div#referenceList"));
+    referenceVue.buildReferenceSelect(document.querySelector("form#addProductForm select[name=reference]"));
 </script>
 </body>
 </html>
