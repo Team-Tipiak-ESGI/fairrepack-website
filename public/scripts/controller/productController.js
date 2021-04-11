@@ -8,7 +8,7 @@ productController.create = function (form) {
     const formData = new FormData(form);
     productModel.create(formDataToJSON(formData))
         .then((res) => {
-            referenceVue.buildReferenceList(document.querySelector("div#productList"));
+            referenceVue.buildReferenceList(document.querySelector("div#referenceList"));
         })
         .catch((res) => {
             if (res.status === 401) {

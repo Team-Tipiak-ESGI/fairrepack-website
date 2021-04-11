@@ -3,17 +3,27 @@
 require_once 'database.php';
 require_once 'UUIDv4.php';
 
+/**
+ * Insert a new product
+ * @param string $reference Reference's UUID
+ * @param string $description
+ * @param string|null $state
+ * @param string|null $quality
+ * @param int|null $warehouse
+ * @return string|null
+ */
 function addProduct(string $reference, string $description, ?string $state, ?string $quality, ?int $warehouse): ?string
 {
     $db = getDatabaseConnection();
-    $sql = "INSERT INTO product (uuid_product, reference, description, state, quality, warehouse) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO product (uuid_product, description, state, quality, warehouse, reference)
+                VALUES (?, ?, ?, ?, ?, (SELECT id_reference FROM reference WHERE uuid_reference = ?))";
     $params = [
         UUIDv4(),
-        $reference,
         $description,
         $state,
         $quality,
-        $warehouse
+        $warehouse,
+        $reference,
     ];
     return databaseInsert($db, $sql, $params);
 }
