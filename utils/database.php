@@ -9,9 +9,13 @@ function getDatabaseConnection(): PDO
     $user = $_SERVER["HTTP_MYSQL_USER"] ?? "root";
     $password = $_SERVER["HTTP_MYSQL_PASS"] ?? "root";
 
-    return new PDO("$driver:host=$host;port=$port;dbname=$db;charset=utf8",
+    $db = new PDO("$driver:host=$host;port=$port;dbname=$db;charset=utf8",
         $user,
         $password);
+    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
+
+    return $db;
 }
 
 /**
@@ -33,13 +37,13 @@ function databaseInsert(PDO $db, string $sql, array $params): ?string
     return null;
 }
 
-function databaseFindOne(PDO $db, string $sql, array $params): ?array
+function databaseFindOne(PDO $db, string $sql, ?array $params = [], ?int $fetchMode = PDO::FETCH_ASSOC): ?array
 {
     $statement = $db->prepare($sql);
     if ($statement) {
         $success = $statement->execute($params);
         if ($success) {
-            $res = $statement->fetch(PDO::FETCH_ASSOC);
+            $res = $statement->fetch($fetchMode);
             if ($res) {
                 return $res;
             }
@@ -67,14 +71,14 @@ function databaseDelete(PDO $db, string $sql, array $params): ?int
     return null;
 }
 
-function databaseSelectAll(PDO $db, string $sql, array $params = []): ?array
+function databaseSelectAll(PDO $db, string $sql, ?array $params = [], ?int $fetchMode = PDO::FETCH_ASSOC): ?array
 {
     $statement = $db->prepare($sql);
 
     if ($statement !== false) {
         $success = $statement->execute($params);
         if ($success) {
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $statement->fetchAll($fetchMode);
         }
     }
 

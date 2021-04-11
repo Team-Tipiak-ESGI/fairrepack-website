@@ -64,7 +64,7 @@ create or replace table fairrepack.reference
     uuid_reference char(36)      not null,
     brand          varchar(128)  not null,
     name           varchar(128)  not null,
-    value          decimal(6, 2) not null,
+    value          float(6, 2)   not null,
     type           int           not null,
     primary key (id_reference, uuid_reference),
     constraint brand_UNIQUE
@@ -191,7 +191,7 @@ create or replace table fairrepack.offer
         primary key,
     user     int                                  not null,
     product  int                                  not null,
-    price    decimal(6, 2)                        null,
+    price    float(6, 2)                          null,
     note     text                                 null,
     created  datetime default current_timestamp() not null,
     constraint product_offer

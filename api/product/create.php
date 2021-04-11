@@ -13,14 +13,15 @@ require_once __DIR__ . '/../../utils/functions.php';
 $body = file_get_contents("php://input");
 $_POST = json_decode($body, true);
 
-if (isset($_POST["reference"]) && isset($_POST["description"])) {
+if (isset($_POST["reference"]) && isset($_POST["user"])) {
     $reference = $_POST["reference"];
-    $description = $_POST["description"];
+    $user = getToken()->getPayload()['uuid'];
+    $description = $_POST["description"] ?? NULL;
     $state = $_POST["state"] ?? "registered";
     $quality = $_POST["quality"] ?? NULL;
     $warehouse = $_POST["warehouse"] ?? 1;
 
-    $lastProductId = addProduct($reference, $description, $state, $quality, $warehouse);
+    $lastProductId = addProduct($reference, $user, $description, $state, $quality, $warehouse);
 
     if ($lastProductId) {
         $product = getProductbyId($lastProductId);
