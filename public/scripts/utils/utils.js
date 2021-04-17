@@ -39,3 +39,14 @@ function formDataToJSON(formData) {
 
     return JSON.stringify(entries);
 }
+
+Date.prototype.format = function (format) {
+    const associations = {"%yyyy": "getFullYear", "%dd": "getDay", "%hh": "getHours", "%mmmm": "getMilliseconds", "%mm": "getMinutes", "%MM": "getMonth", "%ss": "getSeconds" }
+
+    for (const match of format.match(/(?<!%)%(?!%)(\w*)/g)) {
+        let value = this[associations[match]]?.call(this);
+        format = format.replace(match, (match === "%MM" ? ++value : value)?.toString().padStart(match.length - 1, '0') ?? match);
+    }
+
+    return format;
+};

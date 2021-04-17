@@ -13,17 +13,19 @@ require_once __DIR__ . '/../../utils/functions.php';
 $body = file_get_contents("php://input");
 $_POST = json_decode($body, true);
 
-if(isset($_POST["user"]) && isset($_POST["product"]))
-{
-    $user = $_POST["user"];
-    $product = $_POST["product"];
-    $price = $_POST["price"]??NULL;
-    $note = $_POST["note"]??NULL;
+$user = getToken()->getPayload()["uuid"];
 
-    $lastOfferId = addOffer($user,$product, $price, $note);
-    if($lastOfferId) {
+if (isset($_POST["product"])) {
+    $product = $_POST["product"];
+    $price = $_POST["price"] ?? NULL;
+    $note = $_POST["note"] ?? NULL;
+
+    // TODO: Verify that product state is registered or sent
+
+    $lastOfferId = addOffer($user, $product, $price, $note);
+    if ($lastOfferId) {
         $offer = getOfferbyId($lastOfferId);
-        if($offer) {
+        if ($offer) {
             http_response_code(201); // CREATED
             header("Content-Type: application/json");
             echo json_encode($offer);

@@ -88,7 +88,7 @@ referenceVue.buildProductList = function (div, reference_id) {
                 p_40.classList.add(`card-text`);
 
                 div_e.append(p_40);
-                p_40.innerText = product.description; // Card content
+                p_40.innerText = `${product.description}\n${product.state}`; // Card content
                 const a_42 = document.createElement(`a`);
                 a_42.href = `/product.html?id=${product.id}`;
                 a_42.classList.add(`btn`, `btn-primary`);
