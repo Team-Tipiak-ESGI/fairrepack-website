@@ -3,6 +3,8 @@
 require_once 'database.php';
 require_once 'UUIDv4.php';
 
+
+//===================================================PRODUCT============================================================
 /**
  * Insert a new product
  * @param string $reference Reference's UUID
@@ -14,6 +16,7 @@ require_once 'UUIDv4.php';
  * @param float|null $price
  * @return string|null
  */
+
 function addProduct(string $reference, string $user, ?string $description, ?string $state,
                     ?string $quality, ?int $warehouse, ?float $price): ?string
 {
@@ -56,6 +59,15 @@ function deleteProductById(string $id_product): string
     return databaseDelete($db, $sql, $params);
 }
 
+function getProductByUUID(string $uuid): ?array
+{
+    $db = getDatabaseConnection();
+    $sql = "SELECT state, quality, description, reference, warehouse, created, user FROM product WHERE uuid_product = ?";
+    $params = [$uuid];
+    return databaseFindOne($db, $sql, $params);
+}
+
+//====================================================OFFER=============================================================
 /**
  * @param string $user User's uuid
  * @param string $product Product's uuid
@@ -95,7 +107,41 @@ function deleteOfferById(string $id_offer): string
     return databaseDelete($db, $sql, $params);
 }
 
-function getReferenceByUUID(string $uuid){
+//==================================================REFERENCE===========================================================
+
+function createReferenceByUUID(string $brand, string $name, float $value, string $type): string
+{
+    $db = getDatabaseConnection();
+    $sql = "INSERT INTO reference ( uuid_reference,brand, name, value, type) VALUES (?,?,?,?)";
+    $params = [
+        UUIDv4(),
+        $brand,
+        $name,
+        $value,
+        $type
+    ];
+    return databaseInsert($db, $sql, $params);
+
+}
+
+function deleteReferenceByUUID(string $uuid): int
+{
+    $db = getDatabaseConnection();
+    $sql = "DELETE FROM reference WHERE uuid_reference= ?";
+    $params = [$uuid];
+    return databaseDelete($db, $sql, $params);
+}
+
+function getReferenceByID(string $id): ?array
+{
+    $db = getDatabaseConnection();
+    $sql = "SELECT brand, name, value, type FROM reference WHERE id_reference = ?";
+    $params = [$id];
+    return databaseFindOne($db, $sql, $params);
+}
+
+function getReferenceByUUID(string $uuid): ?array
+{
     $db = getDatabaseConnection();
     $sql = "SELECT brand, name, value, type FROM reference WHERE uuid_reference = ?";
     $params = [$uuid];
