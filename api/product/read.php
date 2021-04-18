@@ -9,7 +9,8 @@ if($_SERVER["REQUEST_METHOD"] !== "GET") {
 require_once __DIR__ . "/../../utils/database.php";
 
 $limit = isset($_GET["limit"]) ? intval($_GET["limit"]) : 20;
-$offset = isset($_GET["offset"]) ? intval($_GET["offset"]) : 0;
+$page = isset($_GET["page"]) ? intval($_GET["page"]) : 0;
+$offset = isset($_GET["offset"]) ? intval($_GET["offset"]) : $limit * $page;
 
 $where = [];
 $params = [];
@@ -29,6 +30,10 @@ if(isset($_GET["id"])) {
     $where[] = "uuid_product = ?"; // ? ou :var
     $params[] = $_GET["id"];
 }
+if(isset($_GET["user"])) {
+    $where[] = "product.user = (SELECT id_user FROM user WHERE uuid_user = ?)"; // ? ou :var
+    $params[] = $_GET["user"];
+}
 $whereSql = "";
 if(count($where) > 0) {
     $whereSql = " WHERE " . join(" AND ", $where);
@@ -37,11 +42,12 @@ $db = getDatabaseConnection();
 
 // Get products
 $sql = "SELECT uuid_product as id, uuid_user as user, r.uuid_reference as reference, description, quality, state,
-        r.name as name, r.brand as brand, product.created
+        r.name as name, r.brand as brand, product.created, count(o.id_offer) as offer_count
         FROM product
+        RIGHT JOIN offer o on product.id_product = o.product
         JOIN user u on product.user = u.id_user
         JOIN reference r on r.id_reference = product.reference "
-        . $whereSql . " LIMIT $offset, $limit";
+        . $whereSql . " GROUP BY id_product LIMIT $offset, $limit";
 
 $rows = [];
 
