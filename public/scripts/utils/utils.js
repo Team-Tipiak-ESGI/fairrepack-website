@@ -66,3 +66,7 @@ Date.prototype.format = function (format) {
 
     return format;
 };
+
+function getPageId() {
+    return new URLSearchParams(window.location.search.substr(1)).get('id');
+}
