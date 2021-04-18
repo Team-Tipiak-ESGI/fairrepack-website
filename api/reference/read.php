@@ -47,8 +47,13 @@ if (count($where) > 0) {
 $db = getDatabaseConnection();
 
 $sql = "select r.uuid_reference as id, brand, r.name, value, t.name as type_name, c.name as category_name,
-        count(p.id_product) as stocks, p.created
+        s.stocks, count(p.id_product) as count, p.created
         from reference r
+        left join (select count(p.id_product) as stocks, reference, id_product
+                    from product p
+                    where state = 'in_stock'
+                    group by reference) s
+                on r.id_reference = s.reference
         left join product p on r.id_reference = p.reference
         join type t on t.id_type = r.type
         join category c on c.id_category = t.category "
