@@ -63,7 +63,6 @@
 
 <script>
     const productList = document.querySelector('div#productList');
-    referenceVue.buildProductList(productList);
 
     pagination()
         .plugPaginationElement(document.querySelector("#pagination"), referenceVue.buildProductList, productList);

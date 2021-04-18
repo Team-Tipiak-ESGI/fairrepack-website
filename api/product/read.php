@@ -8,9 +8,9 @@ if($_SERVER["REQUEST_METHOD"] !== "GET") {
 
 require_once __DIR__ . "/../../utils/database.php";
 
-$limit = $_GET["limit"] ?? $_GET["size"] ?? 20;
-$page = $_GET["page"] ?? 0;
-$offset = $_GET["offset"] ?? $limit * $page;
+$limit = intval($_GET["limit"] ?? $_GET["size"] ?? 20);
+$page = intval($_GET["page"] ?? 0);
+$offset = intval($_GET["offset"] ?? $limit * $page);
 
 $where = [];
 $params = [];
