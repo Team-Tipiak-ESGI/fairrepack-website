@@ -21,9 +21,13 @@
 </header>
 
 <main>
-    <section>
+    <section class="container">
         <!-- TODO: Display user information -->
+        <h1>Informations</h1>
         <div id="userInfo"></div>
+
+        <h1>Produits</h1>
+        <div id="userProducts" class="d-flex justify-content-center flex-wrap"></div>
     </section>
 </main>
 
@@ -35,15 +39,11 @@
 <script src="public/scripts/model/userModel.js"></script>
 <script src="public/scripts/controller/userController.js"></script>
 
-<script src="public/scripts/model/referenceModel.js"></script>
-<script src="public/scripts/vue/referenceVue.js"></script>
+<script src="public/scripts/vue/productVue.js"></script>
 <script src="public/scripts/vue/userVue.js"></script>
 
-<script src="public/scripts/model/productModel.js"></script>
-<script src="public/scripts/controller/productController.js"></script>
-
 <script>
-    userVue.basicUserInfo(document.querySelector("div#userInfo"), getPageId())
+    userVue.basicUserInfo(document.querySelector("div#userInfo"), document.querySelector("div#userProducts"), getPageId())
 </script>
 </body>
 </html>

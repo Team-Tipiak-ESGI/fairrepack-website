@@ -67,6 +67,33 @@ Date.prototype.format = function (format) {
     return format;
 };
 
+/**
+ * Get page ID from url
+ * @deprecated Use getPage() function instead
+ * @returns {string} Page's ID
+ */
 function getPageId() {
     return new URLSearchParams(window.location.search.substr(1)).get('id');
+}
+
+/**
+ * Return information about the page
+ * @param {number|undefined} pageNumber
+ * @returns {{pageId: string, pageSize: number, pageNumber: number, urlParams: string}}
+ */
+function getPage(pageNumber = 0) {
+    const pageId = new URLSearchParams(window.location.search.substr(1)).get('id');
+    const pageSize = window.localStorage.getItem("pageSize") || 20;
+    const urlParams = `page=${pageNumber}&limit=${pageSize}`;
+
+    return {
+        pageId: pageId,
+        pageSize: pageSize,
+        pageNumber: pageNumber,
+        urlParams: urlParams,
+    };
+}
+
+function between(value, min, max) {
+    return Math.min(Math.max(value, min), max);
 }

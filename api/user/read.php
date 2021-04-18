@@ -41,7 +41,7 @@ if (isset($_GET["id"])) {
         $address = databaseFindOne($db, $sql, [$_GET["id"]]);
     }
 
-    $sql = "select uuid_product, state, quality, description, p.created,
+    $sql = "select uuid_product as id, state, quality, description, p.created,
                 r.brand, r.name,
                 t.name as type, c.name as category
                 from user
