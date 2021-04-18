@@ -14,12 +14,53 @@
 <body>
 
 <header>
-    <!-- TODO: Navbar -->
-    <a href="/">Home</a>
-    <a href="/account.html">Account</a>
-    <a href="/references.html">Products</a>
-</header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/public/assets/favicon_140.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+                Fair Repack
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account.html">Account</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/references.html">Products</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
 <main>
     <section class="container">
         <!-- TODO: Display specification -->
@@ -41,9 +82,60 @@
         <div id="productList" class="d-flex flew-row flex-wrap justify-content-center"></div>
     </section>
 </main>
-
-<footer>
-    <!-- TODO: Footer -->
+<footer class="bg-light text-center text-lg-start">
+    <div class="container p-4">
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col">
+                <h5 class="text-uppercase">Fair Repack en Bref</h5>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+                    distinctio earum repellat quaerat voluptatibus placeat nam,
+                    commodi optio pariatur est quia magnam eum harum corrupti dicta,
+                    aliquam sequi voluptate quas.
+                </p>
+            </div>
+            <div class="col">
+                <h5 class="text-uppercase">Nos liens</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 2</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 3</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 4</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col">
+                <h5 class="text-uppercase">Socials</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 2</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 3</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 4</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3">
+        © 2021 Copyright:
+        <a class="text-black" href="/">Fair Repack</a>
+    </div>
 </footer>
 
 <script src="public/scripts/utils/utils.js"></script>
@@ -52,6 +144,10 @@
 
 <script src="public/scripts/model/referenceModel.js"></script>
 <script src="public/scripts/vue/referenceVue.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
 
 <script>
     referenceVue.buildProductList(document.querySelector('div#productList'), getPageId());
