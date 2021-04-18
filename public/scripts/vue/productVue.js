@@ -87,18 +87,53 @@ productVue.buildOfferDiv = function(div, product) {
  * Build the product page
  * @param info_div
  * @param offer_div
- * @param {string} product_id Product's UUID
+ * @param {number|undefined} page Page number
  */
-productVue.buildProductPage = function (info_div, offer_div, product_id) {
-    authenticatedFetch(`/api/product/read.php?id=${product_id}`)
+productVue.buildProductPage = function (info_div, offer_div, page = 0) {
+    const p = getPage(page);
+    authenticatedFetch(`/api/product/read.php?id=${p.pageId}&${p.urlParams}`)
         .then(res => res.json())
         .then(product => {
             productVue.buildInfoDiv(info_div, product);
             productVue.buildOfferDiv(offer_div, product);
 
             // Hide offer form if user is not owner or admin or if product is already accepted
-            if (getToken().payload.uuid !== product.user || !(product.state === 'registered' || product.state === 'sent')) {
+            if (getToken().payload.uuid !== product.user || getToken().payload.type !== "admin" || !(product.state === 'registered' || product.state === 'sent')) {
                 document.querySelector("form#addOfferForm").classList.add("d-none");
             }
         });
+}
+
+productVue.buildProductList = function (div, products) {
+    div.innerHTML = '';
+
+    for (const product of products) {
+        // Product card
+        const div_1 = document.createElement(`div`);
+        div_1.classList.add(`card`, `m-2`);
+        div_1.style.width = `18rem`;
+
+        const div_e = document.createElement(`div`);
+        div_e.classList.add(`card-body`);
+        const h5_3y = document.createElement(`h5`);
+        h5_3y.classList.add(`card-title`);
+
+        div_e.append(h5_3y);
+        h5_3y.innerText = `${product.brand} ${product.name}`; // Card title
+        const p_40 = document.createElement(`p`);
+        p_40.classList.add(`card-text`);
+
+        div_e.append(p_40);
+        p_40.innerText = `${product.description || "-"}\nEtat : ${product.state}\nOffres : ${product.offer_count}`; // Card content
+        const a_42 = document.createElement(`a`);
+        a_42.href = `/product.html?id=${product.id}`;
+        a_42.classList.add(`btn`, `btn-primary`);
+
+        div_e.append(a_42);
+        a_42.innerText = `View product`;
+
+        div_1.append(div_e);
+
+        div.append(div_1);
+    }
 }
