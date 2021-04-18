@@ -94,7 +94,7 @@ function addOffer(string $user, string $product, ?float $price, ?string $note): 
 function getOfferById(string $id_offer): ?array
 {
     $db = getDatabaseConnection();
-    $sql = "SELECT id_offer, user, product, price, note FROM offer WHERE id_offer = ?";
+    $sql = "SELECT uuid_offer, user, product, price, note FROM offer WHERE id_offer = ?";
     $params = [$id_offer];
     return databaseFindOne($db, $sql, $params);
 }
@@ -109,19 +109,19 @@ function deleteOfferById(string $id_offer): string
 
 //==================================================REFERENCE===========================================================
 
-function createReferenceByUUID(string $brand, string $name, float $value, string $type): string
+function addReference(string $brand, string $name, float $value, string $type): string
 {
     $db = getDatabaseConnection();
-    $sql = "INSERT INTO reference ( uuid_reference,brand, name, value, type) VALUES (?,?,?,?)";
+    $sql = "INSERT INTO reference (uuid_reference, brand, name, value, type) VALUES (?,?,?,?,?)";
     $params = [
         UUIDv4(),
         $brand,
         $name,
         $value,
-        $type
+        $type,
     ];
-    return databaseInsert($db, $sql, $params);
 
+    return databaseInsert($db, $sql, $params);
 }
 
 function deleteReferenceByUUID(string $uuid): int
@@ -135,7 +135,7 @@ function deleteReferenceByUUID(string $uuid): int
 function getReferenceByID(string $id): ?array
 {
     $db = getDatabaseConnection();
-    $sql = "SELECT brand, name, value, type FROM reference WHERE id_reference = ?";
+    $sql = "SELECT uuid_reference, brand, name, value, type FROM reference WHERE id_reference = ?";
     $params = [$id];
     return databaseFindOne($db, $sql, $params);
 }
