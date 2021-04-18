@@ -1,5 +1,5 @@
 <?php
-define("SECRET", $_SERVER["HTTP_MYSQL_SECRET"] ?? "secret");
+define("SECRET", $_SERVER["HTTP_SALT"] ?? "secret");
 
 function base64url_encode($data): string
 {
@@ -8,7 +8,7 @@ function base64url_encode($data): string
 
 function base64url_decode($data): string
 {
-    return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
+    return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '='));
 }
 
 class Token

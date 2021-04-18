@@ -5,10 +5,17 @@ const referenceVue = {};
  * @param {HTMLDivElement} div
  */
 referenceVue.buildReferenceList = function (div) {
-    authenticatedFetch("/api/reference/read.php?state=in_stock")
+    authenticatedFetch("/api/reference/read.php")
         .then(res => res.json())
         .then(references => {
             div.innerHTML = '';
+
+            references.sort((a, b) => {
+                if (b.stocks !== null || a.stocks !== null)
+                    return (b.stocks || 0) - (a.stocks || 0);
+                else
+                    return (b.count || 0) - (a.count || 0);
+            })
 
             for (const reference of references) {
                 // Product card
@@ -27,7 +34,7 @@ referenceVue.buildReferenceList = function (div) {
                 p_40.classList.add(`card-text`);
 
                 div_e.append(p_40);
-                p_40.innerText = `Stocks: ${reference.stocks}`; // Card content
+                p_40.innerText = `Stocks : ${reference.stocks || 0}\nEnregistrés : ${reference.count || 0}`; // Card content
                 const a_42 = document.createElement(`a`);
                 a_42.href = `/reference.html?id=${reference.id}`;
                 a_42.classList.add(`btn`, `btn-primary`);
