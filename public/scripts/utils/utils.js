@@ -25,6 +25,22 @@ function authenticatedFetch(url, method = 'GET', body = undefined) {
 }
 
 /**
+ * Return Token
+ * @type {function(): {headers: {alg: string, typ: string}, payload: {expiry: number, lang: string, type: string, username: string, uuid: string}, token: string}}
+ */
+const getToken = () => {
+    const token = window.localStorage.getItem('token');
+    const headers = JSON.parse(atob(token.split('.')[0]));
+    const payload = JSON.parse(atob(token.split('.')[1]));
+
+    return {
+        token: token,
+        headers: headers,
+        payload: payload,
+    };
+};
+
+/**
  * Converts a FormData object to JSON string
  * @param {FormData} formData
  * @returns {string} JSON string

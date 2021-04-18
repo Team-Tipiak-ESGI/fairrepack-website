@@ -4,6 +4,8 @@
  * User login, return a JWT
  */
 
+define("SECRET", $_SERVER["HTTP_SALT"] ?? "secret");
+
 require_once __DIR__ . '/../../utils/database.php';
 require_once __DIR__ . '/../../utils/UUIDv4.php';
 require_once __DIR__ . '/../../utils/Token.php';
@@ -17,7 +19,7 @@ $password = $_POST["password"];
 
 if (filter_var($email, FILTER_VALIDATE_EMAIL) !== false && strlen($password) >= 8) {
     $connection = getDatabaseConnection();
-    $hashed_password = hash('sha256', $password);
+    $hashed_password = hash('sha256', $password . SECRET);
 
     $sql = "select id_user, uuid_user, language, user_type, username from `user`
             where email = ? and password = ?";

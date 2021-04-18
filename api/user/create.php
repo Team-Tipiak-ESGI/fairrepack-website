@@ -4,6 +4,8 @@
  * User signup
  */
 
+define("SECRET", $_SERVER["HTTP_SALT"] ?? "secret");
+
 require_once __DIR__ . '/../../utils/database.php';
 require_once __DIR__ . '/../../utils/UUIDv4.php';
 
@@ -16,7 +18,7 @@ $password = $_POST["password"];
 
 if (filter_var($email, FILTER_VALIDATE_EMAIL) !== false && strlen($password) >= 8) {
     $connection = getDatabaseConnection();
-    $hashed_password = hash('sha256', $password);
+    $hashed_password = hash('sha256', $password . SECRET);
     $uuid = UUIDv4();
 
     $sql = "insert into `user` (uuid_user, email, password) values (?, ?, ?)";
