@@ -87,10 +87,10 @@ productVue.buildOfferDiv = function(div, product) {
  * Build the product page
  * @param info_div
  * @param offer_div
- * @param {string} product_id Product's UUID
+ * @param {number|undefined} page Page number
  */
-productVue.buildProductPage = function (info_div, offer_div, product_id) {
-    authenticatedFetch(`/api/product/read.php?id=${product_id}`)
+productVue.buildProductPage = function (info_div, offer_div, page = 0) {
+    authenticatedFetch(`/api/product/read.php?${getPage(page).urlParams}`)
         .then(res => res.json())
         .then(product => {
             productVue.buildInfoDiv(info_div, product);

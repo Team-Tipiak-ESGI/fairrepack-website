@@ -70,10 +70,11 @@ referenceVue.buildReferenceSelect = function (select) {
 /**
  * Build the product list of a given reference
  * @param {HTMLDivElement} div Div to add product list
- * @param {string} reference_id Reference's UUID
+ * @param {number|undefined} page Page number
  */
-referenceVue.buildProductList = function (div, reference_id) {
-    authenticatedFetch(`/api/product/read.php?reference=${reference_id}`)
+referenceVue.buildProductList = function (div, page = 0) {
+    const p = getPage(page);
+    authenticatedFetch(`/api/product/read.php?reference=${p.pageId}&${p.urlParams}`)
         .then(res => res.json())
         .then(products => {
             productVue.buildProductList(div, products);

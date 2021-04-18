@@ -38,7 +38,12 @@
 
             <button type="submit" class="btn btn-primary">Acheter</button>
         </form>
+
         <div id="productList" class="d-flex flew-row flex-wrap justify-content-center"></div>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center" id="pagination"></ul>
+        </nav>
     </section>
 </main>
 
@@ -54,9 +59,14 @@
 <script src="public/scripts/vue/referenceVue.js"></script>
 
 <script src="public/scripts/vue/productVue.js"></script>
+<script src="public/scripts/vue/pagination.js"></script>
 
 <script>
-    referenceVue.buildProductList(document.querySelector('div#productList'), getPageId());
+    const productList = document.querySelector('div#productList');
+    referenceVue.buildProductList(productList);
+
+    pagination()
+        .plugPaginationElement(document.querySelector("#pagination"), referenceVue.buildProductList, productList);
 </script>
 </body>
 </html>
