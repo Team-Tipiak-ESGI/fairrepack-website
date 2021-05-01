@@ -65,7 +65,7 @@ $sql = "select r.uuid_reference as id, brand, r.name, value, t.name as type_name
 $rows = databaseSelectAll($db, $sql, $params);
 header("Content-Type: application/json");
 if (!is_null($rows)) {
-    $json = json_encode($rows); // transforme le tableau en JSON
+    $json = json_encode(["items" => $rows, "count" => databaseRowCount($db, "reference")]);
     echo $json;
 } else {
     http_response_code(500);

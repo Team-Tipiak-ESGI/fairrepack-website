@@ -3,11 +3,16 @@ const referenceVue = {};
 /**
  * Build the reference list
  * @param {HTMLDivElement} div
+ * @param {number|undefined} page Page number
  */
-referenceVue.buildReferenceList = function (div) {
-    authenticatedFetch("/api/reference/read.php")
+referenceVue.buildReferenceList = function (div, page = 0) {
+    authenticatedFetch(`/api/reference/read.php?${getPage(page).urlParams}`)
         .then(res => res.json())
-        .then(references => {
+        .then(json => {
+            window.nav.setElementCount(20);
+
+            const references = json.items;
+
             div.innerHTML = '';
 
             references.sort((a, b) => {
@@ -35,12 +40,17 @@ referenceVue.buildReferenceList = function (div) {
 
                 div_e.append(p_40);
                 p_40.innerText = `Stocks : ${reference.stocks || 0}\nEnregistrés : ${reference.count || 0}`; // Card content
+
+                const btn_43 = document.createElement(`btn`);
+                btn_43.classList.add(`btn`, `btn-primary`, `me-2`);
+                btn_43.innerText = `Add to cart`;
+                div_e.append(btn_43);
+
                 const a_42 = document.createElement(`a`);
                 a_42.href = `/reference.php?id=${reference.id}`;
-                a_42.classList.add(`btn`, `btn-primary`);
-
-                div_e.append(a_42);
+                a_42.classList.add(`btn`, `btn-secondary`);
                 a_42.innerText = `View product`;
+                div_e.append(a_42);
 
                 div_1.append(div_e);
 
@@ -55,7 +65,8 @@ referenceVue.buildReferenceList = function (div) {
  */
 referenceVue.buildReferenceSelect = function (select) {
     referenceModel.read()
-        .then(references => {
+        .then(json => {
+            const references = json.items;
             for (const reference of references) {
                 const option = document.createElement('option');
 
@@ -76,7 +87,8 @@ referenceVue.buildProductList = function (div, page = 0) {
     const p = getPage(page);
     authenticatedFetch(`/api/product/read.php?reference=${p.pageId}&${p.urlParams}`)
         .then(res => res.json())
-        .then(products => {
+        .then(json => {
+            const products = json.items;
             productVue.buildProductList(div, products);
         });
 }

@@ -39,8 +39,8 @@
 <script>
     const productList = document.querySelector('div#productList');
 
-    const nav = pagination();
-    nav.plugPaginationElement(document.querySelector("#pagination"), referenceVue.buildProductList, productList);
+    window.nav = pagination();
+    window.nav.plugPaginationElement(document.querySelector("#pagination"), referenceVue.buildProductList, productList);
 </script>
 
 <?php include "includes/footer.php"; ?>

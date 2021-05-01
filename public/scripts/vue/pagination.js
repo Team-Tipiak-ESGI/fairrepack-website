@@ -4,6 +4,16 @@ const pagination = () => ({
     maxPage: 10,
     displayedPages: 5,
 
+    setElementCount: function(max) {
+        const pageSize = getPage()?.pageSize || 20;
+        const maxPage = max / pageSize;
+
+        if (this.maxPage !== maxPage) {
+            this.maxPage = maxPage;
+            this.rebuildPagination();
+        }
+    },
+
     buildPaginationLi: function(text) {
         const li = document.createElement(`li`);
         li.classList.add(`page-item`);
@@ -16,7 +26,7 @@ const pagination = () => ({
         return li;
     },
 
-    updatePagination: function() {
+    rebuildPagination: function() {
 
         // Remove old page numbers
         while (this.element.children.length > 2)
@@ -28,6 +38,13 @@ const pagination = () => ({
         const end = Math.min(this.maxPage, this.currentPage + Math.ceil(h));
 
         const next = this.element.children[this.element.children.length - 1];
+        const previous = this.element.children[0];
+
+        if (this.currentPage === 0) previous.classList.add("disabled");
+        else previous.classList.remove("disabled");
+
+        if (this.currentPage === this.maxPage - 1) next.classList.add("disabled");
+        else next.classList.remove("disabled");
 
         for (let i = start; i < end; i++) {
             const pageNumber = (Math.floor(i) + 1).toString();
@@ -44,6 +61,12 @@ const pagination = () => ({
                 this.updatePagination();
             });
         }
+
+    },
+
+    updatePagination: function() {
+
+        this.rebuildPagination();
 
         this.callback(...this.args, this.currentPage);
 

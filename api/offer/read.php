@@ -30,12 +30,14 @@ $whereSql = "";
 if(count($where) > 0) {
     $whereSql = " WHERE " . join(" AND ", $where);
 }
+
 $db = getDatabaseConnection();
 $sql = "SELECT id_offer, user, product, price, note FROM offer " . $whereSql . " LIMIT $offset, $limit";
 $rows = databaseSelectAll($db, $sql, $params);
 header("Content-Type: application/json");
+
 if (!is_null($rows)) {
-    $json = json_encode($rows); // transforme le tableau en JSON
+    $json = json_encode(["items" => $rows, "count" => databaseRowCount($db, "offer")]);
     echo $json;
 } else {
     http_response_code(500);

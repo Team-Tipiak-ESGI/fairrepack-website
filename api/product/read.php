@@ -69,7 +69,7 @@ if (isset($_GET["id"])) {
 
 header("Content-Type: application/json");
 if (!is_null($rows)) {
-    $json = json_encode($rows); // transforme le tableau en JSON
+    $json = json_encode(["items" => $rows, "count" => databaseRowCount($db, "product")]);
     echo $json;
 } else {
     http_response_code(500);

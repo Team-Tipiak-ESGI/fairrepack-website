@@ -84,3 +84,18 @@ function databaseSelectAll(PDO $db, string $sql, ?array $params = [], ?int $fetc
 
     return null;
 }
+
+function databaseRowCount(PDO $db, string $table): ?int
+{
+    $statement = $db->prepare("SELECT COUNT(*) AS count FROM $table");
+
+    if ($statement !== false) {
+        $success = $statement->execute();
+        if ($success) {
+            $res = $statement->fetch(PDO::FETCH_ASSOC);
+            return intval($res["count"]);
+        }
+    }
+
+    return null;
+}
