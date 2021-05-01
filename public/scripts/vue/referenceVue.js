@@ -36,7 +36,7 @@ referenceVue.buildReferenceList = function (div) {
                 div_e.append(p_40);
                 p_40.innerText = `Stocks : ${reference.stocks || 0}\nEnregistrés : ${reference.count || 0}`; // Card content
                 const a_42 = document.createElement(`a`);
-                a_42.href = `/reference.html?id=${reference.id}`;
+                a_42.href = `/reference.php?id=${reference.id}`;
                 a_42.classList.add(`btn`, `btn-primary`);
 
                 div_e.append(a_42);

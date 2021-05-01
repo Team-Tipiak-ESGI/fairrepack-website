@@ -9,7 +9,7 @@ productVue.buildInfoDiv = function(div, product) {
     const text_3d = document.createTextNode(`Vendeur : `);
     li_c.append(text_3d);
     const a_3e = document.createElement(`a`);
-    a_3e.href = `/user.html?id=${product.user}`;
+    a_3e.href = `/user.php?id=${product.user}`;
 
     li_c.append(a_3e);
     a_3e.innerText = `${product.user}`;
@@ -23,7 +23,7 @@ productVue.buildInfoDiv = function(div, product) {
     const text_4h = document.createTextNode(`Produit : `);
     li_g.append(text_4h);
     const a_4i = document.createElement(`a`);
-    a_4i.href = `/reference.html?id=${product.reference}`;
+    a_4i.href = `/reference.php?id=${product.reference}`;
 
     li_g.append(a_4i);
     a_4i.innerText = `${product.brand} ${product.name}`;
@@ -126,7 +126,7 @@ productVue.buildProductList = function (div, products) {
         div_e.append(p_40);
         p_40.innerText = `${product.description || "-"}\nEtat : ${product.state}\nOffres : ${product.offer_count}`; // Card content
         const a_42 = document.createElement(`a`);
-        a_42.href = `/product.html?id=${product.id}`;
+        a_42.href = `/product.php?id=${product.id}`;
         a_42.classList.add(`btn`, `btn-primary`);
 
         div_e.append(a_42);
