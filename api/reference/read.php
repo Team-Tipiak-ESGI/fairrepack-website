@@ -65,7 +65,20 @@ $sql = "select r.uuid_reference as id, brand, r.name, value, t.name as type_name
 $rows = databaseSelectAll($db, $sql, $params);
 header("Content-Type: application/json");
 if (!is_null($rows)) {
-    $json = json_encode(["items" => $rows, "count" => databaseRowCount($db, "reference")]);
+    $count_sql = "SELECT COUNT(*) as count FROM reference r
+        left join (select count(p.id_product) as stocks, reference, id_product
+                    from product p
+                    where state = 'in_stock'
+                    group by reference) s
+                on r.id_reference = s.reference
+        left join product p on r.id_reference = p.reference
+        join type t on t.id_type = r.type
+        join category c on c.id_category = t.category "
+        . $whereSql . " group by r.id_reference";
+
+    $total = databaseFindOne($db, $count_sql, $params)["count"];
+
+    $json = json_encode(["items" => $rows, "count" => $total]);
     echo $json;
 } else {
     http_response_code(500);

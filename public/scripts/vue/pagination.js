@@ -7,9 +7,7 @@ const pagination = () => ({
     setElementCount: function(max) {
 
         const pageSize = getPage()?.pageSize || 20;
-        this.maxPage = max / pageSize;
-
-        console.log(max, pageSize);
+        this.maxPage = Math.ceil(max / pageSize);
 
         this.rebuildPagination();
 

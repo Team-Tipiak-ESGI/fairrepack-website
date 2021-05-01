@@ -69,7 +69,14 @@ if (isset($_GET["id"])) {
 
 header("Content-Type: application/json");
 if (!is_null($rows)) {
-    $json = json_encode(["items" => $rows, "count" => databaseRowCount($db, "product")]);
+    $count_sql = "SELECT COUNT(*) as count FROM product
+        RIGHT JOIN offer o on product.id_product = o.product
+        JOIN user u on product.user = u.id_user
+        JOIN reference r on r.id_reference = product.reference " . $whereSql;
+
+    $total = databaseFindOne($db, $count_sql, $params)["count"];
+
+    $json = json_encode(["items" => $rows, "count" => $total]);
     echo $json;
 } else {
     http_response_code(500);
