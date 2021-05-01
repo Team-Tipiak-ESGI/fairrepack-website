@@ -50,7 +50,6 @@
 
 <script>
     const referenceList = document.querySelector("div#referenceList");
-    referenceVue.buildReferenceList(referenceList);
     referenceVue.buildReferenceSelect(document.querySelector("form#addProductForm select[name=reference]"));
 
     window.nav = pagination();

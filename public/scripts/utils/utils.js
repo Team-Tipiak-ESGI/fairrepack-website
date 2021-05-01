@@ -83,7 +83,7 @@ function getPageId() {
  */
 function getPage(pageNumber = 0) {
     const pageId = new URLSearchParams(window.location.search.substr(1)).get('id');
-    const pageSize = window.localStorage.getItem("pageSize") || 20;
+    const pageSize = parseInt(window.localStorage.getItem("pageSize")) || 20;
     const urlParams = `page=${pageNumber}&limit=${pageSize}`;
 
     return {

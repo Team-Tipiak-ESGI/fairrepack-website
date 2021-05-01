@@ -9,7 +9,7 @@ referenceVue.buildReferenceList = function (div, page = 0) {
     authenticatedFetch(`/api/reference/read.php?${getPage(page).urlParams}`)
         .then(res => res.json())
         .then(json => {
-            window.nav.setElementCount(20);
+            window.nav.setElementCount(json.count);
 
             const references = json.items;
 
@@ -88,6 +88,7 @@ referenceVue.buildProductList = function (div, page = 0) {
     authenticatedFetch(`/api/product/read.php?reference=${p.pageId}&${p.urlParams}`)
         .then(res => res.json())
         .then(json => {
+            window.nav.setElementCount(json.count);
             const products = json.items;
             productVue.buildProductList(div, products);
         });

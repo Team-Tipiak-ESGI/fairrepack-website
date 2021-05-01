@@ -1,20 +1,22 @@
 const pagination = () => ({
 
     currentPage: 0,
-    maxPage: 10,
+    maxPage: 0,
     displayedPages: 5,
 
     setElementCount: function(max) {
-        const pageSize = getPage()?.pageSize || 20;
-        const maxPage = max / pageSize;
 
-        if (this.maxPage !== maxPage) {
-            this.maxPage = maxPage;
-            this.rebuildPagination();
-        }
+        const pageSize = getPage()?.pageSize || 20;
+        this.maxPage = max / pageSize;
+
+        console.log(max, pageSize);
+
+        this.rebuildPagination();
+
     },
 
     buildPaginationLi: function(text) {
+
         const li = document.createElement(`li`);
         li.classList.add(`page-item`);
         const span = document.createElement(`span`);
@@ -24,6 +26,7 @@ const pagination = () => ({
         li.style.cursor = "pointer";
         li.style.userSelect = "none";
         return li;
+
     },
 
     rebuildPagination: function() {
@@ -73,6 +76,7 @@ const pagination = () => ({
     },
 
     plugPaginationElement: function(element, callback, ...args) {
+
         this.element = element;
         this.callback = callback;
         this.args = args;
@@ -80,12 +84,14 @@ const pagination = () => ({
         const previous = this.buildPaginationLi("<");
         const next = this.buildPaginationLi(">");
 
-        previous.addEventListener("click", () => {
+        previous.addEventListener("click", (e) => {
+            if (e.target.classList.contains("disabled")) return;
             this.currentPage = Math.max(this.currentPage - 1, 0);
             this.updatePagination();
         });
 
-        next.addEventListener("click", () => {
+        next.addEventListener("click", (e) => {
+            if (e.target.classList.contains("disabled")) return;
             this.currentPage = Math.min(this.currentPage + 1, this.maxPage - 1);
             this.updatePagination();
         });
@@ -94,6 +100,7 @@ const pagination = () => ({
         this.element.append(next);
 
         this.updatePagination();
+
     },
 
 });
