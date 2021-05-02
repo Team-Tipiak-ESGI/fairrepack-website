@@ -46,7 +46,8 @@
 
 <script src="public/scripts/model/productModel.js"></script>
 <script src="public/scripts/controller/productController.js"></script>
-    <script src="public/scripts/vue/pagination.js"></script>
+<script src="public/scripts/vue/pagination.js"></script>
+<script src="public/scripts/controller/cartController.js"></script>
 
 <script>
     const referenceList = document.querySelector("div#referenceList");

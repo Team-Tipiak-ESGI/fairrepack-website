@@ -39,6 +39,10 @@ if (isset($_GET["state"])) {
     $where[] = "p.state = ?"; // ? ou :var
     $params[] = $_GET["state"];
 }
+if (isset($_GET["id"])) {
+    $where[] = "r.uuid_reference = ?"; // ? ou :var
+    $params[] = $_GET["id"];
+}
 
 $whereSql = "";
 if (count($where) > 0) {
@@ -62,7 +66,14 @@ $sql = "select r.uuid_reference as id, brand, r.name, value, t.name as type_name
         " group by r.id_reference
         limit $offset, $limit";
 
-$rows = databaseSelectAll($db, $sql, $params);
+$rows = null;
+
+if (isset($_GET["id"])) {
+    $rows = databaseFindOne($db, $sql, $params);
+} else {
+    $rows = databaseSelectAll($db, $sql, $params);
+}
+
 header("Content-Type: application/json");
 if (!is_null($rows)) {
     $count_sql = "SELECT COUNT(*) as count FROM reference r
