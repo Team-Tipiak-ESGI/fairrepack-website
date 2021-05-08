@@ -16,12 +16,18 @@ cartController.add = function(reference_id) {
 
             currentCard[reference_id].count++;
 
-            window.localStorage.setItem("cartController", JSON.stringify(currentCard));
+            window.localStorage.setItem("cart", JSON.stringify(currentCard));
         });
 }
 
+cartController.updateCount = function(reference_id, count) {
+    const currentCard = this.get();
+    currentCard[reference_id].count = count;
+    window.localStorage.setItem("cart", JSON.stringify(currentCard));
+}
+
 cartController.get = function() {
-    return JSON.parse(window.localStorage.getItem("cartController") || "{}");
+    return JSON.parse(window.localStorage.getItem("cart") || "{}");
 }
 
 cartController.getTotal = function() {

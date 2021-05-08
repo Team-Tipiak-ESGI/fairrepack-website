@@ -2,7 +2,9 @@
 
 <main class="container my-5">
     <section>
-        <div id="cart"></div>
+        <div id="cart" class="list-group"></div>
+
+        <button class="btn btn-success mt-5">Passer commande</button>
     </section>
 </main>
 
