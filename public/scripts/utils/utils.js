@@ -30,6 +30,8 @@ function authenticatedFetch(url, method = 'GET', body = undefined) {
  */
 const getToken = () => {
     const token = window.localStorage.getItem('token');
+    if (token === null) return null;
+
     const headers = JSON.parse(atob(token.split('.')[0]));
     const payload = JSON.parse(atob(token.split('.')[1]));
 

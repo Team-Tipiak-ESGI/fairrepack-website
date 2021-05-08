@@ -8,10 +8,6 @@ productModel.create = function(json) {
     return authenticatedFetch("/api/product/create.php", "POST", json);
 }
 
-productModel.update = function(product_id) {
-
-}
-
-productModel.delete = function(product_id) {
-
+productModel.update = function(json) {
+    return authenticatedFetch("/api/product/update.php", "POST", json);
 }

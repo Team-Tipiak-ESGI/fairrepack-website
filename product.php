@@ -1,18 +1,33 @@
 <?php include "includes/header.php"; ?>
 
 <main class="container my-5">
-    <section class="container">
-        <div id="productInfo"></div>
-        <!-- TODO: Display product information -->
+    <section class="row">
+        <div id="productInfo" class="col-12 col-lg-10"></div>
+        <div id="productControls" class="col-12 col-lg-2 d-flex flex-column">
+            <button class="btn btn-success my-1 d-none" id="acceptLastOffer" type="button" onclick="productController.updateState('accepted');">
+                <!-- Button visible by [not last offer's user] -->
+                Accepter
+            </button>
+            <button class="btn btn-danger my-1" id="declineLastOffer" type="button" onclick="productController.updateState('rejected');">
+                <!-- Button visible by owner and admin -->
+                Décliner
+            </button>
+            <button class="btn btn-primary my-1 d-none" id="getColissimo" type="button" onclick="productVue.getColissimo();">
+                <!-- Button visible by user after product is accepted -->
+                Colissimo
+            </button>
+        </div>
     </section>
 
-    <section class="container">
+    <section>
         <h1>Offres</h1>
 
-        <form id="addOfferForm" onsubmit="return (offerController.create(this), false)">
-            <input class="form-control" type="number" min="0" name="price" value="0">
-            <textarea class="form-control" name="note"></textarea>
-            <button class="btn btn-primary" type="submit">Faire une offre</button>
+        <form id="addOfferForm" class="d-none" onsubmit="return (offerController.create(this), false)">
+            <label for="price">Price</label>
+            <input class="form-control my-1" id="price" type="number" min="0" name="price" value="0" placeholder="Price">
+            <label for="note">Description</label>
+            <textarea class="form-control my-1" id="note" name="note" placeholder="Description"></textarea>
+            <button class="btn btn-primary my-1" type="submit">Faire une offre</button>
         </form>
 
         <!-- TODO: List offers -->
@@ -25,6 +40,8 @@
 <script src="public/scripts/controller/userController.js"></script>
 <script src="public/scripts/controller/offerController.js"></script>
 <script src="public/scripts/vue/productVue.js"></script>
+<script src="public/scripts/controller/productController.js"></script>
+<script src="public/scripts/model/productModel.js"></script>
 <script>
     productVue.buildProductPage(document.querySelector('div#productInfo'), document.querySelector('div#offers'));
 </script>

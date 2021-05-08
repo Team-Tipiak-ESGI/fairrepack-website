@@ -1,33 +1,55 @@
 <?php include "includes/header.php"; ?>
 
+<!-- Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Add product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addProductForm" onsubmit="return (productController.create(this), false)">
+                    <label class="d-block mb-3">
+                        Référence
+                        <select name="reference" class="form-select"></select>
+                    </label>
+
+                    <label class="d-block mb-3">
+                        Etat
+                        <select name="quality" class="form-select">
+                            <option value="new">Neuf</option>
+                            <option value="high">Bonne</option>
+                            <option value="medium">Moyenne</option>
+                            <option value="low">Faible</option>
+                            <option value="broken">Cassé</option>
+                        </select>
+                    </label>
+
+                    <label class="d-block mb-3">
+                        Description
+                        <textarea name="description" class="form-control"></textarea>
+                    </label>
+
+                    <span>Images</span>
+                    <div class="d-flex mb-3">
+                        <button class="btn btn-primary" id="addImage">+</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" form="addProductForm" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <main class="container my-5">
     <section class="container">
-        <!-- TODO: Display product list -->
-
-        <form id="addProductForm" onsubmit="return (productController.create(this), false)">
-            <label class="d-block mb-3">
-                Référence
-                <select name="reference" class="form-select"></select>
-            </label>
-
-            <label class="d-block mb-3">
-                Etat
-                <select name="quality" class="form-select">
-                    <option value="new">Neuf</option>
-                    <option value="high">Bonne</option>
-                    <option value="medium">Moyenne</option>
-                    <option value="low">Faible</option>
-                    <option value="broken">Cassé</option>
-                </select>
-            </label>
-
-            <label class="d-block mb-3">
-                Description
-                <textarea name="description" class="form-control"></textarea>
-            </label>
-
-            <button type="submit" class="btn btn-primary">Envoyer</button>
-        </form>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
+            Add product
+        </button>
 
         <div id="referenceList" class="d-flex flew-row flex-wrap justify-content-center"></div>
 

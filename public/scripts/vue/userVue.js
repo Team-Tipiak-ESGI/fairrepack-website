@@ -4,6 +4,17 @@ userVue.buildInfoDiv = (div, user) => {
 
 }
 
+userVue.buildProductDiv = (div, id) => {
+    authenticatedFetch(`/api/product/read.php?user=${id}&state=registered`)
+        .then(res => {
+            if (res.status === 200)
+                return res.json();
+        })
+        .then(json => {
+            productVue.buildProductList(div, json.items);
+        });
+}
+
 userVue.basicUserInfo = (info_div, products_div, id) => {
     authenticatedFetch(`/api/user/read.php?id=${id}`)
         .then(res => {
@@ -15,12 +26,5 @@ userVue.basicUserInfo = (info_div, products_div, id) => {
             console.log(user);
         });
 
-    authenticatedFetch(`/api/product/read.php?user=${id}`)
-        .then(res => {
-            if (res.status === 200)
-                return res.json();
-        })
-        .then(products => {
-            productVue.buildProductList(products_div, products);
-        });
+    this.buildProductDiv(products_div, id);
 }

@@ -18,10 +18,23 @@
             <button type="button" class="btn btn-danger" onclick="UserController.remove()">Delete</button>
         </form>
     </section>
+
+    <section>
+        <h1>Vos produits</h1>
+        <div id="userProducts" class="d-flex justify-content-center flex-wrap"></div>
+    </section>
 </main>
 
 <script src="public/scripts/utils/utils.js"></script>
 <script src="public/scripts/model/userModel.js"></script>
+<script src="public/scripts/vue/userVue.js"></script>
+<script src="public/scripts/vue/productVue.js"></script>
 <script src="public/scripts/controller/userController.js"></script>
+
+<script>
+    const uuid = getToken()?.payload.uuid;
+    if (uuid !== undefined)
+        userVue.buildProductDiv(document.querySelector("div#userProducts"), uuid);
+</script>
 
 <?php include "includes/footer.php"; ?>

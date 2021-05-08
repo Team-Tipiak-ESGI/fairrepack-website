@@ -18,7 +18,7 @@ productVue.buildInfoDiv = function(div, product) {
     const li_e = document.createElement(`li`);
 
     ul_1.append(li_e);
-    li_e.innerText = `Dernier prix : ${product.offers[0]?.price || 'N/A'}`;
+    li_e.innerText = `Dernier prix : ${product.offers?.[0]?.price || 'N/A'}`;
     const li_g = document.createElement(`li`);
     const text_4h = document.createTextNode(`Produit : `);
     li_g.append(text_4h);
@@ -48,6 +48,8 @@ productVue.buildInfoDiv = function(div, product) {
 
 productVue.buildOfferDiv = function(div, product) {
     div.innerHTML = '';
+
+    if (product.offers === undefined) return;
 
     // Build offer list
     for (const offer of product.offers) {
@@ -93,14 +95,41 @@ productVue.buildProductPage = function (info_div, offer_div, page = 0) {
     const p = getPage(page);
     authenticatedFetch(`/api/product/read.php?id=${p.pageId}&${p.urlParams}`)
         .then(res => res.json())
-        .then(product => {
+        .then(json => {
+            const product = json.items;
+
             productVue.buildInfoDiv(info_div, product);
             productVue.buildOfferDiv(offer_div, product);
 
             // Hide offer form if user is not owner or admin or if product is already accepted
-            if (getToken().payload.uuid !== product.user || getToken().payload.type !== "admin" || !(product.state === 'registered' || product.state === 'sent')) {
-                document.querySelector("form#addOfferForm").classList.add("d-none");
+            const payload = getToken().payload;
+            const isOwner = payload.uuid === product.user;
+            const isAdmin = payload.type === "admin";
+            const productRegistered = product.state === "registered";
+            const lastOffer = product.offers[0];
+            const lastOfferIsMine = lastOffer.user === payload.uuid;
+
+            const acceptLastOffer = document.querySelector("button#acceptLastOffer");
+            if (!lastOfferIsMine && productRegistered)
+                acceptLastOffer.classList.remove("d-none");
+            else
+                acceptLastOffer.classList.add("d-none");
+
+            const declineLastOffer = document.querySelector("button#declineLastOffer");
+            const addOfferForm = document.querySelector("form#addOfferForm");
+
+            if ((isOwner || isAdmin) && productRegistered) {
+                declineLastOffer.classList.remove("d-none");
+                addOfferForm.classList.remove("d-none");
+            } else {
+                declineLastOffer.classList.add("d-none");
+                addOfferForm.classList.add("d-none");
             }
+
+            if (isOwner && product.state === "accepted")
+                document.querySelector("button#getColissimo").classList.remove("d-none");
+            else
+                document.querySelector("button#getColissimo").classList.add("d-none");
         });
 }
 

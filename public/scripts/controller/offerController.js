@@ -3,7 +3,7 @@ const offerController = {};
 offerController.create = function(form) {
     const formData = new FormData(form);
 
-    const id = new URLSearchParams(window.location.search.substr(1)).get('id');
+    const id = getPage().pageId;
 
     formData.set("product", id);
 
@@ -12,7 +12,6 @@ offerController.create = function(form) {
             return res.json();
         })
         .then(json => {
-            console.log(json);
-            productVue.buildProductPage(document.querySelector('div#productInfo'), document.querySelector('div#offers'), id);
+            productVue.buildProductPage(document.querySelector('div#productInfo'), document.querySelector('div#offers'));
         });
 }
