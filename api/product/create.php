@@ -8,7 +8,7 @@ if (!getToken()->validate()) {
     die();
 }
 
-require_once __DIR__ . '/../../utils/functions.php';
+require_once __DIR__ . '/../../utils/dao/product.php';
 
 $body = file_get_contents("php://input");
 $_POST = json_decode($body, true);
@@ -27,10 +27,6 @@ if (isset($_POST["reference"])) {
     if ($lastProductId) {
         $product = getProductbyId($lastProductId);
         if ($product) {
-            // TODO: Get reference with the $reference using `uuid_reference` char(36) column
-            // TODO: Get reference price (`value` float(6, 2) column in `reference` table)
-            // TODO: Insert new offer for product with the default price of the reference
-
             http_response_code(201); // CREATED
             header("Content-Type: application/json");
             echo json_encode($product);

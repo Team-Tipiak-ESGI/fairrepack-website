@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../utils/database.php';
-require_once __DIR__ . '/../utils/functions.php';
+require_once __DIR__ . '/../utils/dao.php';
 
 $body = file_get_contents("php://input");
 $_POST = json_decode($body, true);

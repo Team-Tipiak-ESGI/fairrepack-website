@@ -8,7 +8,8 @@ if (!getToken()->validate()) {
     die();
 }
 
-require_once __DIR__ . '/../../utils/functions.php';
+require_once __DIR__ . '/../../utils/dao/reference.php';
+require_once __DIR__ . '/../../utils/dao/product.php';
 
 $body = file_get_contents("php://input");
 $_POST = json_decode($body, true);

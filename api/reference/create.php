@@ -8,7 +8,7 @@ if (!getToken()->validate()) {
     die();
 }
 
-require_once __DIR__ . '/../../utils/functions.php';
+require_once __DIR__ . '/../../utils/dao/reference.php';
 
 $body = file_get_contents("php://input");
 $_POST = json_decode($body, true);
@@ -26,8 +26,6 @@ if (isset($_POST["brand"]) && isset($_POST["name"]) && isset($_POST["value"]) &&
     if($lastReference) {
         $reference = getReferenceByID($lastReference);
         if ($reference) {
-
-
             http_response_code(201); // CREATED
             header("Content-Type: application/json");
         }else {
