@@ -2,6 +2,10 @@
 
 School project.
 
+# Libraries
+
+See /lib/README.md for more details.
+
 ## Apache configuration
 
 Here is an example of an Apache configuration for the website.
