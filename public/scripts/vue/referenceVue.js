@@ -45,7 +45,7 @@ referenceVue.buildReferenceList = function (div, page = 0) {
                 btn_43.classList.add(`btn`, `btn-primary`, `me-2`);
                 btn_43.innerText = `Add to cart`;
                 btn_43.addEventListener("click", (e) => {
-                    cartController.add(reference.id);
+                    cartController.addReference(reference.id);
                 });
                 div_e.append(btn_43);
 

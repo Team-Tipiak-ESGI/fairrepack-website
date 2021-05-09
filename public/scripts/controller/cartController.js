@@ -1,22 +1,53 @@
 const cartController = {};
 
-cartController.add = function(reference_id) {
-    const currentCard = this.get();
+/**
+ * Add a reference to cart
+ * @deprecated
+ * @param reference_id
+ */
+cartController.add = cartController.addReference;
+
+cartController.addReference = function(reference_id) {
+    const currentCart = this.get();
+
+    if (currentCart.references === undefined) currentCart.references = {};
 
     authenticatedFetch(`/api/reference/read.php?id=${reference_id}`)
         .then(res => res.json())
         .then(json => {
             const reference = json.items;
 
-            if (currentCard[reference_id] === undefined) {
+            if (currentCart.references[reference_id] === undefined) {
                 delete reference.id;
-                currentCard[reference_id] = reference;
-                currentCard[reference_id].count = 0;
+                currentCart.references[reference_id] = reference;
+                currentCart.references[reference_id].count = 0;
             }
 
-            currentCard[reference_id].count++;
+            currentCart.references[reference_id].count++;
 
-            window.localStorage.setItem("cart", JSON.stringify(currentCard));
+            window.localStorage.setItem("cart", JSON.stringify(currentCart));
+        });
+}
+
+cartController.addProduct = function(product_id) {
+    const currentCart = this.get();
+
+    if (currentCart.products === undefined) currentCart.products = {};
+
+    authenticatedFetch(`/api/reference/read.php?id=${product_id}`)
+        .then(res => res.json())
+        .then(json => {
+            const reference = json.items;
+
+            if (currentCart.products[product_id] === undefined) {
+                delete reference.id;
+                currentCart.products[product_id] = reference;
+                currentCart.products[product_id].count = 0;
+            }
+
+            currentCart.products[product_id].count++;
+
+            window.localStorage.setItem("cart", JSON.stringify(currentCart));
         });
 }
 
