@@ -19,8 +19,8 @@ UserModel.signup = function(form) {
                 }
             })
             .then(json => {
-                window.localStorage.setItem('token', json.uuid);
-                resolve(json.uuid);
+                window.localStorage.setItem('token', json.token);
+                resolve(json.token);
             })
             .catch((e) => {
                 reject(e);

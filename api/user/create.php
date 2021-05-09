@@ -8,6 +8,7 @@ define("SECRET", $_SERVER["HTTP_SALT"] ?? "secret");
 
 require_once __DIR__ . '/../../utils/database.php';
 require_once __DIR__ . '/../../utils/UUIDv4.php';
+require_once __DIR__ . '/../../utils/dao/user.php';
 
 $body = file_get_contents("php://input");
 $_POST = json_decode($body, true);
@@ -26,7 +27,6 @@ if (filter_var($email, FILTER_VALIDATE_EMAIL) !== false && strlen($password) >= 
     try {
         $id_user = databaseInsert($connection, $sql, [$uuid, $email, $hashed_password]);
     } catch (PDOException $e) {
-
         switch ($e->getCode()) {
             case 23000:
                 http_response_code(409);
@@ -37,7 +37,14 @@ if (filter_var($email, FILTER_VALIDATE_EMAIL) !== false && strlen($password) >= 
         }
     }
 
-    echo json_encode(["uuid" => $uuid]);
+    $token = loginUser($email, $password);
+
+    if (is_null($token)) {
+        http_response_code(500); // Token should not be null
+        die();
+    }
+
+    echo json_encode(["token" => $token->get()]);
 
     http_response_code(201);
 } else {

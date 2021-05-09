@@ -7,9 +7,8 @@ UserController.signup = function(form) {
     if (!form.checkValidity()) return false;
 
     UserModel.signup(form)
-        .then(uuid => {
+        .then(token => {
             alert("You are signed up!");
-            console.log(uuid);
         })
         .catch(res => {
             switch (res.status) {
@@ -35,7 +34,9 @@ UserController.login = function(form) {
     UserModel.login(form)
         .then(token => {
             alert("You are logged in!");
-            console.log(token);
+            const uuid = getToken()?.payload.uuid;
+            if (uuid !== undefined)
+                userVue.buildProductDiv(document.querySelector("div#userProducts"), uuid);
         })
         .catch(res => {
             switch (res.status) {

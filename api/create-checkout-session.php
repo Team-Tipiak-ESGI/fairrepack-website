@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . '/../utils/database.php';
-require_once __DIR__ . '/../utils/dao.php';
 
 $body = file_get_contents("php://input");
 $_POST = json_decode($body, true);
@@ -33,6 +32,11 @@ foreach ($_POST as $id => $item) {
         ],
         'quantity' => max($count, 1),
     ];
+}
+
+if (sizeof($line_items) === 0) {
+    http_response_code(400);
+    die();
 }
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/stripe-php/init.php');

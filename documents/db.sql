@@ -1,4 +1,4 @@
-create or replace table fairrepack.address
+create table fairrepack.address
 (
     id_address      int             not null
         primary key,
@@ -14,7 +14,7 @@ create or replace table fairrepack.address
 )
     comment 'Address used for warehouses and user addresses';
 
-create or replace table fairrepack.category
+create table fairrepack.category
 (
     id_category int auto_increment
         primary key,
@@ -24,7 +24,7 @@ create or replace table fairrepack.category
 )
     comment 'Product category';
 
-create or replace table fairrepack.history_ip
+create table fairrepack.history_ip
 (
     id_history_ip int auto_increment
         primary key,
@@ -34,7 +34,7 @@ create or replace table fairrepack.history_ip
 )
     comment 'User login history (remote addresses)' collate = latin1_general_cs;
 
-create or replace table fairrepack.history_useragent
+create table fairrepack.history_useragent
 (
     id_history_useragent int auto_increment
         primary key,
@@ -44,7 +44,7 @@ create or replace table fairrepack.history_useragent
 )
     comment 'User login history (useragents)';
 
-create or replace table fairrepack.type
+create table fairrepack.type
 (
     id_type  int auto_increment
         primary key,
@@ -58,14 +58,14 @@ create or replace table fairrepack.type
 )
     comment 'Product type';
 
-create or replace table fairrepack.reference
+create table fairrepack.reference
 (
     id_reference   int auto_increment,
-    uuid_reference char(36)      not null,
-    brand          varchar(128)  not null,
-    name           varchar(128)  not null,
-    value          float(6, 2)   not null,
-    type           int           not null,
+    uuid_reference char(36)     not null,
+    brand          varchar(128) not null,
+    name           varchar(128) not null,
+    value          float(6, 2)  not null,
+    type           int          not null,
     primary key (id_reference, uuid_reference),
     constraint brand_UNIQUE
         unique (brand),
@@ -76,10 +76,10 @@ create or replace table fairrepack.reference
 )
     comment 'Product reference';
 
-create or replace index type_idx
+create index type_idx
     on fairrepack.reference (type);
 
-create or replace table fairrepack.specification
+create table fairrepack.specification
 (
     id_specification int auto_increment
         primary key,
@@ -91,13 +91,13 @@ create or replace table fairrepack.specification
 )
     comment 'Product reference''s specification value';
 
-create or replace index type_idx
+create index type_idx
     on fairrepack.specification (type);
 
-create or replace index id_category_idx
+create index id_category_idx
     on fairrepack.type (category);
 
-create or replace table fairrepack.user
+create table fairrepack.user
 (
     id_user   int auto_increment,
     uuid_user char(36)                                                       not null,
@@ -117,7 +117,7 @@ create or replace table fairrepack.user
             on update cascade on delete set null
 );
 
-create or replace table fairrepack.history_login
+create table fairrepack.history_login
 (
     id_history_login int auto_increment
         primary key,
@@ -137,10 +137,10 @@ create or replace table fairrepack.history_login
 )
     comment 'User login history';
 
-create or replace index id_address_idx
+create index id_address_idx
     on fairrepack.user (address);
 
-create or replace table fairrepack.warehouse
+create table fairrepack.warehouse
 (
     id_warehouse int auto_increment
         primary key,
@@ -151,10 +151,11 @@ create or replace table fairrepack.warehouse
             on update cascade on delete set null
 );
 
-create or replace table fairrepack.product
+create table fairrepack.product
 (
     id_product   int auto_increment,
     uuid_product char(36)                                                                                not null,
+    user         int                                                                                     not null,
     state        enum ('registered', 'sent', 'in_stock', 'sold', 'rejected') default 'registered'        not null,
     quality      enum ('new', 'high', 'medium', 'low', 'broken')                                         null,
     description  text                                                                                    null,
@@ -165,12 +166,15 @@ create or replace table fairrepack.product
     constraint reference
         foreign key (reference) references fairrepack.reference (id_reference)
             on update cascade,
+    constraint user_product
+        foreign key (user) references fairrepack.user (id_user)
+            on update cascade,
     constraint warehouse
         foreign key (warehouse) references fairrepack.warehouse (id_warehouse)
             on update cascade
 );
 
-create or replace table fairrepack.image
+create table fairrepack.image
 (
     id_image int auto_increment
         primary key,
@@ -182,10 +186,10 @@ create or replace table fairrepack.image
 )
     comment 'Product image sent by user';
 
-create or replace index product_idx
+create index product_idx
     on fairrepack.image (product);
 
-create or replace table fairrepack.offer
+create table fairrepack.offer
 (
     id_offer int auto_increment
         primary key,
@@ -202,13 +206,16 @@ create or replace table fairrepack.offer
             on update cascade
 );
 
-create or replace index reference_idx
+create index reference_idx
     on fairrepack.product (reference);
 
-create or replace index warehouse_idx
+create index user_product_idx
+    on fairrepack.product (user);
+
+create index warehouse_idx
     on fairrepack.product (warehouse);
 
-create or replace table fairrepack.review
+create table fairrepack.review
 (
     user    int                                  not null,
     product int                                  not null,
@@ -224,9 +231,9 @@ create or replace table fairrepack.review
             on update cascade
 );
 
-create or replace index product_idx
+create index product_idx
     on fairrepack.review (product);
 
-create or replace index address_idx
+create index address_idx
     on fairrepack.warehouse (address);
 

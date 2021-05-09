@@ -33,7 +33,7 @@
 
                     <span>Images</span>
                     <div class="d-flex mb-3">
-                        <button class="btn btn-primary" id="addImage">+</button>
+                        <button class="btn btn-primary" type="button" id="addImage">+</button>
                     </div>
                 </form>
             </div>
