@@ -27,6 +27,11 @@ referenceVue.buildReferenceList = function (div, page = 0) {
                 const div_1 = document.createElement(`div`);
                 div_1.classList.add(`card`, `m-2`);
                 div_1.style.width = `18rem`;
+                const img_0 = document.createElement(`img`);
+                img_0.src = `/public/assets/200x200.png`;
+                img_0.classList.add(`card-img-top`);
+                img_0.setAttribute(`alt`, `200par200`);
+                div_1.append(img_0);
 
                 const div_e = document.createElement(`div`);
                 div_e.classList.add(`card-body`);
