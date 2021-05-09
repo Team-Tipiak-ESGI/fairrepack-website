@@ -166,3 +166,20 @@ productVue.buildProductList = function (div, products) {
         div.append(div_1);
     }
 }
+
+productVue.addImageField = function (button) {
+    const parent = button.parentElement;
+    const children_count = parent.children.length;
+
+    if (children_count >= 3) {
+        button.disabled = true;
+        button.classList.add("disabled");
+    }
+
+    const input = document.createElement(`input`);
+    input.classList.add(`form-control`, `mb-3`);
+    input.type = `file`;
+    input.name = `image`;
+
+    parent.prepend(input);
+}

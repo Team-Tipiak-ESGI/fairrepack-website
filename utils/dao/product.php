@@ -67,3 +67,16 @@ function getProductByUUID(string $uuid): ?array
     $params = [$uuid];
     return databaseFindOne($db, $sql, $params);
 }
+
+function addProductImage(string $product_id, string $blob): string
+{
+    $db = getDatabaseConnection();
+    $sql = "INSERT INTO image (product, image) VALUES (?, ?)";
+
+    $params = [
+        $product_id,
+        $blob,
+    ];
+
+    return databaseInsert($db, $sql, $params);
+}

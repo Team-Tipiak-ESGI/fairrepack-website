@@ -42,17 +42,36 @@ const getToken = () => {
     };
 };
 
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
 /**
  * Converts a FormData object to JSON string
  * @param {FormData} formData
  * @returns {string} JSON string
  */
-function formDataToJSON(formData) {
+async function formDataToJSON(formData) {
     const entriesArray = Array.from(formData.entries());
     const entries = {};
 
     for (const entry of entriesArray) {
-        entries[entry[0]] = entry[1];
+        let value = entry[1];
+        const previous_value = entries[entry[0]];
+
+        if (value instanceof File)
+            value = await toBase64(value);
+
+        if (previous_value === undefined)
+            entries[entry[0]] = value;
+        else {
+            if (!(previous_value instanceof Array))
+                entries[entry[0]] = [previous_value];
+            entries[entry[0]].push(value);
+        }
     }
 
     return JSON.stringify(entries);

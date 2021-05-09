@@ -32,8 +32,8 @@
                     </label>
 
                     <span>Images</span>
-                    <div class="d-flex mb-3">
-                        <button class="btn btn-primary" type="button" id="addImage">+</button>
+                    <div class="d-flex flex-column mb-3">
+                        <button class="btn btn-primary" type="button" id="addImage" onclick="productVue.addImageField(this);">+</button>
                     </div>
                 </form>
             </div>
@@ -65,6 +65,7 @@
 
 <script src="public/scripts/model/referenceModel.js"></script>
 <script src="public/scripts/vue/referenceVue.js"></script>
+<script src="public/scripts/vue/productVue.js"></script>
 
 <script src="public/scripts/model/productModel.js"></script>
 <script src="public/scripts/controller/productController.js"></script>

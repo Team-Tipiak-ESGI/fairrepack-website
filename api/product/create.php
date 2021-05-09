@@ -21,10 +21,21 @@ if (isset($_POST["reference"])) {
     $quality = $_POST["quality"] ?? NULL;
     $warehouse = $_POST["warehouse"] ?? 1;
     $price = $_POST["price"] ?? NULL;
+    $images = $_POST["image"] ?? NULL;
 
     $lastProductId = addProduct($reference, $user, $description, $state, $quality, $warehouse, $price);
 
     if ($lastProductId) {
+
+        // Add images
+
+        if (!is_array($images)) $images = [$images];
+
+        foreach ($images as $image) {
+            $imageId = addProductImage($lastProductId, base64_decode(explode(",", $image)[1]));
+        }
+
+
         $product = getProductbyId($lastProductId);
         if ($product) {
             http_response_code(201); // CREATED

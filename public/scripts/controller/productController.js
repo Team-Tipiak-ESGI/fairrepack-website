@@ -4,9 +4,9 @@ const productController = {};
  * Create a new product in the database
  * @param {HTMLFormElement} form
  */
-productController.create = function (form) {
+productController.create = async function (form) {
     const formData = new FormData(form);
-    productModel.create(formDataToJSON(formData))
+    productModel.create(await formDataToJSON(formData))
         .then((res) => {
             if (res.status === 201) {
                 referenceVue.buildReferenceList(document.querySelector("div#referenceList"));
