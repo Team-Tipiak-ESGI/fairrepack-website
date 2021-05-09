@@ -78,7 +78,7 @@ async function formDataToJSON(formData) {
 }
 
 Date.prototype.format = function (format) {
-    const associations = {"%yyyy": "getFullYear", "%dd": "getDay", "%hh": "getHours", "%mmmm": "getMilliseconds", "%mm": "getMinutes", "%MM": "getMonth", "%ss": "getSeconds" }
+    const associations = {"%yyyy": "getFullYear", "%dd": "getDate", "%hh": "getHours", "%mmmm": "getMilliseconds", "%mm": "getMinutes", "%MM": "getMonth", "%ss": "getSeconds" }
 
     for (const match of format.match(/(?<!%)%(?!%)(\w*)/g)) {
         let value = this[associations[match]]?.call(this);

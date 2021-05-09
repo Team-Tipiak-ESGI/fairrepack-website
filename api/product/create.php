@@ -30,9 +30,19 @@ if (isset($_POST["reference"])) {
         // Add images
         if (!is_array($images)) $images = [$images];
 
+        $accept = [
+            'image/jpeg',
+            'image/jpg',
+            'image/gif',
+            'image/png',
+            'image/jfif',
+        ];
+
         foreach ($images as $image) {
             $base64 = explode(";base64,", $image);
             $mime = substr($base64[0], 5);
+
+            if (!in_array($mime, $accept)) continue;
 
             $imageId = addProductImage($lastProductId, base64_decode($base64[1]), $mime);
         }
