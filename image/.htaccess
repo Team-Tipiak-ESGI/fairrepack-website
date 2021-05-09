@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^(.+)$ /api/product/image.php [QSA,L]
+
+Options -Indexes

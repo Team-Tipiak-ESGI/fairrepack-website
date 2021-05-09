@@ -154,14 +154,14 @@ create table fairrepack.warehouse
 create table fairrepack.product
 (
     id_product   int auto_increment,
-    uuid_product char(36)                                                                                not null,
-    user         int                                                                                     not null,
-    state        enum ('registered', 'sent', 'in_stock', 'sold', 'rejected') default 'registered'        not null,
-    quality      enum ('new', 'high', 'medium', 'low', 'broken')                                         null,
-    description  text                                                                                    null,
-    reference    int                                                                                     not null,
-    warehouse    int                                                                                     null,
-    created      datetime                                                    default current_timestamp() not null,
+    uuid_product char(36)                                                                                    not null,
+    user         int                                                                                         not null,
+    state        enum ('registered', 'in_stock', 'sold', 'rejected', 'accepted') default 'registered'        not null,
+    quality      enum ('new', 'high', 'medium', 'low', 'broken')                                             null,
+    description  text                                                                                        null,
+    reference    int                                                                                         not null,
+    warehouse    int                                                                                         null,
+    created      datetime                                                        default current_timestamp() not null,
     primary key (id_product, uuid_product),
     constraint reference
         foreign key (reference) references fairrepack.reference (id_reference)
@@ -178,8 +178,9 @@ create table fairrepack.image
 (
     id_image int auto_increment
         primary key,
-    product  int  not null,
-    image    blob not null,
+    product  int         not null,
+    image    longblob    not null,
+    mime     varchar(64) not null,
     constraint product_image
         foreign key (product) references fairrepack.product (id_product)
             on update cascade on delete cascade

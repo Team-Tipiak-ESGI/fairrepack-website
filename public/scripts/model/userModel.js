@@ -6,10 +6,10 @@ const UserModel = {};
  * @returns Promise<string> Returns UUIDv4
  */
 UserModel.signup = function(form) {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         fetch('/api/user/create.php', {
             method: 'POST',
-            body: formDataToJSON(new FormData(form)),
+            body: await formDataToJSON(new FormData(form)),
         })
             .then(res => {
                 if (200 <= res.status && res.status < 300) {
@@ -34,10 +34,10 @@ UserModel.signup = function(form) {
  * @returns Promise<string> Returns token
  */
 UserModel.login = function(form) {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         fetch('/api/user/login.php', {
             method: 'POST',
-            body: formDataToJSON(new FormData(form)),
+            body: await formDataToJSON(new FormData(form)),
         })
             .then(res => {
                 if (200 <= res.status && res.status < 300) {

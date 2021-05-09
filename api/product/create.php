@@ -28,13 +28,14 @@ if (isset($_POST["reference"])) {
     if ($lastProductId) {
 
         // Add images
-
         if (!is_array($images)) $images = [$images];
 
         foreach ($images as $image) {
-            $imageId = addProductImage($lastProductId, base64_decode(explode(",", $image)[1]));
-        }
+            $base64 = explode(";base64,", $image);
+            $mime = substr($base64[0], 5);
 
+            $imageId = addProductImage($lastProductId, base64_decode($base64[1]), $mime);
+        }
 
         $product = getProductbyId($lastProductId);
         if ($product) {

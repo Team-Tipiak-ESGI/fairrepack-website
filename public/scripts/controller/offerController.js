@@ -1,13 +1,13 @@
 const offerController = {};
 
-offerController.create = function(form) {
+offerController.create = async function(form) {
     const formData = new FormData(form);
 
     const id = getPage().pageId;
 
     formData.set("product", id);
 
-    authenticatedFetch(`/api/offer/create.php`, "POST", formDataToJSON(formData))
+    authenticatedFetch(`/api/offer/create.php`, "POST", await formDataToJSON(formData))
         .then(res => {
             return res.json();
         })
