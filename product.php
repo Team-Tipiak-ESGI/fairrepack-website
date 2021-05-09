@@ -20,6 +20,12 @@
     </section>
 
     <section>
+        <h1>Images</h1>
+
+        <div id="images" class="row align-items-center"></div>
+    </section>
+
+    <section>
         <h1>Offres</h1>
 
         <form id="addOfferForm" class="d-none" onsubmit="return (offerController.create(this), false)">
@@ -30,7 +36,6 @@
             <button class="btn btn-primary my-1" type="submit">Faire une offre</button>
         </form>
 
-        <!-- TODO: List offers -->
         <div id="offers"></div>
     </section>
 </main>
@@ -43,7 +48,7 @@
 <script src="public/scripts/controller/productController.js"></script>
 <script src="public/scripts/model/productModel.js"></script>
 <script>
-    productVue.buildProductPage(document.querySelector('div#productInfo'), document.querySelector('div#offers'));
+    productVue.buildProductPage(document.querySelector('div#productInfo'), document.querySelector('div#offers'), document.querySelector('div#images'));
 </script>
 
 <?php include "includes/footer.php"; ?>

@@ -42,10 +42,11 @@ $db = getDatabaseConnection();
 
 // Get products
 $sql = "SELECT uuid_product as id, uuid_user as user, r.uuid_reference as reference, description, quality, state,
-        r.name as name, r.brand as brand, product.created, count(o.id_offer) as offer_count
+        r.name as name, r.brand as brand, product.created, count(o.id_offer) as offer_count, count(i.id_image) as image_count
         FROM product
         RIGHT JOIN offer o on product.id_product = o.product
         JOIN user u on product.user = u.id_user
+        left join image i on product.id_product = i.product
         JOIN reference r on r.id_reference = product.reference "
         . $whereSql . " GROUP BY id_product LIMIT $offset, $limit";
 

@@ -85,13 +85,34 @@ productVue.buildOfferDiv = function(div, product) {
     }
 }
 
+productVue.buildImageDiv = function(image_div, product) {
+    const count = parseInt(product.image_count);
+    const uuid = product.id;
+
+    for (let i = 0; i < count; i++) {
+        const url = `/image/${uuid}/${i + 1}`;
+
+        const div = document.createElement("div");
+        div.classList.add("col", "d-flex", "justify-content-center");
+
+        const img = document.createElement(`img`);
+        img.classList.add("img-fluid");
+        img.src = url;
+        img.style.maxHeight = "250px";
+
+        div.append(img);
+        image_div.append(div);
+    }
+}
+
 /**
  * Build the product page
  * @param info_div
  * @param offer_div
+ * @param image_div
  * @param {number|undefined} page Page number
  */
-productVue.buildProductPage = function (info_div, offer_div, page = 0) {
+productVue.buildProductPage = function (info_div, offer_div, image_div, page = 0) {
     const p = getPage(page);
     authenticatedFetch(`/api/product/read.php?id=${p.pageId}&${p.urlParams}`)
         .then(res => res.json())
@@ -100,6 +121,9 @@ productVue.buildProductPage = function (info_div, offer_div, page = 0) {
 
             productVue.buildInfoDiv(info_div, product);
             productVue.buildOfferDiv(offer_div, product);
+            productVue.buildImageDiv(image_div, product);
+
+            // Update page info & buttons
 
             // Hide offer form if user is not owner or admin or if product is already accepted
             const payload = getToken().payload;
