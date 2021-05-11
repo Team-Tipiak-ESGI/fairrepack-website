@@ -46,14 +46,6 @@ referenceVue.buildReferenceList = function (div, page = 0) {
                 div_e.append(p_40);
                 p_40.innerText = `Stocks : ${reference.stocks || 0}\nEnregistrés : ${reference.count || 0}`; // Card content
 
-                const btn_43 = document.createElement(`btn`);
-                btn_43.classList.add(`btn`, `btn-primary`, `me-2`);
-                btn_43.innerText = `Add to cart`;
-                btn_43.addEventListener("click", (e) => {
-                    cartController.add(reference.id);
-                });
-                div_e.append(btn_43);
-
                 const a_42 = document.createElement(`a`);
                 a_42.href = `/reference.php?id=${reference.id}`;
                 a_42.classList.add(`btn`, `btn-secondary`);
