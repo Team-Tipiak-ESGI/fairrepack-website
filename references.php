@@ -50,10 +50,58 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
             Add product
         </button>
+        <p></p>
+        <div class="d-flex">
+            <!-- div verticale pour filtres -->
+            <div class="d-flex flex-column">
+                <!-- div pour filtres  prix -->
+                <p class=" fs-6 fw-lighter text-muted">Filtre par prix</p>
+                <div class="d-flex flex-row">
+                    <input class="form-control form-control-sm" type="number" placeholder="prix minimum">
+                    <input class="form-control form-control-sm" type="number" placeholder="prix maximum">
+                </div>
+                <p></p>
+                <!-- div pour filtres marques, checkbox -->
+                <div class="d-flex flex-column">
+                    <p class=" fs-6 fw-lighter text-muted">Filtre par marques</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkBrand1">
+                        <label class="form-check-label" for="checkBrand1">Apple</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkBrand2">
+                        <label class="form-check-label" for="checkBrand2">Samsung</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkBrand3">
+                        <label class="form-check-label" for="checkBrand3">Huawei</label>
+                    </div>
+                </div>
+                <p></p>
+                <!-- div pour filtres annee, checkbox -->
+                <div class="d-flex flex-column">
+                    <p class=" fs-6 fw-lighter text-muted">Filtre par annee</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkAnnee2019">
+                        <label class="form-check-label" for="checkAnnee2019">2019</label>
+                    </div>
 
-        <div id="referenceList" class="d-flex flew-row flex-wrap justify-content-center"></div>
-
-        <nav aria-label="Page navigation example">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkAnnee2020">
+                        <label class="form-check-label" for="checkAnnee2020">2020</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkAnnee2021">
+                        <label class="form-check-label" for="checkAnnee2021">2021</label>
+                    </div>
+                </div>
+            </div>
+            <!-- div verticale pour les produits -->
+            <div class="d-flex flex-column">
+                <div id="referenceList" class="d-flex flew-row flex-wrap justify-content-center"></div>
+            </div>
+        </div>
+        <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center" id="pagination"></ul>
         </nav>
     </section>
