@@ -1,6 +1,42 @@
 <?php include "includes/header.php"; ?>
 
 <main class="container my-5">
+        <div class="modal fade" id="modalPP" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci consequatur delectus deleniti,
+                            doloremque error eum illum in numquam optio qui quia quidem quo reprehenderit sint, totam voluptas voluptates voluptatum.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Ab assumenda distinctio doloremque error eveniet excepturi, exercitationem impedit inventore
+                            ipsa maxime molestias nemo odio, odit, quo ratione reiciendis repellat tenetur! Ut.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci consequatur delectus deleniti,
+                            doloremque error eum illum in numquam optio qui quia quidem quo reprehenderit sint, totam voluptas voluptates voluptatum.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Ab assumenda distinctio doloremque error eveniet excepturi, exercitationem impedit inventore
+                            ipsa maxime molestias nemo odio, odit, quo ratione reiciendis repellat tenetur! Ut.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci consequatur delectus deleniti,
+                            doloremque error eum illum in numquam optio qui quia quidem quo reprehenderit sint, totam voluptas voluptates voluptatum.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Ab assumenda distinctio doloremque error eveniet excepturi, exercitationem impedit inventore
+                            ipsa maxime molestias nemo odio, odit, quo ratione reiciendis repellat tenetur! Ut.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci consequatur delectus deleniti,
+                            doloremque error eum illum in numquam optio qui quia quidem quo reprehenderit sint, totam voluptas voluptates voluptatum.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Ab assumenda distinctio doloremque error eveniet excepturi, exercitationem impedit inventore
+                            ipsa maxime molestias nemo odio, odit, quo ratione reiciendis repellat tenetur! Ut.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understood</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <section class="container">
         <div class="d-flex justify-content-around">
             <div class="d-flex flex-column">
@@ -30,7 +66,8 @@
                         Password
                         <input name="password" type="password" class="form-control">
                     </label>
-                    <button type="button" class="btn btn-primary" onclick="UserController.signup()">Signup</button>
+                    <p class="fw-lighter">By signing up, you consent to our <a class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalPP">privacy policy</a></p>
+                    <button type="button" class="btn btn-primary" onclick="UserController.signup()">Sign up</button>
                 </form>
             </div>
         </div>
