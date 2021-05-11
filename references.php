@@ -47,10 +47,14 @@
 
 <main class="container my-5">
     <section class="container">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
-            Add product
-        </button>
-        <p></p>
+        <div>
+            <p class="fs-2">Affichage des resultats pour : $produit</p>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
+                Add product
+            </button>
+        </div>
         <div class="d-flex">
             <!-- div verticale pour filtres -->
             <div class="d-flex flex-column">

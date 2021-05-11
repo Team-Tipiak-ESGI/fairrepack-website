@@ -2,6 +2,39 @@
 
 <main class="container my-5">
     <section class="container">
+        <div class="d-flex justify-content-around">
+            <div class="d-flex flex-column">
+                <p>Already Having an Account ? Please, Sign In.</p>
+                <form id="accountForm">
+                    <label class="d-block mb-3">
+                        Email
+                        <input name="email" type="email" class="form-control">
+                    </label>
+                    <label class="d-block mb-3">
+                        Password
+                        <input name="password" type="password" class="form-control">
+                    </label>
+                    <button type="button" class="btn btn-primary" onclick="UserController.login()">Login</button>
+                    <button type="button" class="btn btn-danger" onclick="UserController.logout()">Logout</button>
+                    <button type="button" class="btn btn-danger" onclick="UserController.remove()">Delete</button>
+                </form>
+            </div>
+            <div class="d-flex flex-column">
+                <p>New to Fair Repack ? We suggest you to sign up.</p><br>
+                <form id="accountForm">
+                    <label class="d-block mb-3">
+                        Email
+                        <input name="email" type="email" class="form-control">
+                    </label>
+                    <label class="d-block mb-3">
+                        Password
+                        <input name="password" type="password" class="form-control">
+                    </label>
+                    <button type="button" class="btn btn-primary" onclick="UserController.signup()">Signup</button>
+                </form>
+            </div>
+        </div>
+<!--
         <form id="accountForm">
             <label class="d-block mb-3">
                 Email
@@ -17,6 +50,7 @@
             <button type="button" class="btn btn-danger" onclick="UserController.logout()">Logout</button>
             <button type="button" class="btn btn-danger" onclick="UserController.remove()">Delete</button>
         </form>
+        -->
     </section>
 
     <section>
