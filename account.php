@@ -41,33 +41,33 @@
         <div class="d-flex justify-content-around">
             <div class="d-flex flex-column">
                 <p>Already Having an Account ? Please, Sign In.</p>
-                <form id="accountForm">
+                <form id="accountForm" onsubmit="return (UserController.login(this), false);">
                     <label class="d-block mb-3">
                         Email
-                        <input name="email" type="email" class="form-control">
+                        <input name="email" type="email" class="form-control" autocomplete="email" placeholder="example@example.com">
                     </label>
                     <label class="d-block mb-3">
                         Password
-                        <input name="password" type="password" class="form-control">
+                        <input name="password" type="password" class="form-control" autocomplete="current-password" placeholder="Password">
                     </label>
-                    <button type="button" class="btn btn-primary" onclick="UserController.login()">Login</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
                     <button type="button" class="btn btn-danger" onclick="UserController.logout()">Logout</button>
                     <button type="button" class="btn btn-danger" onclick="UserController.remove()">Delete</button>
                 </form>
             </div>
             <div class="d-flex flex-column">
                 <p>New to Fair Repack ? We suggest you to sign up.</p><br>
-                <form id="accountForm">
+                <form id="accountForm" onsubmit="return (UserController.signup(this), false);">
                     <label class="d-block mb-3">
                         Email
-                        <input name="email" type="email" class="form-control">
+                        <input name="email" type="email" class="form-control" autocomplete="email" placeholder="example@example.com">
                     </label>
                     <label class="d-block mb-3">
                         Password
-                        <input name="password" type="password" class="form-control">
+                        <input name="password" type="password" class="form-control" autocomplete="current-password" placeholder="Password">
                     </label>
                     <p class="fw-lighter">By signing up, you consent to our <a class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalPP">privacy policy</a></p>
-                    <button type="button" class="btn btn-primary" onclick="UserController.signup()">Sign up</button>
+                    <button type="submit" class="btn btn-primary">Sign up</button>
                 </form>
             </div>
         </div>
