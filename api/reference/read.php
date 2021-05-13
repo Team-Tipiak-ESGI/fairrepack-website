@@ -76,7 +76,7 @@ if (isset($_GET["id"])) {
 
 header("Content-Type: application/json");
 if (!is_null($rows)) {
-    $count_sql = "select count(*) from (select count(*) from reference r
+    $count_sql = "select count(*) as count from (select count(*) from reference r
         left join (select count(p.id_product) as stocks, reference, id_product
                     from product p
                     where state = 'in_stock'
