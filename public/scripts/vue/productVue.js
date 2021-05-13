@@ -215,3 +215,47 @@ productVue.addImageField = function (button) {
 
     parent.prepend(input);
 }
+
+function buildElement(parent) {
+    const div_0_1 = document.createElement(`div`);
+    div_0_1.classList.add(`card`);
+    div_0_1.style.width = `18rem`;
+    const img_0_1_2 = document.createElement(`img`);
+    img_0_1_2.src = `public/assets/200x200.png`;
+    img_0_1_2.classList.add(`card-img-top`);
+    img_0_1_2.setAttribute(`alt`, `200par200`);
+
+    div_0_1.append(img_0_1_2);
+    const div_0_1_4 = document.createElement(`div`);
+    div_0_1_4.classList.add(`card-body`);
+    const h5_0_1_4_2 = document.createElement(`h5`);
+    h5_0_1_4_2.classList.add(`card-title`);
+    const text_0_1_4_2_1 = document.createTextNode(`Card title`);
+    h5_0_1_4_2.append(text_0_1_4_2_1);
+
+    div_0_1_4.append(h5_0_1_4_2);
+    const p_0_1_4_4 = document.createElement(`p`);
+    p_0_1_4_4.classList.add(`card-text`);
+    const text_0_1_4_4_1 = document.createTextNode(`Some quick example text to build on the card title and make up the bulk of the card's content.`);
+    p_0_1_4_4.append(text_0_1_4_4_1);
+
+    div_0_1_4.append(p_0_1_4_4);
+    const a_0_1_4_6 = document.createElement(`a`);
+    a_0_1_4_6.href = `#`;
+    a_0_1_4_6.classList.add(`btn`, `btn-primary`);
+    const text_0_1_4_6_1 = document.createTextNode(`Add to cart`);
+    a_0_1_4_6.append(text_0_1_4_6_1);
+
+    div_0_1_4.append(a_0_1_4_6);
+    const a_0_1_4_8 = document.createElement(`a`);
+    a_0_1_4_8.href = `#`;
+    a_0_1_4_8.classList.add(`btn`, `btn-secondary`);
+    const text_0_1_4_8_1 = document.createTextNode(`View Product`);
+    a_0_1_4_8.append(text_0_1_4_8_1);
+
+    div_0_1_4.append(a_0_1_4_8);
+
+    div_0_1.append(div_0_1_4);
+
+    parent.append(div_0_1);
+}
