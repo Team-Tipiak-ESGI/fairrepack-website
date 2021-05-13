@@ -4,6 +4,13 @@ cartController.addProduct = function(product_id) {
     const currentCart = this.get();
 
     if (currentCart.products === undefined) currentCart.products = {};
+    else {
+        const product = currentCart.products[product_id];
+        currentCart.products[product_id].count++;
+        window.localStorage.setItem("cart", JSON.stringify(currentCart));
+        addNotificationToast("Added to cart", `${product.brand} ${product.name} added to cart`);
+        return;
+    }
 
     authenticatedFetch(`/api/product/read.php?id=${product_id}`)
         .then(res => res.json())
@@ -19,6 +26,7 @@ cartController.addProduct = function(product_id) {
             currentCart.products[product_id].count++;
 
             window.localStorage.setItem("cart", JSON.stringify(currentCart));
+            addNotificationToast("Added to cart", `${product.brand} ${product.name} added to cart`);
         });
 }
 

@@ -19,12 +19,23 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script type="text/javascript">
     // Create an instance of the Stripe object with your publishable API key
-    var stripe = Stripe("pk_test_51Iom4bHzfyqVGMdc9rN4v17lVPIkAXEhYikGGYLrFMTBhizlKMZqPGBRsZnuDy8oGlLCbAVBrnNGpGFIP0jczIPx00sMaZPVps");
-    var checkoutButton = document.getElementById("checkout-button");
+    const stripe = Stripe("pk_test_51Iom4bHzfyqVGMdc9rN4v17lVPIkAXEhYikGGYLrFMTBhizlKMZqPGBRsZnuDy8oGlLCbAVBrnNGpGFIP0jczIPx00sMaZPVps");
+    const checkoutButton = document.getElementById("checkout-button");
+
+    const products = {};
+    const cart = cartController.get().products;
+
+    for (const id in cart) {
+        if (cart.hasOwnProperty(id)) {
+            const product = cart[id];
+            products[id] = parseInt(product.count);
+        }
+    }
+
     checkoutButton.addEventListener("click", function () {
         fetch("/api/create-checkout-session.php", {
             method: "POST",
-            body: window.localStorage.getItem("cart"),
+            body: JSON.stringify(products), // Get products' UUIDs
         })
             .then(function (response) {
                 return response.json();

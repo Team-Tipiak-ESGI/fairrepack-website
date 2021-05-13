@@ -58,13 +58,27 @@ function deleteProductById(string $id_product): string
     return databaseDelete($db, $sql, $params);
 }
 
+/**
+ * Return columns state, quality, description, reference, warehouse, p.created, user, uuid_user FROM product
+ * @param string $uuid
+ * @return array|null
+ */
 function getProductByUUID(string $uuid): ?array
 {
     $db = getDatabaseConnection();
-    $sql = "SELECT state, quality, description, reference, warehouse, p.created, user, uuid_user FROM product p
-            JOIN user u on p.user = u.id_user
-            WHERE uuid_product = ?";
+    $sql = "select state, quality, description, p.created, uuid_user, uuid_reference,
+                   price as last_price, ifnull(image_count, 0) as image_count, ifnull(offer_count, 0) as offer_count
+                from product p
+                left join user u on u.id_user = p.user
+                left join reference r on r.id_reference = p.reference
+                left join (select product, id_image, count(id_image) as image_count from image group by product) i on p.id_product = i.product
+                left join (select product, id_offer, count(id_offer) as offer_count from offer group by product) o on p.id_product = o.product
+                left join (select product, price from (
+                        select o.product, o.price, row_number() over (partition by o.product order by o.created desc) as rn
+                    from offer o) as r where rn = 1) lo on lo.product = p.id_product
+                where uuid_product = ?";
     $params = [$uuid];
+
     return databaseFindOne($db, $sql, $params);
 }
 
@@ -80,4 +94,25 @@ function addProductImage(string $product_id, string $blob, string $mime): string
     ];
 
     return databaseInsert($db, $sql, $params);
+}
+
+function getProductsImageUrls(string $uuid): array
+{
+    $db = getDatabaseConnection();
+    $sql = "SELECT ifnull(image_count, 0) as image_count FROM product p
+            left join (select product, id_image, count(id_image) as image_count from image group by product) i on p.id_product = i.product
+            WHERE uuid_product = ?";
+    $params = [$uuid];
+
+    $image_count = databaseFindOne($db, $sql, $params)["image_count"];
+
+    $urls = [];
+
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+
+    for ($i = 0; $i < $image_count; $i++) {
+        $urls[] = $protocol . $_SERVER["SERVER_NAME"] . "/image/$uuid/$i";
+    }
+
+    return $urls;
 }

@@ -1,6 +1,8 @@
 <?php
 
 require_once __DIR__ . '/../utils/database.php';
+require_once __DIR__ . '/../utils/dao/product.php';
+require_once __DIR__ . '/../utils/dao/reference.php';
 
 $body = file_get_contents("php://input");
 $_POST = json_decode($body, true);
@@ -9,25 +11,27 @@ $line_items = [];
 
 $db = getDatabaseConnection();
 
-foreach ($_POST as $id => $item) {
+foreach ($_POST as $id => $count) {
     // Verify count is greater than 1
-    $count = intval($item['count']);
+    $count = intval($count);
     if ($count < 1) continue;
 
-    // Get stocks
-    $count_sql = "select count(*) as count from reference r join product p on reference = id_reference where uuid_reference = ? and state = 'in_stock' group by id_reference";
-    $total = databaseFindOne($db, $count_sql, [$id])["count"];
-    $count = min($count, $total);
+    // Get product
+    $product = getProductByUUID($id);
 
-    if ($count < 1) continue;
+    // If product is in stock
+    if ($product["state"] === "in_stock") continue;
+
+    // Get reference (for name and brand)
+    $reference = getReferenceByUUID($product["uuid_reference"]);
 
     $line_items[] = [
         'price_data' => [
             'currency' => 'eur',
-            'unit_amount' => intval($item['value']) * 100,
+            'unit_amount' => intval($product["last_price"]) * 100,
             'product_data' => [
-                'name' => $item['brand'] . ' ' . $item['name'],
-                'images' => ["https://i.imgur.com/EHyR2nP.png"],
+                'name' => $reference["brand"] . ' ' . $reference["name"],
+                'images' => getProductsImageUrls($id),
             ],
         ],
         'quantity' => max($count, 1),

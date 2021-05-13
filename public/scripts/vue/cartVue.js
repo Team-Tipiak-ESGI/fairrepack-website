@@ -1,9 +1,12 @@
 const cartVue = {};
 
 cartVue.buildProductList = function(div, cart = cartController.get()) {
-    div.innerHTML = "<span>Your cart is empty, <a href='/references.php'>start shopping now!</a></span>";
-
     const products = cart.products;
+    if (Object.keys(products).length === 0) {
+        div.innerHTML = "<span>Your cart is empty, <a href='/references.php'>start shopping now!</a></span>";
+        return;
+    }
+
     for (const key in products) {
         if (products.hasOwnProperty(key)) {
             const reference = products[key];
