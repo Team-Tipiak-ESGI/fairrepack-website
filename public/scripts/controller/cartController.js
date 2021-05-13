@@ -1,47 +1,18 @@
 const cartController = {};
 
-/**
- * Add a reference to cart
- * @deprecated
- * @param reference_id
- */
-cartController.add = cartController.addReference;
-
-cartController.addReference = function(reference_id) {
-    const currentCart = this.get();
-
-    if (currentCart.references === undefined) currentCart.references = {};
-
-    authenticatedFetch(`/api/reference/read.php?id=${reference_id}`)
-        .then(res => res.json())
-        .then(json => {
-            const reference = json.items;
-
-            if (currentCart.references[reference_id] === undefined) {
-                delete reference.id;
-                currentCart.references[reference_id] = reference;
-                currentCart.references[reference_id].count = 0;
-            }
-
-            currentCart.references[reference_id].count++;
-
-            window.localStorage.setItem("cart", JSON.stringify(currentCart));
-        });
-}
-
 cartController.addProduct = function(product_id) {
     const currentCart = this.get();
 
     if (currentCart.products === undefined) currentCart.products = {};
 
-    authenticatedFetch(`/api/reference/read.php?id=${product_id}`)
+    authenticatedFetch(`/api/product/read.php?id=${product_id}`)
         .then(res => res.json())
         .then(json => {
-            const reference = json.items;
+            const product = json.items;
 
             if (currentCart.products[product_id] === undefined) {
-                delete reference.id;
-                currentCart.products[product_id] = reference;
+                delete product.id;
+                currentCart.products[product_id] = product;
                 currentCart.products[product_id].count = 0;
             }
 
@@ -51,9 +22,12 @@ cartController.addProduct = function(product_id) {
         });
 }
 
-cartController.updateCount = function(reference_id, count) {
+cartController.updateCount = function(id, count) {
     const currentCard = this.get();
-    currentCard[reference_id].count = count;
+    if (count <= 0)
+        delete currentCard.products[id];
+    else
+        currentCard.products[id].count = count;
     window.localStorage.setItem("cart", JSON.stringify(currentCard));
 }
 

@@ -76,7 +76,7 @@ if (isset($_GET["id"])) {
 
 header("Content-Type: application/json");
 if (!is_null($rows)) {
-    $count_sql = "SELECT COUNT(*) as count FROM reference r
+    $count_sql = "select count(*) from (select count(*) from reference r
         left join (select count(p.id_product) as stocks, reference, id_product
                     from product p
                     where state = 'in_stock'
@@ -85,7 +85,7 @@ if (!is_null($rows)) {
         left join product p on r.id_reference = p.reference
         join type t on t.id_type = r.type
         join category c on c.id_category = t.category "
-        . $whereSql . " group by r.id_reference";
+        . $whereSql . " group by r.id_reference) a";
 
     $total = databaseFindOne($db, $count_sql, $params)["count"];
 

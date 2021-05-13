@@ -177,6 +177,14 @@ productVue.buildProductList = function (div, products) {
         p_40.classList.add(`card-text`);
 
         div_e.append(p_40);
+
+        const btn_43 = document.createElement(`btn`);
+        btn_43.classList.add(`btn`, `btn-secondary`, `me-2`);
+        btn_43.innerText = `Add to cart`;
+        btn_43.addEventListener("click", (e) => {
+            cartController.addProduct(product.id);
+        });
+        div_e.append(btn_43);
         p_40.innerText = `${product.description || "-"}\nEtat : ${product.state}\nOffres : ${product.offer_count}`; // Card content
         const a_42 = document.createElement(`a`);
         a_42.href = `/product.php?id=${product.id}`;

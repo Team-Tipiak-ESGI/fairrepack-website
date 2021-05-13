@@ -5,11 +5,11 @@
         <form id="accountForm">
             <label class="d-block mb-3">
                 Email
-                <input name="email" type="email" class="form-control">
+                <input name="email" type="email" class="form-control" autocomplete="email" placeholder="example@example.com">
             </label>
             <label class="d-block mb-3">
                 Password
-                <input name="password" type="password" class="form-control">
+                <input name="password" type="password" class="form-control" autocomplete="current-password" placeholder="Password">
             </label>
 
             <button type="button" class="btn btn-primary" onclick="UserController.signup()">Signup</button>

@@ -30,6 +30,7 @@
 <script src="public/scripts/utils/utils.js"></script>
 <script src="public/scripts/model/userModel.js"></script>
 <script src="public/scripts/controller/userController.js"></script>
+<script src="public/scripts/controller/cartController.js"></script>
 
 <script src="public/scripts/model/referenceModel.js"></script>
 <script src="public/scripts/vue/referenceVue.js"></script>

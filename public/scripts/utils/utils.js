@@ -90,7 +90,7 @@ Date.prototype.format = function (format) {
 
 /**
  * Get page ID from url
- * @deprecated Use getPage() function instead
+ * @deprecated Use getPage().pageId function instead
  * @returns {string} Page's ID
  */
 function getPageId() {
@@ -117,4 +117,42 @@ function getPage(pageNumber = 0) {
 
 function between(value, min, max) {
     return Math.min(Math.max(value, min), max);
+}
+
+function addNotificationToast(title, content = '', date = new Date()) {
+    const toastContainer = document.getElementById('toastContainer');
+
+    const toast = document.createElement('div');
+
+    toast.classList.add('toast', 'show');
+    toast.setAttribute('role', 'alert');
+    toast.setAttribute('aria-live', 'assertive');
+    toast.setAttribute('aria-atomic', 'true');
+
+    toast.innerHTML = `<div class="toast-header">
+          <!--<img src="..." class="rounded me-2" alt="...">-->
+          <strong class="me-auto">${title}</strong>
+          <small class="text-muted">now</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">${content}</div>`
+
+    new bootstrap.Toast(toast);
+
+    if (typeof date === "string") date = new Date(date);
+
+    const minutes = Math.floor((Date.now() - date.getTime()) / (60 * 1000));
+    const timeNotice = toast.querySelector('small');
+    timeNotice.innerText = `${minutes} ago`;
+
+    const interval = setInterval(() => {
+        const minutes = Math.floor((Date.now() - date.getTime()) / (60 * 1000));
+        timeNotice.innerText = `${minutes} ago`;
+    }, 1000 * 60);
+
+    toast.addEventListener('hidden.bs.toast', function () {
+        clearInterval(interval);
+    });
+
+    toastContainer.append(toast);
 }
