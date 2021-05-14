@@ -116,3 +116,16 @@ function getProductsImageUrls(string $uuid): array
 
     return $urls;
 }
+
+function getProductImage(string $product_id, string $row): ?array
+{
+    $sql = "select r.image, r.mime
+        from (select row_number() over(partition by p.id_product) as row_num, image, mime
+              from product p
+	          join image i on p.id_product = i.product
+              where p.uuid_product = ?) r
+        where r.row_num = ?";
+
+    $con = getDatabaseConnection();
+    return databaseFindOne($con, $sql, [$product_id, $row]);
+}
