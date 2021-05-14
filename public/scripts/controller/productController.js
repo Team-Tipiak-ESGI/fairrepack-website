@@ -2,12 +2,22 @@ const productController = {};
 
 /**
  * Create a new product in the database
- * @param {HTMLFormElement} form
+ * @param {HTMLFormElement|SubmitEvent} form
  */
-productController.create = async function (form) {
+productController.create = async function (e) {
+    let form = e, spinner;
+    if (e instanceof SubmitEvent) {
+        form = e.target;
+        e.preventDefault();
+        e.stopPropagation();
+        spinner = buttonSpinner(e.submitter);
+    }
+
     const formData = new FormData(form);
     productModel.create(await formDataToJSON(formData))
         .then((res) => {
+            spinner?.call();
+
             if (res.status === 201) {
                 referenceVue.buildReferenceList(document.querySelector("div#referenceList"));
                 return res.json();
@@ -26,6 +36,8 @@ productController.create = async function (form) {
                 alert("Unknown error.")
             }
         })
+
+    return false;
 }
 
 productController.updateState = function (state, id = getPage().pageId) {

@@ -9,7 +9,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="addProductForm" onsubmit="return (productController.create(this), false)">
+                <form id="addProductForm">
                     <label class="d-block mb-3">
                         Référence
                         <select name="reference" class="form-select"></select>
@@ -117,6 +117,8 @@
 
     window.nav = pagination();
     window.nav.plugPaginationElement(document.querySelector("#pagination"), referenceVue.buildReferenceList, referenceList);
+
+    document.getElementById("addProductForm").addEventListener("submit", productController.create);
 </script>
 
 <?php include "includes/footer.php"; ?>

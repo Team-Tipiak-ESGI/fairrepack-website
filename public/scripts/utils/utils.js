@@ -156,3 +156,19 @@ function addNotificationToast(title, content = '', date = new Date()) {
 
     toastContainer.append(toast);
 }
+
+/**
+ * Add a spinner to the given button
+ * @param button
+ * @returns {Function} Function to reset to the previous state
+ */
+function buttonSpinner(button) {
+    const span = document.createElement('span');
+    span.classList.add('spinner-border', 'spinner-border-sm');
+    span.setAttribute('role', 'status');
+    span.setAttribute('aria-hidden', 'true');
+    button.prepend(span);
+    button.disabled = true;
+
+    return () => (span.remove(), button.disabled = false);
+}
