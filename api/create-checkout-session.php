@@ -20,7 +20,7 @@ foreach ($_POST as $id => $count) {
     $product = getProductByUUID($id);
 
     // If product is in stock
-    if ($product["state"] === "in_stock") continue;
+    if ($product["state"] !== "in_stock") continue;
 
     // Get reference (for name and brand)
     $reference = getReferenceByUUID($product["uuid_reference"]);

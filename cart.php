@@ -19,7 +19,7 @@
     const checkoutButton = document.getElementById("checkout-button");
 
     const products = {};
-    const cart = cartController.get().products;
+    const cart = cartController.get();
 
     for (const id in cart) {
         if (cart.hasOwnProperty(id)) {

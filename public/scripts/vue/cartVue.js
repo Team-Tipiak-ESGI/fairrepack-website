@@ -71,5 +71,5 @@ cartVue.buildCartElement = function(uuid, product) {
 }
 
 cartVue.updateHeader = function() {
-    document.getElementById("headerCart").innerHTML = cartController.getTotal();
+    document.getElementById("headerCart").innerHTML = cartController?.getTotal() ?? 0;
 }
