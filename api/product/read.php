@@ -70,10 +70,8 @@ if (isset($_GET["id"])) {
 
 header("Content-Type: application/json");
 if (!is_null($rows)) {
-    $count_sql = "SELECT COUNT(*) as count FROM product
-        RIGHT JOIN offer o on product.id_product = o.product
-        JOIN user u on product.user = u.id_user
-        JOIN reference r on r.id_reference = product.reference " . $whereSql;
+    $count_sql = "select count(id_product) as count from product
+                join reference r on r.id_reference = product.reference " . $whereSql;
 
     $total = databaseFindOne($db, $count_sql, $params)["count"];
 

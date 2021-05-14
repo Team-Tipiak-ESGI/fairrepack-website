@@ -55,9 +55,7 @@ UserController.login = function(form) {
 
 UserController.logout = function() {
     // Token is invalid, silent sign out
-    if (!getToken().valid) {
-        return;
-    } else {
+    if (getToken().valid) {
         alert("You are logged out!");
     }
 
