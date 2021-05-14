@@ -15,13 +15,18 @@ $offset = $_GET["offset"] ?? $limit * $page;
 
 $where = [];
 $params = [];
-if (isset($_GET["brand"])) {
-    $where[] = "brand LIKE ?"; // ? ou :var
-    $params[] = "%" . $_GET["brand"] . "%";
-}
-if (isset($_GET["name"])) {
-    $where[] = "name LIKE ?"; // ? ou :var
-    $params[] = "%" . $_GET["name"] . "%";
+if (isset($_GET["search"])) {
+    $where[] = "concat(lower(brand), lower(r.name)) LIKE ?"; // ? ou :var
+    $params[] = "%" . strtolower($_GET["search"]) . "%";
+} else {
+    if (isset($_GET["brand"])) {
+        $where[] = "brand LIKE ?"; // ? ou :var
+        $params[] = "%" . $_GET["brand"] . "%";
+    }
+    if (isset($_GET["name"])) {
+        $where[] = "r.name LIKE ?"; // ? ou :var
+        $params[] = "%" . $_GET["name"] . "%";
+    }
 }
 if (isset($_GET["value_min"])) {
     $where[] = "value > ?"; // ? ou :var

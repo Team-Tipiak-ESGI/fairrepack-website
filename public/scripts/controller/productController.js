@@ -26,8 +26,7 @@ productController.create = async function (e) {
             }
         })
         .then(json => {
-            const location = window.location;
-            window.location.href = `${location.origin}/product.php?id=${json.uuid_product}`;
+            window.location.href = `${window.location.origin}/product.php?id=${json.uuid_product}`;
         })
         .catch((res) => {
             if (res.status === 401) {

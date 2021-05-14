@@ -11,18 +11,18 @@
             <div class="modal-body">
                 <form id="addProductForm">
                     <label class="d-block mb-3">
-                        Référence
+                        Reference
                         <select name="reference" class="form-select"></select>
                     </label>
 
                     <label class="d-block mb-3">
-                        Etat
+                        Quality
                         <select name="quality" class="form-select">
-                            <option value="new">Neuf</option>
-                            <option value="high">Bonne</option>
-                            <option value="medium">Moyenne</option>
-                            <option value="low">Faible</option>
-                            <option value="broken">Cassé</option>
+                            <option value="new">New</option>
+                            <option value="high">Good</option>
+                            <option value="medium">Average</option>
+                            <option value="low">Low</option>
+                            <option value="broken">Broken</option>
                         </select>
                     </label>
 
@@ -47,27 +47,24 @@
 
 <main class="container my-5">
     <section class="container">
-        <div>
-            <p class="fs-2">Affichage des resultats pour : $produit</p>
-        </div>
-        <div>
+        <div class="d-flex justify-content-between align-items-center">
+            <p class="fs-2" id="searchName">Displaying all results</p>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
                 Add product
             </button>
         </div>
-        <div class="d-flex">
+        <div class="row">
             <!-- div verticale pour filtres -->
-            <div class="d-flex flex-column">
-                <!-- div pour filtres  prix -->
-                <p class=" fs-6 fw-lighter text-muted">Filtre par prix</p>
-                <div class="d-flex flex-row">
-                    <input class="form-control form-control-sm" type="number" placeholder="prix minimum">
-                    <input class="form-control form-control-sm" type="number" placeholder="prix maximum">
+            <div class="col-0 col-md-4 col-lg-2 d-flex flex-column">
+                <!-- div pour filtres prix -->
+                <p class="fs-6 fw-lighter text-muted">Price filter</p>
+                <div class="d-flex mb-3">
+                    <input class="form-control form-control-sm me-2" type="number" placeholder="Min" min="0" max="9999">
+                    <input class="form-control form-control-sm ms-2" type="number" placeholder="Max" min="0" max="9999">
                 </div>
-                <p></p>
                 <!-- div pour filtres marques, checkbox -->
-                <div class="d-flex flex-column">
-                    <p class=" fs-6 fw-lighter text-muted">Filtre par marques</p>
+                <div class="d-flex flex-column mb-3">
+                    <p class="fs-6 fw-lighter text-muted">Brand filter</p>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="checkBrand1">
                         <label class="form-check-label" for="checkBrand1">Apple</label>
@@ -81,10 +78,9 @@
                         <label class="form-check-label" for="checkBrand3">Huawei</label>
                     </div>
                 </div>
-                <p></p>
                 <!-- div pour filtres annee, checkbox -->
-                <div class="d-flex flex-column">
-                    <p class=" fs-6 fw-lighter text-muted">Filtre par annee</p>
+                <div class="d-flex flex-column mb-3">
+                    <p class="fs-6 fw-lighter text-muted">Year filter</p>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="checkAnnee2019">
                         <label class="form-check-label" for="checkAnnee2019">2019</label>
@@ -100,14 +96,13 @@
                     </div>
                 </div>
             </div>
+
             <!-- div verticale pour les produits -->
-            <div class="d-flex flex-column">
+            <div class="col-12 col-md-8 col-lg-10 d-flex flex-column">
                 <div id="referenceList" class="d-flex flew-row flex-wrap justify-content-center"></div>
+                <ul class="pagination justify-content-center" id="pagination"></ul>
             </div>
         </div>
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center" id="pagination"></ul>
-        </nav>
     </section>
 </main>
 

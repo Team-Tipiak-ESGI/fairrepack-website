@@ -100,18 +100,24 @@ function getPageId() {
 /**
  * Return information about the page
  * @param {number|undefined} pageNumber
- * @returns {{pageId: string, pageSize: number, pageNumber: number, urlParams: string}}
+ * @returns {{pageId: string, pageSize: number, pageNumber: number, urlParams: string, search: string}}
  */
 function getPage(pageNumber = 0) {
-    const pageId = new URLSearchParams(window.location.search.substr(1)).get('id');
+    const urlSearchParams = new URLSearchParams(window.location.search.substr(1));
+    const pageId = urlSearchParams.get('id');
+    const search = urlSearchParams.get('search');
     const pageSize = parseInt(window.localStorage.getItem("pageSize")) || 20;
-    const urlParams = `page=${pageNumber}&limit=${pageSize}`;
+    let urlParams = `page=${pageNumber}&limit=${pageSize}`;
+
+    if (search)
+        urlParams += `&search=${search}`;
 
     return {
         pageId: pageId,
         pageSize: pageSize,
         pageNumber: pageNumber,
         urlParams: urlParams,
+        search: search,
     };
 }
 
