@@ -52,7 +52,7 @@ if (count($where) > 0) {
 $db = getDatabaseConnection();
 
 $sql = "select r.uuid_reference as id, brand, r.name, value, t.name as type_name, c.name as category_name,
-        s.stocks, count(p.id_product) as count, p.created
+        s.stocks, count(p.id_product) as count, p.created, image_url
         from reference r
         left join (select count(p.id_product) as stocks, reference, id_product
                     from product p
@@ -60,6 +60,11 @@ $sql = "select r.uuid_reference as id, brand, r.name, value, t.name as type_name
                     group by reference) s
                 on r.id_reference = s.reference
         left join product p on r.id_reference = p.reference
+        left join (select image, mime, concat(uuid_product, '/', row_number() over (partition by p.id_product)) as image_url, reference
+                   from product p
+                            join image i on p.id_product = i.product
+                order by rand()
+                limit 1) i on r.id_reference = i.reference
         join type t on t.id_type = r.type
         join category c on c.id_category = t.category "
         . $whereSql .
