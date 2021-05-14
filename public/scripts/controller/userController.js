@@ -34,24 +34,19 @@ UserController.login = function(form) {
 
     UserModel.login(form)
         .then(token => {
-            alert("You are logged in!");
+            form.elements["email"].classList.remove("is-invalid");
+            form.elements["password"].classList.remove("is-invalid");
+            form.elements["email"].classList.add("is-valid");
+            form.elements["password"].classList.add("is-valid");
+
             const uuid = getToken()?.payload.uuid;
             if (uuid !== undefined)
                 userVue.buildProductDiv(document.querySelector("div#userProducts"), uuid);
             renewToken();
         })
         .catch(res => {
-            switch (res.status) {
-                case 404:
-                    alert("User does not exists.");
-                    break;
-                case 400:
-                    alert("Bad request.");
-                    break;
-                default:
-                    alert("Something went wrong :/");
-                    break;
-            }
+            form.elements["email"].classList.add("is-invalid");
+            form.elements["password"].classList.add("is-invalid");
         });
 }
 
