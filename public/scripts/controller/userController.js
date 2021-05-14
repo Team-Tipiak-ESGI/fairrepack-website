@@ -52,8 +52,8 @@ UserController.login = function(form) {
 
 UserController.logout = function() {
     const token = window.localStorage.getItem('token');
-    if (token === null) {
-        alert("You are not logged in!");
+    if (token === null || Date.now() > (getToken().payload.expiry * 1000)) {
+        window.localStorage.removeItem('token');
         return;
     }
 

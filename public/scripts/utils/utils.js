@@ -125,24 +125,52 @@ function between(value, min, max) {
     return Math.min(Math.max(value, min), max);
 }
 
+function buildToast(title, c) {
+    let content = c;
+    if (typeof c === "string") {
+        content = document.createElement("div");
+        content.innerHTML = c;
+    }
+
+    const div_1 = document.createElement(`div`);
+    div_1.classList.add(`toast`, `show`);
+    div_1.setAttribute(`role`, `alert`);
+    div_1.setAttribute(`aria-live`, `assertive`);
+    div_1.setAttribute(`aria-atomic`, `true`);
+    const div_c = document.createElement(`div`);
+    div_c.classList.add(`toast-header`);
+    const strong_3e = document.createElement(`strong`);
+    strong_3e.classList.add(`me-auto`);
+
+    div_c.append(strong_3e);
+    strong_3e.innerText = title;
+    const small_3g = document.createElement(`small`);
+    small_3g.classList.add(`text-muted`);
+
+    div_c.append(small_3g);
+    small_3g.innerText = `now`;
+    const button_3i = document.createElement(`button`);
+    button_3i.type = `button`;
+    button_3i.classList.add(`btn-close`);
+    button_3i.setAttribute(`data-bs-dismiss`, `toast`);
+    button_3i.setAttribute(`aria-label`, `Close`);
+
+    div_c.append(button_3i);
+
+    div_1.append(div_c);
+    const div_e = document.createElement(`div`);
+    div_e.classList.add(`toast-body`);
+
+    div_1.append(div_e);
+    div_e.append(content);
+
+    return div_1;
+}
+
 function addNotificationToast(title, content = '', date = new Date()) {
     const toastContainer = document.getElementById('toastContainer');
 
-    const toast = document.createElement('div');
-
-    toast.classList.add('toast', 'show');
-    toast.setAttribute('role', 'alert');
-    toast.setAttribute('aria-live', 'assertive');
-    toast.setAttribute('aria-atomic', 'true');
-
-    toast.innerHTML = `<div class="toast-header">
-          <!--<img src="..." class="rounded me-2" alt="...">-->
-          <strong class="me-auto">${title}</strong>
-          <small class="text-muted">now</small>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">${content}</div>`
-
+    const toast = buildToast(title, content);
     new bootstrap.Toast(toast);
 
     if (typeof date === "string") date = new Date(date);
@@ -161,6 +189,8 @@ function addNotificationToast(title, content = '', date = new Date()) {
     });
 
     toastContainer.append(toast);
+
+    return toast;
 }
 
 /**

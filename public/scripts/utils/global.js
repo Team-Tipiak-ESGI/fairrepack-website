@@ -3,9 +3,34 @@
  */
 
 function renewToken() {
-    const expiringDate = new Date(getToken().payload.expiry * 1000);
+    if (!getToken()) return;
+
+    const expiringDate = new Date(getToken()?.payload.expiry * 1000);
     if (expiringDate <= Date.now()) {
-        addNotificationToast("Session expired", "Please <a href='/account.php'>log in</a>.", expiringDate);
+        const parent = document.createElement("div");
+        const toast = addNotificationToast("Session expired", parent, expiringDate);
+
+        const text_1 = document.createTextNode(`Please `);
+        parent.append(text_1);
+        const a_2 = document.createElement(`a`);
+        a_2.href = `/account.php`;
+
+        parent.append(a_2);
+        a_2.innerText = `log in`;
+        const text_3 = document.createTextNode(` or `);
+        parent.append(text_3);
+        const a_4 = document.createElement(`a`);
+        a_4.href = `#`;
+
+        parent.append(a_4);
+        a_4.innerText = `don't show again`;
+        a_4.addEventListener("click", (e) => {
+            UserController.logout();
+            toast.remove();
+        });
+        const text_5 = document.createTextNode(`.`);
+        parent.append(text_5);
+
         return;
     }
 
