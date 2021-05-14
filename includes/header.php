@@ -13,6 +13,7 @@
           crossorigin="anonymous">
 
     <link rel="icon" type="image/png" href="/public/assets/favicon_140.png">
+    <script src="/public/scripts/utils/utils.js"></script>
 </head>
 <body class="min-vh-100 d-flex flex-column justify-content-between">
     <header>

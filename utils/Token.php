@@ -26,23 +26,17 @@ class Token
      * @param array $headers
      * @param array $payload
      * @return string Token
+     * @throws Exception
      */
     function create(array $headers, array $payload): string
     {
-        //build the headers
+        assert($payload["expiry"], "An expiry date must be provided in the token's payload.");
+
         $this->headers = $headers;
-        $this->headers_encoded = rtrim(base64url_encode(json_encode($this->headers)), "=");
-
-        //build the payload
         $this->payload = $payload;
-        $this->payload_encoded = rtrim(base64url_encode(json_encode($this->payload)), "=");
 
-        //build the signature
-        $this->signature = hash_hmac('sha256', "$this->headers_encoded.$this->payload_encoded", SECRET, true);
-        $this->signature_encoded = rtrim(base64url_encode($this->signature), "=");
-
-        //build and return the token
-        $this->token = "$this->headers_encoded.$this->payload_encoded.$this->signature_encoded";
+        // Build and return the token
+        $this->build();
         return $this->token;
     }
 
@@ -68,9 +62,12 @@ class Token
     /**
      * Verify if token is valid
      * @return bool Token is valid
+     * @throws Exception
      */
     function validate(): bool
     {
+        assert($this->payload["expiry"], "Token does not have an expiry date.");
+
         if ($this->payload['expiry'] < time()) {
             return false;
         }
@@ -95,5 +92,22 @@ class Token
     public function getPayload(): array
     {
         return $this->payload;
+    }
+
+    public function renew(int $interval): void
+    {
+        $this->payload["expiry"] = time() + $interval;
+        $this->build();
+    }
+
+    private function build(): void
+    {
+        $this->headers_encoded = rtrim(base64url_encode(json_encode($this->headers)), "=");
+        $this->payload_encoded = rtrim(base64url_encode(json_encode($this->payload)), "=");
+        $this->signature = hash_hmac('sha256', "$this->headers_encoded.$this->payload_encoded", SECRET, true);
+
+        $this->signature_encoded = rtrim(base64url_encode($this->signature), "=");
+
+        $this->token = "$this->headers_encoded.$this->payload_encoded.$this->signature_encoded";
     }
 }

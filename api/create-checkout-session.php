@@ -48,7 +48,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/stripe-php/init.php');
 
 header('Content-Type: application/json');
 
-$DOMAIN = "http://" . ($_SERVER["SERVER_NAME"] ?? "fairrepack.sagliss.industries");
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$DOMAIN = $protocol . $_SERVER["SERVER_NAME"];
 
 $checkout_session = \Stripe\Checkout\Session::create([
     'payment_method_types' => ['card'],

@@ -111,7 +111,6 @@
     </section>
 </main>
 
-<script src="public/scripts/utils/utils.js"></script>
 <script src="public/scripts/model/userModel.js"></script>
 <script src="public/scripts/controller/userController.js"></script>
 

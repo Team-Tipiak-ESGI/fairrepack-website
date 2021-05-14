@@ -29,6 +29,7 @@ function loginUser($email, $password): ?Token
             'username' => $res['username'],
 
             // This is mandatory, used by the server for validating the token
+            //'expiry' => time() + 3600,
             'expiry' => time() + 3600,
         ]
     );

@@ -9,6 +9,7 @@ UserController.signup = function(form) {
     UserModel.signup(form)
         .then(token => {
             alert("You are signed up!");
+            renewToken();
         })
         .catch(res => {
             switch (res.status) {
@@ -37,6 +38,7 @@ UserController.login = function(form) {
             const uuid = getToken()?.payload.uuid;
             if (uuid !== undefined)
                 userVue.buildProductDiv(document.querySelector("div#userProducts"), uuid);
+            renewToken();
         })
         .catch(res => {
             switch (res.status) {
