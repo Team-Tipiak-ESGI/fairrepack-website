@@ -4,6 +4,17 @@ userVue.buildInfoDiv = (div, user) => {
 
 }
 
+userVue.updateAccountPage = () => {
+    console.log(getToken());
+    if (getToken().token !== null) {
+        document.getElementById("signedOut")?.classList.add("d-none");
+        document.getElementById("signedIn")?.classList.remove("d-none");
+    } else {
+        document.getElementById("signedOut")?.classList.remove("d-none");
+        document.getElementById("signedIn")?.classList.add("d-none");
+    }
+}
+
 userVue.buildProductDiv = (div, id) => {
     authenticatedFetch(`/api/product/read.php?user=${id}&state=registered`)
         .then(res => {

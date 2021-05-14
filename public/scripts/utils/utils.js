@@ -26,19 +26,30 @@ function authenticatedFetch(url, method = 'GET', body = undefined) {
 
 /**
  * Return Token
- * @type {function(): {headers: {alg: string, typ: string}, payload: {expiry: number, lang: string, type: string, username: string, uuid: string}, token: string}}
+ * @type {function(): {headers: {alg: string, typ: string}|null, payload: {expiry: number, lang: string, type: string, username: string, uuid: string}|null, token: string|null, valid: boolean}}
  */
 const getToken = () => {
     const token = window.localStorage.getItem('token');
-    if (token === null) return null;
 
-    const headers = JSON.parse(atob(token.split('.')[0]));
-    const payload = JSON.parse(atob(token.split('.')[1]));
+    if (token === null) {
+        return {
+            token: null,
+            headers: null,
+            payload: null,
+            valid: false,
+        };
+    }
+
+    const headers = JSON.parse(atob(token?.split('.')[0]));
+    const payload = JSON.parse(atob(token?.split('.')[1]));
+
+    const valid = payload.expiry * 1000 > Date.now();
 
     return {
         token: token,
         headers: headers,
         payload: payload,
+        valid: valid,
     };
 };
 
@@ -100,7 +111,7 @@ function getPageId() {
 /**
  * Return information about the page
  * @param {number|undefined} pageNumber
- * @returns {{pageId: string, pageSize: number, pageNumber: number, urlParams: string, search: string}}
+ * @returns {{pageId: string, pageSize: number, pageNumber: number, urlParams: string, search: string, setPageInput: function}}
  */
 function getPage(pageNumber = 0) {
     const urlSearchParams = new URLSearchParams(window.location.search.substr(1));
@@ -118,6 +129,13 @@ function getPage(pageNumber = 0) {
         pageNumber: pageNumber,
         urlParams: urlParams,
         search: search,
+        setPageInput: (input) => {
+            input.value = pageSize;
+            input.addEventListener("change", (e) => {
+                window.localStorage.setItem("pageSize", e.target.value);
+                window?.nav.updatePagination();
+            });
+        },
     };
 }
 

@@ -30,7 +30,7 @@
             </div>
         </div>
 
-    <section class="container">
+    <section class="container" id="signedOut">
         <div class="d-flex justify-content-around">
 
             <div class="d-flex flex-column">
@@ -52,8 +52,6 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Login</button>
-                    <button type="button" class="btn btn-danger" onclick="UserController.logout()">Logout</button>
-                    <button type="button" class="btn btn-danger" onclick="UserController.remove()">Delete</button>
                 </form>
             </div>
 
@@ -89,16 +87,22 @@
         </div>
     </section>
 
-    <section>
+    <section class="d-none" id="signedIn">
+        <button type="button" class="btn btn-danger" onclick="UserController.logout()">Logout</button>
+        <button type="button" class="btn btn-danger" onclick="UserController.remove()">Delete</button>
+
         <h1>Your products</h1>
         <div id="userProducts" class="d-flex justify-content-center flex-wrap"></div>
     </section>
 </main>
 
 <script>
-    const uuid = getToken()?.payload.uuid;
-    if (uuid !== undefined)
+    const uuid = getToken()?.payload?.uuid;
+    if (uuid !== undefined) {
         userVue.buildProductDiv(document.querySelector("div#userProducts"), uuid);
+    }
+
+    userVue.updateAccountPage();
 </script>
 
 <?php include "includes/footer.php"; ?>

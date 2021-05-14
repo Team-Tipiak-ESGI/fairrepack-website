@@ -3,10 +3,10 @@
  */
 
 function renewToken() {
-    if (!getToken()) return;
+    if (getToken().token === null) return;
+    const expiringDate = new Date(getToken()?.payload?.expiry * 1000);
 
-    const expiringDate = new Date(getToken()?.payload.expiry * 1000);
-    if (expiringDate <= Date.now()) {
+    if (!getToken().valid) {
         const parent = document.createElement("div");
         const toast = addNotificationToast("Session expired", parent, expiringDate);
 

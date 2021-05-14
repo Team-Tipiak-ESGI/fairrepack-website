@@ -56,15 +56,17 @@
         <div class="row">
             <!-- div verticale pour filtres -->
             <div class="col-0 col-md-4 col-lg-2 d-flex flex-column">
+                <label for="pageSize" class="fs-6 fw-lighter text-muted">Page size</label>
+                <input type="number" placeholder="Page size" class="form-control form-control-sm mb-3" id="pageSize" min="5" max="100" step="5">
                 <!-- div pour filtres prix -->
-                <p class="fs-6 fw-lighter text-muted">Price filter</p>
+                <label class="fs-6 fw-lighter text-muted">Price filter</label>
                 <div class="d-flex mb-3">
                     <input class="form-control form-control-sm me-2" type="number" placeholder="Min" min="0" max="9999">
                     <input class="form-control form-control-sm ms-2" type="number" placeholder="Max" min="0" max="9999">
                 </div>
                 <!-- div pour filtres marques, checkbox -->
                 <div class="d-flex flex-column mb-3">
-                    <p class="fs-6 fw-lighter text-muted">Brand filter</p>
+                    <label class="fs-6 fw-lighter text-muted">Brand filter</label>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="checkBrand1">
                         <label class="form-check-label" for="checkBrand1">Apple</label>
@@ -114,6 +116,8 @@
     window.nav.plugPaginationElement(document.querySelector("#pagination"), referenceVue.buildReferenceList, referenceList);
 
     document.getElementById("addProductForm").addEventListener("submit", productController.create);
+
+    getPage().setPageInput(document.getElementById("pageSize"));
 </script>
 
 <?php include "includes/footer.php"; ?>

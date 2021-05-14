@@ -9,6 +9,7 @@ UserController.signup = function(form) {
     UserModel.signup(form)
         .then(token => {
             alert("You are signed up!");
+            userVue.updateAccountPage();
             renewToken();
         })
         .catch(res => {
@@ -40,8 +41,10 @@ UserController.login = function(form) {
             form.elements["password"].classList.add("is-valid");
 
             const uuid = getToken()?.payload.uuid;
-            if (uuid !== undefined)
+            if (uuid !== undefined) {
                 userVue.buildProductDiv(document.querySelector("div#userProducts"), uuid);
+                userVue.updateAccountPage();
+            }
             renewToken();
         })
         .catch(res => {
@@ -51,15 +54,15 @@ UserController.login = function(form) {
 }
 
 UserController.logout = function() {
-    const token = window.localStorage.getItem('token');
-    if (token === null || Date.now() > (getToken().payload.expiry * 1000)) {
-        window.localStorage.removeItem('token');
+    // Token is invalid, silent sign out
+    if (!getToken().valid) {
         return;
+    } else {
+        alert("You are logged out!");
     }
 
-    UserModel.logout().then(() => {
-        alert("You are logged out!");
-    });
+    window.localStorage.removeItem('token');
+    userVue.updateAccountPage();
 }
 
 UserController.remove = function() {

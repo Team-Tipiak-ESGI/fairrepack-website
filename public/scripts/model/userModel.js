@@ -78,14 +78,3 @@ UserModel.update = function(form) {
 
     });
 }
-
-/**
- * Logout from your account
- * @returns Promise<*>
- */
-UserModel.logout = function() {
-    return new Promise((resolve, reject) => {
-        window.localStorage.removeItem('token');
-        resolve();
-    });
-}
