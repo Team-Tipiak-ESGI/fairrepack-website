@@ -95,11 +95,6 @@
     </section>
 </main>
 
-<script src="public/scripts/model/userModel.js"></script>
-<script src="public/scripts/vue/userVue.js"></script>
-<script src="public/scripts/vue/productVue.js"></script>
-<script src="public/scripts/controller/userController.js"></script>
-
 <script>
     const uuid = getToken()?.payload.uuid;
     if (uuid !== undefined)

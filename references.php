@@ -111,18 +111,6 @@
     </section>
 </main>
 
-<script src="public/scripts/model/userModel.js"></script>
-<script src="public/scripts/controller/userController.js"></script>
-
-<script src="public/scripts/model/referenceModel.js"></script>
-<script src="public/scripts/vue/referenceVue.js"></script>
-<script src="public/scripts/vue/productVue.js"></script>
-
-<script src="public/scripts/model/productModel.js"></script>
-<script src="public/scripts/controller/productController.js"></script>
-<script src="public/scripts/vue/pagination.js"></script>
-<script src="public/scripts/controller/cartController.js"></script>
-
 <script>
     const referenceList = document.querySelector("div#referenceList");
     referenceVue.buildReferenceSelect(document.querySelector("form#addProductForm select[name=reference]"));

@@ -36,6 +36,7 @@ function renewToken() {
 }
 
 window.addEventListener("load", renewToken);
+window.addEventListener("load", cartVue.updateHeader);
 
 // Bootstrap form validation
 (function () {

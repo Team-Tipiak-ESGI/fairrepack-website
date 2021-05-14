@@ -40,12 +40,6 @@
     </section>
 </main>
 
-<script src="public/scripts/model/userModel.js"></script>
-<script src="public/scripts/controller/userController.js"></script>
-<script src="public/scripts/controller/offerController.js"></script>
-<script src="public/scripts/vue/productVue.js"></script>
-<script src="public/scripts/controller/productController.js"></script>
-<script src="public/scripts/model/productModel.js"></script>
 <script>
     productVue.buildProductPage(document.querySelector('div#productInfo'), document.querySelector('div#offers'), document.querySelector('div#images'));
 </script>

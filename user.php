@@ -11,10 +11,4 @@
     </section>
 </main>
 
-<script src="public/scripts/model/userModel.js"></script>
-<script src="public/scripts/controller/userController.js"></script>
-
-<script src="public/scripts/vue/productVue.js"></script>
-<script src="public/scripts/vue/userVue.js"></script>
-
 <?php include "includes/footer.php"; ?>

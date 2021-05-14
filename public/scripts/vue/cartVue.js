@@ -1,7 +1,6 @@
 const cartVue = {};
 
-cartVue.buildProductList = function(div, cart = cartController.get()) {
-    const products = cart.products;
+cartVue.buildProductList = function(div = document.querySelector("#cart"), products = cartController.get()) {
     if (Object.keys(products).length === 0) {
         div.innerHTML = "<span>Your cart is empty, <a href='/references.php'>start shopping now!</a></span>";
         return;
@@ -56,6 +55,7 @@ cartVue.buildCartElement = function(uuid, product) {
     button_4k.addEventListener("click", (e) => {
         cartController.updateCount(uuid, 0);
         li_1.remove();
+        cartVue.buildProductList();
     });
 
     li_1.append(div_g);
@@ -68,4 +68,8 @@ cartVue.buildCartElement = function(uuid, product) {
     });
 
     return li_1;
+}
+
+cartVue.updateHeader = function() {
+    document.getElementById("headerCart").innerHTML = cartController.getTotal();
 }

@@ -1,14 +1,15 @@
 const cartController = {};
 
 cartController.addProduct = function(product_id) {
-    const currentCart = this.get();
+    let currentCart = this.get();
 
-    if (currentCart.products === undefined) currentCart.products = {};
-    else {
-        const product = currentCart.products[product_id];
-        currentCart.products[product_id].count++;
+    const product = currentCart[product_id];
+    if (product !== undefined) {
+        currentCart[product_id].count++;
         window.localStorage.setItem("cart", JSON.stringify(currentCart));
+
         addNotificationToast("Added to cart", `${product.brand} ${product.name} added to cart`);
+        cartVue.updateHeader();
         return;
     }
 
@@ -17,26 +18,29 @@ cartController.addProduct = function(product_id) {
         .then(json => {
             const product = json.items;
 
-            if (currentCart.products[product_id] === undefined) {
+            if (currentCart[product_id] === undefined) {
                 delete product.id;
-                currentCart.products[product_id] = product;
-                currentCart.products[product_id].count = 0;
+                currentCart[product_id] = product;
+                currentCart[product_id].count = 0;
             }
 
-            currentCart.products[product_id].count++;
+            currentCart[product_id].count++;
 
             window.localStorage.setItem("cart", JSON.stringify(currentCart));
+
             addNotificationToast("Added to cart", `${product.brand} ${product.name} added to cart`);
+            cartVue.updateHeader();
         });
 }
 
 cartController.updateCount = function(id, count) {
     const currentCard = this.get();
     if (count <= 0)
-        delete currentCard.products[id];
+        delete currentCard[id];
     else
-        currentCard.products[id].count = count;
+        currentCard[id].count = count;
     window.localStorage.setItem("cart", JSON.stringify(currentCard));
+    cartVue.updateHeader();
 }
 
 cartController.get = function() {
@@ -44,5 +48,9 @@ cartController.get = function() {
 }
 
 cartController.getTotal = function() {
-    return Object.values(this.get()).reduce((p, c) => p + c);
+    try {
+        return Object.values(this.get()).map(p => p.count).reduce((a, c) => a += c);
+    } catch (e) {
+        return 0;
+    }
 }
