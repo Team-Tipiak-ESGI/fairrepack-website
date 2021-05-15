@@ -1,7 +1,7 @@
 <?php include "includes/header.php"; ?>
 
-<main class="container my-5">
-    <section class="row">
+<main class="container d-flex my-5">
+    <section class="flex-column">
         <div id="productInfo" class="col-12 col-lg-10"></div>
         <div id="productControls" class="col-12 col-lg-2 d-flex flex-column">
             <button class="btn btn-success my-1 d-none" id="acceptLastOffer" type="button" onclick="productController.updateState('accepted');">
@@ -18,14 +18,14 @@
             </button>
         </div>
     </section>
-
+<!--
     <section>
         <h1>Images</h1>
 
         <div id="images" class="row align-items-center"></div>
     </section>
-
-    <section>
+-->
+    <section class="flex-column">
         <h1>Offres</h1>
 
         <form id="addOfferForm" class="d-none" onsubmit="return (offerController.create(this), false)">
