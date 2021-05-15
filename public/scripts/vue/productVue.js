@@ -87,10 +87,11 @@ productVue.buildElement = function (div, product) {
         image_div.setAttribute(`data-bs-interval`, `10000`);
         const img = document.createElement(`img`);
         img.src = `${url}`;
-        img.classList.add(`d-block`, `img-thumbnail`, `card-img-top`);
+        img.classList.add(`d-block`, `img-thumbnail`, `card-img-top`, `rounded`);
+        img.style.maxHeight = "350px";
 
         image_div.append(img);
-        div.append(image_div);
+        div_0_1_4_2.append(image_div);
     }
 
     /*
@@ -121,9 +122,9 @@ productVue.buildElement = function (div, product) {
     img_0_1_4_2_6_2.classList.add(`d-block`, `img-thumbnail`, `card-img-top`);
 
     div_0_1_4_2_6.append(img_0_1_4_2_6_2);
-    div_0_1_4_2.append(div_0_1_4_2_6);
+    div_0_1_4_2.append(div_0_1_4_2_6); */
 
-    div_0_1_4.append(div_0_1_4_2); */
+    div_0_1_4.append(div_0_1_4_2);
 
 
     const button_0_1_4_4 = document.createElement(`button`);
