@@ -32,7 +32,8 @@ if(count($where) > 0) {
 }
 
 $db = getDatabaseConnection();
-$sql = "SELECT id_offer, user, product, price, note FROM offer " . $whereSql . " LIMIT $offset, $limit";
+$sql = "SELECT id_offer, username as user, user as user_id, product, price, note FROM offer
+        join user " . $whereSql . " LIMIT $offset, $limit";
 $rows = databaseSelectAll($db, $sql, $params);
 header("Content-Type: application/json");
 

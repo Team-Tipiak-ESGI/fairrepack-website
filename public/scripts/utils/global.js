@@ -6,7 +6,7 @@ function renewToken() {
     if (getToken().token === null) return;
     const expiringDate = new Date(getToken()?.payload?.expiry * 1000);
 
-    if (!getToken().valid) {
+    if (!getToken().valid && window.location.pathname !== "/account.php") {
         const parent = document.createElement("div");
         const toast = addNotificationToast("Session expired", parent, expiringDate);
 

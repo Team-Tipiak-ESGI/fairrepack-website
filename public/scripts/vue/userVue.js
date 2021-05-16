@@ -5,8 +5,7 @@ userVue.buildInfoDiv = (div, user) => {
 }
 
 userVue.updateAccountPage = () => {
-    console.log(getToken());
-    if (getToken().token !== null) {
+    if (getToken().valid) {
         document.getElementById("signedOut")?.classList.add("d-none");
         document.getElementById("signedIn")?.classList.remove("d-none");
     } else {

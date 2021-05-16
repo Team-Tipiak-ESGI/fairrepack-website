@@ -5,11 +5,7 @@ cartController.addProduct = function(product_id) {
 
     const product = currentCart[product_id];
     if (product !== undefined) {
-        currentCart[product_id].count++;
-        window.localStorage.setItem("cart", JSON.stringify(currentCart));
-
-        addNotificationToast("Added to cart", `${product.brand} ${product.name} added to cart`);
-        cartVue.updateHeader();
+        addNotificationToast("Can't add to cart", `This product is already in your cart.`);
         return;
     }
 
@@ -21,10 +17,8 @@ cartController.addProduct = function(product_id) {
             if (currentCart[product_id] === undefined) {
                 delete product.id;
                 currentCart[product_id] = product;
-                currentCart[product_id].count = 0;
+                currentCart[product_id].count = 1;
             }
-
-            currentCart[product_id].count++;
 
             window.localStorage.setItem("cart", JSON.stringify(currentCart));
 
@@ -38,7 +32,7 @@ cartController.updateCount = function(id, count) {
     if (count <= 0)
         delete currentCard[id];
     else
-        currentCard[id].count = count;
+        currentCard[id].count = parseInt(count);
     window.localStorage.setItem("cart", JSON.stringify(currentCard));
     cartVue.updateHeader();
 }
@@ -49,7 +43,7 @@ cartController.get = function() {
 
 cartController.getTotal = function() {
     try {
-        return Object.values(this.get()).map(p => p.count).reduce((a, c) => a += c);
+        return Object.values(this.get()).map(p => parseInt(p.count)).reduce((a, c) => a += c);
     } catch (e) {
         return 0;
     }

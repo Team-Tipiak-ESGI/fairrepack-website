@@ -195,11 +195,14 @@ function addNotificationToast(title, content = '', date = new Date()) {
 
     const minutes = Math.floor((Date.now() - date.getTime()) / (60 * 1000));
     const timeNotice = toast.querySelector('small');
-    timeNotice.innerText = `${minutes} minutes ago`;
+    timeNotice.innerText = `Just now`;
 
     const interval = setInterval(() => {
         const minutes = Math.floor((Date.now() - date.getTime()) / (60 * 1000));
-        timeNotice.innerText = `${minutes} minutes ago`;
+        if (minutes === 0)
+            timeNotice.innerText = `Just now`;
+        else
+            timeNotice.innerText = `${minutes} minutes ago`;
     }, 1000 * 60);
 
     toast.addEventListener('hidden.bs.toast', function () {

@@ -41,7 +41,7 @@ if(count($where) > 0) {
 $db = getDatabaseConnection();
 
 // Get products
-$sql = "SELECT uuid_product as id, uuid_user as user, r.uuid_reference as reference, description, quality, state,
+$sql = "SELECT uuid_product as id, username as user, uuid_user as user_id, r.uuid_reference as reference, description, quality, state,
         r.name as name, r.brand as brand, product.created, ifnull(offer_count, 0) as offer_count, ifnull(image_count, 0) as image_count
         FROM product
         left join (select product, id_offer, count(id_offer) as offer_count from offer group by product) o on product.id_product = o.product
@@ -56,7 +56,7 @@ if (isset($_GET["id"])) {
     $rows = databaseFindOne($db, $sql, $params);
 
     // Get offers
-    $sql = "SELECT uuid_user as user, price, note, offer.created FROM offer
+    $sql = "SELECT username as user, uuid_user as user_id, price, note, offer.created FROM offer
         JOIN user u on offer.user = u.id_user
         WHERE product = (SELECT id_product FROM product WHERE uuid_product = ?)
         ORDER BY created DESC

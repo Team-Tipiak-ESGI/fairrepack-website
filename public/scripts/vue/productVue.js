@@ -56,7 +56,7 @@ productVue.buildElement = function (div, product) {
     div_0_1_2.classList.add(`card-header`);
     const h5_0_1_2_2 = document.createElement(`h5`);
     h5_0_1_2_2.classList.add(`card-title`);
-    const text_0_1_2_2_1 = document.createTextNode(`Product : `);
+    const text_0_1_2_2_1 = document.createTextNode(`Product: `);
     h5_0_1_2_2.append(text_0_1_2_2_1);
     const a_4i = document.createElement(`a`);
     a_4i.href = `/reference.php?id=${product.reference}`;
@@ -140,18 +140,25 @@ productVue.buildElement = function (div, product) {
     div_0_1_6.classList.add(`card-body`, "p-0");
     const ul_0_1_6_2 = document.createElement(`ul`);
     ul_0_1_6_2.classList.add(`list-group`, "list-group-flush");
+
+    const li_0_1_6_2_1 = document.createElement(`li`);
+    li_0_1_6_2_1.classList.add(`list-group-item`, `card-text`);
+    const text_0_1_6_2_2_0 = document.createTextNode(`Description: ${product.description || 'N/A'}`);
+    li_0_1_6_2_1.append(text_0_1_6_2_2_0);
+    ul_0_1_6_2.append(li_0_1_6_2_1);
+
     const li_0_1_6_2_2 = document.createElement(`li`);
     li_0_1_6_2_2.classList.add(`list-group-item`, `card-text`);
-    const text_0_1_6_2_2_1 = document.createTextNode(`Quality : ${product.quality}`);
+    const text_0_1_6_2_2_1 = document.createTextNode(`Quality: ${product.quality}`);
     li_0_1_6_2_2.append(text_0_1_6_2_2_1);
-
     ul_0_1_6_2.append(li_0_1_6_2_2);
+
     const li_0_1_6_2_4 = document.createElement(`li`);
     li_0_1_6_2_4.classList.add(`list-group-item`, `card-text`);
-    const text_0_1_6_2_4_1 = document.createTextNode(`Last Price : ${product.offers?.[0]?.price || 'N/A'}`);
+    const text_0_1_6_2_4_1 = document.createTextNode(`Last price: ${product.offers?.[0]?.price || 'N/A'}`);
     li_0_1_6_2_4.append(text_0_1_6_2_4_1);
-
     ul_0_1_6_2.append(li_0_1_6_2_4);
+
     const li_0_1_6_2_6 = document.createElement(`li`);
     li_0_1_6_2_6.classList.add(`list-group-item`, `card-text`);
     const text_0_1_6_2_6_1 = document.createTextNode(`State: ${product.state}`);
@@ -163,9 +170,9 @@ productVue.buildElement = function (div, product) {
     const text_0_1_6_2_8_1 = document.createTextNode(`Seller: `);
     li_0_1_6_2_8.append(text_0_1_6_2_8_1);
     const a_0_1_6_2_8_2 = document.createElement(`a`);
-    a_0_1_6_2_8_2.href = `/user.php?id=${product.user}`;
+    a_0_1_6_2_8_2.href = `/user.php?id=${product.user || product.user_id}`;
     li_0_1_6_2_8.append(a_0_1_6_2_8_2);
-    a_0_1_6_2_8_2.innerText = `${product.user}`;
+    a_0_1_6_2_8_2.innerText = `${product.user || product.user_id}`;
 
     ul_0_1_6_2.append(li_0_1_6_2_8);
 
@@ -174,7 +181,7 @@ productVue.buildElement = function (div, product) {
     div_0_1.append(div_0_1_6);
     const div_0_1_8 = document.createElement(`div`);
     div_0_1_8.classList.add(`card-footer`, `text-muted`);
-    const text_0_1_8_1 = document.createTextNode(`Added : ${new Date(product.created).format("%dd/%MM/%yyyy à %hh:%mm")}`);
+    const text_0_1_8_1 = document.createTextNode(`Added: ${new Date(product.created).format("%yyyy-%MM-%dd on %hh:%mm")}`);
     div_0_1_8.append(text_0_1_8_1);
 
     div_0_1.append(div_0_1_8);
@@ -198,7 +205,7 @@ productVue.buildOfferDiv = function(div, product) {
         h5_66.classList.add(`mb-1`);
 
         div_m.append(h5_66);
-        h5_66.innerText = `${offer.user} propose ${offer.price}€`; // Title
+        h5_66.innerText = `${offer.user || offer.user_id} asks ${offer.price}€`; // Title
         const small_68 = document.createElement(`small`);
         small_68.classList.add(`text-muted`);
 
@@ -215,7 +222,7 @@ productVue.buildOfferDiv = function(div, product) {
         small_q.classList.add(`text-muted`);
 
         a_2.append(small_q);
-        small_q.innerText = `Le ${new Date(offer.created).format("%dd/%MM/%yyyy à %hh:%mm")}`; // Footer
+        small_q.innerText = `${new Date(offer.created).format("%yyyy-%MM-%dd on %hh:%mm")}`; // Footer
 
         div.append(a_2);
     }
@@ -279,7 +286,7 @@ productVue.buildProductPage = function (info_div, offer_div, image_div, page = 0
             const declineLastOffer = document.querySelector("button#declineLastOffer");
             const addOfferForm = document.querySelector("form#addOfferForm");
 
-            if ((isOwner || isAdmin) && productRegistered) {
+            if (getToken().valid && (isOwner || isAdmin) && productRegistered) {
                 declineLastOffer.classList.remove("d-none");
                 addOfferForm.classList.remove("d-none");
             } else {
@@ -291,6 +298,10 @@ productVue.buildProductPage = function (info_div, offer_div, image_div, page = 0
                 document.querySelector("button#getColissimo").classList.remove("d-none");
             else
                 document.querySelector("button#getColissimo").classList.add("d-none");
+
+            if (product.state === "in_stock") {
+                document.querySelector("button#addToCard").classList.remove("d-none");
+            }
         });
 }
 
@@ -302,6 +313,14 @@ productVue.buildProductList = function (div, products) {
         const div_1 = document.createElement(`div`);
         div_1.classList.add(`card`, `m-2`);
         div_1.style.width = `18rem`;
+
+        const img_0 = document.createElement(`img`);
+        img_0.src = `/image/${product.id}/1`;
+        img_0.style.height = "150px";
+        img_0.style.objectFit = "cover";
+        img_0.classList.add(`card-img-top`);
+        img_0.setAttribute(`alt`, `No image available.`);
+        div_1.append(img_0);
 
         const div_e = document.createElement(`div`);
         div_e.classList.add(`card-body`);
@@ -315,13 +334,16 @@ productVue.buildProductList = function (div, products) {
 
         div_e.append(p_40);
 
-        const btn_43 = document.createElement(`btn`);
-        btn_43.classList.add(`btn`, `btn-secondary`, `me-2`);
-        btn_43.innerText = `Add to cart`;
-        btn_43.addEventListener("click", (e) => {
-            cartController.addProduct(product.id);
-        });
-        div_e.append(btn_43);
+        if (product.state === "in_stock") {
+            const btn_43 = document.createElement(`btn`);
+            btn_43.classList.add(`btn`, `btn-secondary`, `me-2`);
+            btn_43.innerText = `Add to cart`;
+            btn_43.addEventListener("click", (e) => {
+                cartController.addProduct(product.id);
+            });
+            div_e.append(btn_43);
+        }
+
         p_40.innerText = `${product.description || "-"}\nEtat : ${product.state}\nOffres : ${product.offer_count}`; // Card content
         const a_42 = document.createElement(`a`);
         a_42.href = `/product.php?id=${product.id}`;
