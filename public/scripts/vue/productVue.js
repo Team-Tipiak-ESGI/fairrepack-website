@@ -81,48 +81,19 @@ productVue.buildElement = function (div, product) {
 
         const image_div = document.createElement(`div`);
         image_div.classList.add(`carousel-item`);
-        if (i == 0){
+        if (i === 0){
             image_div.classList.add(`active`);
         }
         image_div.setAttribute(`data-bs-interval`, `10000`);
         const img = document.createElement(`img`);
         img.src = `${url}`;
-        img.classList.add(`d-block`, `img-thumbnail`, `card-img-top`, `rounded`);
-        img.style.maxHeight = "350px";
+        img.classList.add(`d-block`, `img-thumbnail`, `card-img-top`, `rounded`, "p-0");
+        img.style.objectFit = "cover";
+        img.style.height = "150px";
 
         image_div.append(img);
         div_0_1_4_2.append(image_div);
     }
-
-    /*
-    div_0_1_4_2_2.classList.add(`carousel-item`, `active`);
-    div_0_1_4_2_2.setAttribute(`data-bs-interval`, `10000`);
-    const img_0_1_4_2_2_2 = document.createElement(`img`);
-    img_0_1_4_2_2_2.src = `public/assets/sad.png`;
-    img_0_1_4_2_2_2.classList.add(`d-block`, `img-thumbnail`, `card-img-top`);
-
-    div_0_1_4_2_2.append(img_0_1_4_2_2_2);
-
-    div_0_1_4_2.append(div_0_1_4_2_2);
-    const div_0_1_4_2_4 = document.createElement(`div`);
-    div_0_1_4_2_4.classList.add(`carousel-item`);
-    div_0_1_4_2_4.setAttribute(`data-bs-interval`, `10000`);
-    const img_0_1_4_2_4_2 = document.createElement(`img`);
-    img_0_1_4_2_4_2.src = `public/assets/ELr5LshXYAIOwvt.jpg`;
-    img_0_1_4_2_4_2.classList.add(`d-block`, `img-thumbnail`, `card-img-top`);
-
-    div_0_1_4_2_4.append(img_0_1_4_2_4_2);
-
-    div_0_1_4_2.append(div_0_1_4_2_4);
-    const div_0_1_4_2_6 = document.createElement(`div`);
-    div_0_1_4_2_6.classList.add(`carousel-item`);
-    div_0_1_4_2_6.setAttribute(`data-bs-interval`, `10000`);
-    const img_0_1_4_2_6_2 = document.createElement(`img`);
-    img_0_1_4_2_6_2.src = `public/assets/giggle.gif`;
-    img_0_1_4_2_6_2.classList.add(`d-block`, `img-thumbnail`, `card-img-top`);
-
-    div_0_1_4_2_6.append(img_0_1_4_2_6_2);
-    div_0_1_4_2.append(div_0_1_4_2_6); */
 
     div_0_1_4.append(div_0_1_4_2);
 
@@ -166,9 +137,9 @@ productVue.buildElement = function (div, product) {
 
     div_0_1.append(div_0_1_4);
     const div_0_1_6 = document.createElement(`div`);
-    div_0_1_6.classList.add(`card-body`);
+    div_0_1_6.classList.add(`card-body`, "p-0");
     const ul_0_1_6_2 = document.createElement(`ul`);
-    ul_0_1_6_2.classList.add(`list-group`);
+    ul_0_1_6_2.classList.add(`list-group`, "list-group-flush");
     const li_0_1_6_2_2 = document.createElement(`li`);
     li_0_1_6_2_2.classList.add(`list-group-item`, `card-text`);
     const text_0_1_6_2_2_1 = document.createTextNode(`Quality : ${product.quality}`);
@@ -293,11 +264,11 @@ productVue.buildProductPage = function (info_div, offer_div, image_div, page = 0
 
             // Hide offer form if user is not owner or admin or if product is already accepted
             const payload = getToken().payload;
-            const isOwner = payload.uuid === product.user;
-            const isAdmin = payload.type === "admin";
+            const isOwner = payload?.uuid === product.user;
+            const isAdmin = payload?.type === "admin";
             const productRegistered = product.state === "registered";
             const lastOffer = product.offers[0];
-            const lastOfferIsMine = lastOffer.user === payload.uuid;
+            const lastOfferIsMine = lastOffer.user === payload?.uuid;
 
             const acceptLastOffer = document.querySelector("button#acceptLastOffer");
             if (!lastOfferIsMine && productRegistered)
