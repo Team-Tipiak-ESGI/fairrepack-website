@@ -79,7 +79,7 @@ $sql = "select r.uuid_reference as id, brand, r.name, value, t.name as type_name
         join type t on t.id_type = r.type
         join category c on c.id_category = t.category "
         . $whereSql .
-        " group by r.id_reference order by stocks, count desc
+        " group by r.id_reference order by stocks desc, count desc
         limit $offset, $limit";
 
 $rows = null;
