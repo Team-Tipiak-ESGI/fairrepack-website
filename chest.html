@@ -69,6 +69,10 @@
             object.position.y = 200;
             object.position.z = 0;
 
+            object.scale.x = .5;
+            object.scale.y = .5;
+            object.scale.z = .5;
+
             object.rotation.y = Math.PI * 1.5;
 
             phone = object;
@@ -98,10 +102,10 @@
         requestAnimationFrame(animate);
         const delta = clock.getDelta();
 
-        if (animated && chest && animation_duration < (1/30) * 35 || phone && phone.position.y < -150 && animation_duration < (1 / 30) * 75) {
+        if (animated && chest && animation_duration < (1/30) * 35 || phone && phone.position.y < -100 && animation_duration < (1 / 30) * 75) {
             chest.update(delta);
             animation_duration += delta;
-        } else if (animated && phone && phone.position.y > -150) {
+        } else if (animated && phone && phone.position.y > -100) {
             phone.position.y += -200 * delta;
             phone.rotation.y += delta * 2;
         }
