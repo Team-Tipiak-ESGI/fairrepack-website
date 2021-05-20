@@ -240,6 +240,7 @@ create table fairrepack.association
     name varchar(256) not null,
     coin int default 0 not null,
     address int null,
+    description text null,
     constraint association_pk
         primary key (id_association, uuid_association),
     constraint association_address_id_address_fk
