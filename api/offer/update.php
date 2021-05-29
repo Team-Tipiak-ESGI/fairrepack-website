@@ -42,7 +42,7 @@ if(isset($_POST["id_offer"])) {
     $success = databaseUpdate($db, $sql, $params);
 
     if ($success) {
-        $product = getOfferbyId($id_offer);
+        $product = getOfferById($id_offer);
 
         http_response_code(201); // CREATED
         header("Content-Type: application/json");

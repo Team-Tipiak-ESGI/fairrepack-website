@@ -93,11 +93,8 @@ if (isset($_GET["id"])) {
 header("Content-Type: application/json");
 if (!is_null($rows)) {
     $count_sql = "select count(id_reference) as count from reference r " . $whereSql;
-
     $total = databaseFindOne($db, $count_sql, $params)["count"];
-
-    $json = json_encode(["items" => $rows, "count" => $total]);
-    echo $json;
+    echo json_encode(["items" => $rows, "count" => $total]);
 } else {
     http_response_code(500);
 }

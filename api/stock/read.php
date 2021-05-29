@@ -2,12 +2,12 @@
 
 require_once __DIR__ . "/../../utils/database.php";
 
-$warehouse = $_GET['warehouse'] ?? NULL;
+$warehouse = $_GET['warehouse.php'] ?? NULL;
 
 $db = getDatabaseConnection();
 $sql = "SELECT r.id_reference as reference, r.brand, r.name, count(r.id_reference) AS count FROM product
         JOIN reference r ON r.id_reference = product.reference "
-        . (!empty($warehouse) ? " WHERE warehouse = ? " : " ") .
+        . (!empty($warehouse) ? " WHERE warehouse.php = ? " : " ") .
         " GROUP BY r.id_reference";
 
 $params = !empty($warehouse) ? [$warehouse] : [];

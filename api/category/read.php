@@ -1,12 +1,19 @@
 <?php
+
 ini_set("display_errors", 1); // affiche les erreurs
 
-if($_SERVER["REQUEST_METHOD"] !== "GET") {
+if ($_SERVER["REQUEST_METHOD"] !== "GET") {
     http_response_code(405);
     die();
 }
 
 require_once __DIR__ . "/../../utils/database.php";
+
+if (isset($_GET["id"])) {
+    require_once __DIR__ . "/../../utils/dao/category.php";
+    echo json_encode(getCategoryByID($_GET["id"]));
+    die();
+}
 
 $limit = $_GET["limit"] ?? $_GET["size"] ?? 20;
 $page = $_GET["page"] ?? 0;
@@ -14,31 +21,22 @@ $offset = $_GET["offset"] ?? $limit * $page;
 
 $where = [];
 $params = [];
-if(isset($_GET["product"])) {
-    $where[] = "product = ?"; // ? ou :var
-    $params[] = $_GET["product"];
-}
-if(isset($_GET["price_min"])) {
-    $where[] = "price > ?"; // ? ou :var
-    $params[] = $_GET["price_min"];
-}
-if(isset($_GET["price_max"])) {
-    $where[] = "price < ?"; // ? ou :var
-    $params[] = $_GET["price_max"];
+if (isset($_GET["name"])) {
+    $where[] = "name like ?"; // ? ou :var
+    $params[] = "%" . $_GET["name"] . "%";
 }
 $whereSql = "";
-if(count($where) > 0) {
+if (count($where) > 0) {
     $whereSql = " WHERE " . join(" AND ", $where);
 }
 
 $db = getDatabaseConnection();
-$sql = "SELECT id_offer, username as user, user as user_id, product, price, note FROM offer
-        join user " . $whereSql . " LIMIT $offset, $limit";
+$sql = "SELECT id_category, name FROM category $whereSql LIMIT $offset, $limit";
 $rows = databaseSelectAll($db, $sql, $params);
 header("Content-Type: application/json");
 
 if (!is_null($rows)) {
-    $count_sql = "select count(id_offer) as count from offer r $whereSql";
+    $count_sql = "select count(id_category) as count from category r $whereSql";
     $total = databaseFindOne($db, $count_sql, $params)["count"];
     echo json_encode(["items" => $rows, "count" => $total]);
 } else {

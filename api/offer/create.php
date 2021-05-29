@@ -30,7 +30,7 @@ if (isset($_POST["product"])) {
     if ($productState == 'registered' || $productState == 'sent'){
         $lastOfferId = addOffer($user, $product, $price, $note);
         if ($lastOfferId) {
-            $offer = getOfferbyId($lastOfferId);
+            $offer = getOfferById($lastOfferId);
             if ($offer) {
                 http_response_code(201); // CREATED
                 header("Content-Type: application/json");
