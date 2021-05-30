@@ -44,6 +44,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Country</th>
                     <th scope="col">Postal code</th>
+                    <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody id="warehouseList"></tbody>

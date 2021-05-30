@@ -12,3 +12,11 @@ categoryController.create = async function(form) {
             categoryVue.buildCategoryList(document.querySelector("tbody#categoryList"));
         });
 }
+
+categoryController.delete = function(id) {
+    authenticatedFetch(`/api/category/delete.php`, "POST", JSON.stringify({id: id}))
+        .then(res => {
+            alert("Category deleted");
+            categoryVue.buildCategoryList(document.querySelector("tbody#categoryList"));
+        });
+}

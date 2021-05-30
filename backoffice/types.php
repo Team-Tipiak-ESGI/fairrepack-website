@@ -43,6 +43,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Category</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody id="typeList"></tbody>

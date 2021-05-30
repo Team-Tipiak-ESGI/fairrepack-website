@@ -22,6 +22,18 @@ categoryVue.buildCategoryList = function (tbody) {
                 tr_3d.append(td_xq);
                 td_xq.innerText = `${category.name}`;
 
+                const td_xp = document.createElement(`td`);
+                tr_3d.append(td_xp);
+
+                const button = document.createElement("button");
+                button.innerText = "Remove";
+                button.classList.add("btn", "btn-danger", "btn-sm");
+                button.addEventListener("click", (e) => {
+                    if (window.confirm("Are you sure you want to delete this category and all types associated with it?"))
+                        categoryController.delete(category.id_category);
+                });
+                td_xp.append(button);
+
                 tbody.append(tr_3d);
             }
         })

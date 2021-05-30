@@ -45,6 +45,18 @@ typeVue.buildTypeList = function (tbody) {
                 tr_3d.append(td_xs);
                 td_xs.innerText = `${type.category_name}`;
 
+                const td_xp = document.createElement(`td`);
+                tr_3d.append(td_xp);
+
+                const button = document.createElement("button");
+                button.innerText = "Remove";
+                button.classList.add("btn", "btn-danger", "btn-sm");
+                button.addEventListener("click", (e) => {
+                    if (window.confirm("Are you sure you want to delete this type?"))
+                        typeController.delete(type.id_type);
+                });
+                td_xp.append(button);
+
                 tbody.append(tr_3d);
             }
         })

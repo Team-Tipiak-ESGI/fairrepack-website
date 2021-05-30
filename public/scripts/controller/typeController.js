@@ -12,3 +12,11 @@ typeController.create = async function(form) {
             typeVue.buildTypeList(document.querySelector("tbody#typeList"));
         });
 }
+
+typeController.delete = function(id) {
+    authenticatedFetch(`/api/type/delete.php`, "POST", JSON.stringify({id: id}))
+        .then(res => {
+            alert("Type deleted");
+            typeVue.buildTypeList(document.querySelector("tbody#typeList"));
+        });
+}
