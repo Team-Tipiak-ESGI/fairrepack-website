@@ -24,12 +24,14 @@
     <script src="/public/scripts/controller/productController.js"></script>
     <script src="/public/scripts/controller/userController.js"></script>
     <script src="/public/scripts/controller/warehouseController.js"></script>
+    <script src="/public/scripts/controller/categoryController.js"></script>
 
     <script src="/public/scripts/vue/cartVue.js"></script>
     <script src="/public/scripts/vue/productVue.js"></script>
     <script src="/public/scripts/vue/referenceVue.js"></script>
     <script src="/public/scripts/vue/userVue.js"></script>
     <script src="/public/scripts/vue/warehouseVue.js"></script>
+    <script src="/public/scripts/vue/categoryVue.js"></script>
 
     <script src="/public/scripts/vue/pagination.js"></script>
 

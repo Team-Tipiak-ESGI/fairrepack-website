@@ -9,5 +9,6 @@ warehouseController.create = async function(form) {
         })
         .then(json => {
             alert("Warehouse added");
+            warehouseVue.buildWarehouseList(document.querySelector("tbody#warehouseList"));
         });
 }

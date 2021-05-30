@@ -1,6 +1,8 @@
 const warehouseVue = {};
 
 warehouseVue.buildAddressSelect = function (select) {
+    select.innerHTML = "";
+
     authenticatedFetch("/api/address/read.php")
         .then(res => res.json())
         .then(json => {
@@ -21,6 +23,8 @@ warehouseVue.buildAddressSelect = function (select) {
  * @param {HTMLTableElement} tbody
  */
 warehouseVue.buildWarehouseList = function (tbody) {
+    tbody.innerHTML = "";
+
     authenticatedFetch("/api/warehouse/read.php")
         .then(res => res.json())
         .then(json => {
