@@ -26,6 +26,7 @@
     <script src="/public/scripts/controller/warehouseController.js"></script>
     <script src="/public/scripts/controller/categoryController.js"></script>
     <script src="/public/scripts/controller/typeController.js"></script>
+    <script src="/public/scripts/controller/addressController.js"></script>
 
     <script src="/public/scripts/vue/cartVue.js"></script>
     <script src="/public/scripts/vue/productVue.js"></script>
@@ -34,6 +35,7 @@
     <script src="/public/scripts/vue/warehouseVue.js"></script>
     <script src="/public/scripts/vue/categoryVue.js"></script>
     <script src="/public/scripts/vue/typeVue.js"></script>
+    <script src="/public/scripts/vue/addressVue.js"></script>
 
     <script src="/public/scripts/vue/pagination.js"></script>
 

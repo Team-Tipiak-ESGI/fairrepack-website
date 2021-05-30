@@ -5,6 +5,7 @@
             <a href="warehouses.php">Warehouses</a>
             <a href="categories.php">Categories</a>
             <a href="types.php">Types</a>
+            <a href="addresses.php">Addresses</a>
         </section>
     </main>
 
