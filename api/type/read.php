@@ -22,7 +22,7 @@ $offset = $_GET["offset"] ?? $limit * $page;
 $where = [];
 $params = [];
 if (isset($_GET["name"])) {
-    $where[] = "name like ?"; // ? ou :var
+    $where[] = "t.name like ?"; // ? ou :var
     $params[] = "%" . $_GET["name"] . "%";
 }
 if (isset($_GET["category"])) {
@@ -35,7 +35,9 @@ if (count($where) > 0) {
 }
 
 $db = getDatabaseConnection();
-$sql = "SELECT id_type, name, category FROM type $whereSql LIMIT $offset, $limit";
+$sql = "SELECT id_type, t.name, c.name as category_name, category FROM type t
+        join category c on c.id_category = t.category
+        $whereSql LIMIT $offset, $limit";
 $rows = databaseSelectAll($db, $sql, $params);
 header("Content-Type: application/json");
 
