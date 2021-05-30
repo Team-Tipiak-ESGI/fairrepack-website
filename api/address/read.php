@@ -7,9 +7,11 @@ if ($_SERVER["REQUEST_METHOD"] !== "GET") {
     die();
 }
 
+require_once __DIR__ . "/../../utils/user.php";
+
 // User not authenticated
 $token = getToken();
-if (!$token->validate()) {
+if (!$token || !$token->validate()) {
     http_response_code(401);
     die();
 }
@@ -31,4 +33,13 @@ if (isset($_GET["id"])) {
     }
 
     echo json_encode($address);
+} else if ($token->getPayload()["type"] === "admin") {
+    $sql = "select id_address, country, owner_name, address_line1, address_line2, city, state, postal_code, phone_number, additional_info from address";
+
+    $connection = getDatabaseConnection();
+    $items = databaseSelectAll($connection, $sql);
+    $total = databaseFindOne($connection, "select count(*) as count from address")["count"];
+    echo json_encode(["items" => $items, "count" => $total]);
+} else {
+    http_response_code(400);
 }

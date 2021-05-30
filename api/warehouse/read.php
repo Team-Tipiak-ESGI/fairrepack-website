@@ -31,7 +31,10 @@ if (count($where) > 0) {
 }
 
 $db = getDatabaseConnection();
-$sql = "SELECT id_warehouse, name, address FROM warehouse $whereSql LIMIT $offset, $limit";
+$sql = "SELECT id_warehouse, name as name, address, country, postal_code FROM warehouse
+        join address a on address = a.id_address
+        $whereSql
+        LIMIT $offset, $limit";
 $rows = databaseSelectAll($db, $sql, $params);
 header("Content-Type: application/json");
 

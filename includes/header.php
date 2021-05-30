@@ -5,7 +5,6 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-
     <?php include "seo.php"; ?>
 
     <script src="/public/scripts/bootstrap.bundle.min.js"></script>
@@ -24,11 +23,14 @@
     <script src="/public/scripts/controller/offerController.js"></script>
     <script src="/public/scripts/controller/productController.js"></script>
     <script src="/public/scripts/controller/userController.js"></script>
+    <script src="/public/scripts/controller/warehouseController.js"></script>
 
     <script src="/public/scripts/vue/cartVue.js"></script>
     <script src="/public/scripts/vue/productVue.js"></script>
     <script src="/public/scripts/vue/referenceVue.js"></script>
     <script src="/public/scripts/vue/userVue.js"></script>
+    <script src="/public/scripts/vue/warehouseVue.js"></script>
+
     <script src="/public/scripts/vue/pagination.js"></script>
 
     <header>
