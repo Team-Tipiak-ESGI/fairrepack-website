@@ -55,6 +55,7 @@
 </footer>
 
 <script src="/public/scripts/utils/global.js"></script>
+<script src="/public/scripts/utils/lang.js"></script>
 
 <script src="/public/scripts/bootstrap.bundle.min.js"></script>
 </body>
