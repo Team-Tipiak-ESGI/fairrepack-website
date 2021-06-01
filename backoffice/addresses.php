@@ -15,7 +15,7 @@
                         </label>
                         <label class="d-block mb-3">
                             Owner name
-                            <input name="owner_name" class="form-control" placeholder="Owner name" required>
+                            <input name="name" class="form-control" placeholder="Owner name" required>
                         </label>
                         <label class="d-block mb-3">
                             Line 1

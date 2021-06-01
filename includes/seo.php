@@ -4,7 +4,7 @@ require_once __DIR__ . "/../utils/dao/product.php";
 
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 $domain = $protocol . $_SERVER["SERVER_NAME"];
-$id = $_GET["id"];
+$id = $_GET["id"] ?? "";
 $site_name = "FairRepack";
 
 switch ($_SERVER["PHP_SELF"]) {
@@ -70,4 +70,7 @@ switch ($_SERVER["PHP_SELF"]) {
         break;
 }
 
-if (http_response_code() === 404) header("Location: /404.php");
+if (http_response_code() === 404) {
+    header("Location: /404.php");
+    http_response_code(404);
+}

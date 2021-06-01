@@ -1,23 +1,5 @@
 const warehouseVue = {};
 
-warehouseVue.buildAddressSelect = function (select) {
-    select.innerHTML = "";
-
-    authenticatedFetch("/api/address/read.php")
-        .then(res => res.json())
-        .then(json => {
-            const addresses = json.items;
-            for (const address of addresses) {
-                const option = document.createElement('option');
-
-                option.value = address.id_address;
-                option.innerText = `${address.country} - ${address.postal_code} - ${address.address_line1}`;
-
-                select.append(option);
-            }
-        });
-}
-
 /**
  *
  * @param {HTMLTableElement} tbody

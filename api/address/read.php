@@ -34,10 +34,13 @@ if (isset($_GET["id"])) {
 
     echo json_encode($address);
 } else if ($token->getPayload()["type"] === "admin") {
-    $sql = "select id_address, country, owner_name, address_line1, address_line2, city, state, postal_code, phone_number, additional_info from address";
+    $type = $_GET["type"];
+    $whereSql = isset($type) ? "where type = ?" : "";
+
+    $sql = "select id_address, country, owner_name, address_line1, address_line2, city, state, postal_code, phone_number, additional_info from address $whereSql";
 
     $connection = getDatabaseConnection();
-    $items = databaseSelectAll($connection, $sql);
+    $items = databaseSelectAll($connection, $sql, isset($type) ? [$type] : []);
     $total = databaseFindOne($connection, "select count(*) as count from address")["count"];
     echo json_encode(["items" => $items, "count" => $total]);
 } else {

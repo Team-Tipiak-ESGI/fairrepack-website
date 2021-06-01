@@ -1,16 +1,17 @@
 create table fairrepack.address
 (
-    id_address      int auto_increment not null
+    id_address      int auto_increment         not null
         primary key,
-    country         enum ('France')    null,
-    owner_name      varchar(256)       null,
-    address_line1   varchar(256)       null,
-    address_line2   varchar(256)       null,
-    city            varchar(256)       null,
-    state           varchar(256)       null,
-    postal_code     varchar(10)        null,
-    phone_number    varchar(256)       null,
-    additional_info text               null
+    country         enum ('France')            null,
+    owner_name      varchar(256)               null,
+    address_line1   varchar(256)               null,
+    address_line2   varchar(256)               null,
+    city            varchar(256)               null,
+    state           varchar(256)               null,
+    postal_code     varchar(10)                null,
+    phone_number    varchar(256)               null,
+    additional_info text                       null,
+    type            varchar(45) default 'user' null
 )
     comment 'Address used for warehouses and user addresses';
 
