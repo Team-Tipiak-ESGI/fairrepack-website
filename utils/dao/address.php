@@ -2,12 +2,13 @@
 
 require_once __DIR__ . '/../database.php';
 
-function addAddress(string $country, string $owner_name, string $address_line1, string $address_line2, string $city,
+function addAddress(string $type, string $country, string $owner_name, string $address_line1, string $address_line2, string $city,
                     string $state, string $postal_code, string $phone_number, string $additional_info): string
 {
     $db = getDatabaseConnection();
-    $sql = "INSERT INTO address (country, owner_name, address_line1, address_line2, city, state, postal_code, phone_number, additional_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO address (type, country, owner_name, address_line1, address_line2, city, state, postal_code, phone_number, additional_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $params = [
+        $type,
         $country,
         $owner_name,
         $address_line1,

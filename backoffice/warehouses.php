@@ -56,7 +56,7 @@
 
     <script>
         const warehouseList = document.querySelector("tbody#warehouseList");
-        warehouseVue.buildAddressSelect(document.querySelector("form#addWarehouseForm select[name=address]"));
+        addressVue.buildAddressSelect(document.querySelector("form#addWarehouseForm select[name=address]"));
 
         window.nav = pagination();
         window.nav.plugPaginationElement(document.querySelector("#pagination"), warehouseVue.buildWarehouseList, warehouseList);
