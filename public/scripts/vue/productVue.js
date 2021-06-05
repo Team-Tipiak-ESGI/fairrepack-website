@@ -296,17 +296,18 @@ productVue.buildProductPage = function (info_div, offer_div, image_div, page = 0
 
             if (product.state === "accepted") {
                 const colissimo = document.querySelector("button#getColissimo");
-                const colissimoModal = document.querySelector("#colissimoModal #colissimoInput");
+                const colissimoInput = document.querySelector("#colissimoModal #colissimoInput");
                 const colissimoSubmit = document.querySelector("button#colissimoSubmit");
+                const getColissimoButton = document.querySelector("button#getColissimoButton");
 
                 if (isAdmin) {
                     colissimo.classList.remove("d-none");
-                    colissimoSubmit.classList.remove("d-none");
                 } else if (isOwner && product.colissimo) {
                     colissimo.classList.remove("d-none");
                     colissimoSubmit.classList.add("d-none");
-                    colissimoModal.value = product.colissimo;
-                    colissimoModal.disabled = product.colissimo;
+                    getColissimoButton.classList.remove("d-none");
+                    colissimoInput.disabled = true;
+                    colissimoInput.classList.add("d-none");
                 } else {
                     colissimo.classList.add("d-none");
                 }
@@ -316,6 +317,26 @@ productVue.buildProductPage = function (info_div, offer_div, image_div, page = 0
                 document.querySelector("button#addToCard").classList.remove("d-none");
             }
         });
+}
+
+productVue.getColissimo = function () {
+    const colissimoInput = document.querySelector("#colissimoModal #colissimoInput");
+    const getColissimoButton = document.querySelector("button#getColissimoButton");
+    const colissimoForm = document.querySelector("form#colissimoForm");
+
+    colissimoInput.classList.remove("d-none");
+    getColissimoButton.classList.add("d-none");
+
+    const div = document.createElement("div");
+    div.id = "container";
+    div.style.width = "100%";
+    div.style.height = "10em";
+
+    colissimoForm.after(div);
+
+    window.webgl_init();
+    window.webgl_animate();
+    window.webgl_animated = true;
 }
 
 productVue.buildProductList = function (div, products) {

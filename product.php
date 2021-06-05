@@ -9,8 +9,9 @@
             </div>
             <div class="modal-body">
                 <form class="mb-3" id="colissimoForm" onsubmit="return (productController.update(this), false)">
-                    <label for="colissimoInput" class="form-label">Bon colissimo</label>
+                    <label for="colissimoInput" class="form-label">Colissimo voucher</label>
                     <input type="text" name="colissimo" class="form-control" id="colissimoInput" placeholder="ABCDEFG">
+                    <button class="btn btn-primary w-100 d-none" id="getColissimoButton" type="button" onclick="productVue.getColissimo();">Get Colissimo voucher</button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -64,5 +65,7 @@
 <script>
     productVue.buildProductPage(document.querySelector('div#productInfo'), document.querySelector('div#offers'), document.querySelector('div#images'));
 </script>
+
+<script type="module" src="/public/scripts/chest.module.js"></script>
 
 <?php include "includes/footer.php"; ?>
