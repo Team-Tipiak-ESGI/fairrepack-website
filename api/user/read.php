@@ -78,7 +78,7 @@ if (isset($_GET["id"])) {
                hl.id_history_login, hl.user, hl.date, hl.useragent, hl.ip, hu.id_history_useragent, hu.useragent, hi.id_history_ip, hi.ip,
                a.id_address, a.country, a.owner_name, a.address_line1, a.address_line2, a.city, a.state, a.postal_code, a.phone_number, a.additional_info,
                o.id_offer, o.user, o.product, o.price, o.note, o.created,
-               p.id_product, p.uuid_product, p.user, p.state, p.quality, p.description, p.reference, p.warehouse.php, p.created,
+               p.id_product, p.uuid_product, p.user, p.state, p.quality, p.description, p.reference, p.warehouse, p.created,
                r.user, r.product, r.date, r.content, r.note
                from user
                right join history_login hl on user.id_user = hl.user

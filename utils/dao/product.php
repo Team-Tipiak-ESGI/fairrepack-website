@@ -20,7 +20,7 @@ function addProduct(string $reference, string $user, ?string $description, ?stri
                     ?string $quality, ?int $warehouse, ?float $price): ?string
 {
     $db = getDatabaseConnection();
-    $sql_product = "INSERT INTO product (uuid_product, user, description, state, quality, warehouse.php, reference)
+    $sql_product = "INSERT INTO product (uuid_product, user, description, state, quality, warehouse, reference)
                     VALUES (?, (SELECT id_user FROM user WHERE uuid_user = ?), ?, ?, ?, ?, (SELECT id_reference FROM reference WHERE uuid_reference = ?))";
 
     $params_product = [
@@ -59,7 +59,7 @@ function deleteProductById(string $id_product): string
 }
 
 /**
- * Return columns state, quality, description, reference, warehouse.php, p.created, user, uuid_user FROM product
+ * Return columns state, quality, description, reference, warehouse, p.created, user, uuid_user FROM product
  * @param string $uuid
  * @return array|null
  */
@@ -111,7 +111,7 @@ function getProductsImageUrls(string $uuid): array
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 
     for ($i = 0; $i < $image_count; $i++) {
-        $urls[] = $protocol . $_SERVER["SERVER_NAME"] . "/image/$uuid/$i";
+        $urls[] = $protocol . $_SERVER["SERVER_NAME"] . "/image/product/$uuid/$i";
     }
 
     return $urls;

@@ -16,7 +16,7 @@ switch ($_SERVER["PHP_SELF"]) {
         }
         $reference = getReferenceByUUID($product["uuid_reference"]);
         $description = $product["description"];
-        $image_url = "$domain/image/$id/1";
+        $image_url = "$domain/image/product/$id/1";
         $title = $reference["brand"] . " " . $reference["name"];
         $mime = getProductImage($id, 1)["mime"] ?? "";
 

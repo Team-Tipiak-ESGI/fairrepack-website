@@ -19,7 +19,7 @@ if (isset($_POST["reference"])) {
     $description = $_POST["description"] ?? NULL;
     $state = $_POST["state"] ?? "registered";
     $quality = $_POST["quality"] ?? NULL;
-    $warehouse = $_POST["warehouse.php"] ?? 1;
+    $warehouse = $_POST["warehouse"] ?? 1;
     $price = $_POST["price"] ?? NULL;
     $images = $_POST["image"] ?? NULL;
 

@@ -77,7 +77,7 @@ productVue.buildElement = function (div, product) {
     const uuid = product.id;
 
     for (let i = 0; i < count; i++){
-        const url = `/image/${uuid}/${i+1}`;
+        const url = `/image/product/${uuid}/${i+1}`;
 
         const image_div = document.createElement(`div`);
         image_div.classList.add(`carousel-item`);
@@ -233,7 +233,7 @@ productVue.buildImageDiv = function(image_div, product) {
     const uuid = product.id;
 
     for (let i = 0; i < count; i++) {
-        const url = `/image/${uuid}/${i + 1}`;
+        const url = `/image/product/${uuid}/${i + 1}`;
 
         const div = document.createElement("div");
         div.classList.add("col", "d-flex", "justify-content-center");
@@ -315,7 +315,7 @@ productVue.buildProductList = function (div, products) {
         div_1.style.width = `18rem`;
 
         const img_0 = document.createElement(`img`);
-        img_0.src = `/image/${product.id}/1`;
+        img_0.src = `/image/product/${product.id}/1`;
         img_0.style.height = "150px";
         img_0.style.objectFit = "cover";
         img_0.classList.add(`card-img-top`);

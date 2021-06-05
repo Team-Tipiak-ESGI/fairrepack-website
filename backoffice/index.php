@@ -6,6 +6,7 @@
             <a href="categories.php">Categories</a>
             <a href="types.php">Types</a>
             <a href="addresses.php">Addresses</a>
+            <a href="associations.php">Associations</a>
         </section>
     </main>
 

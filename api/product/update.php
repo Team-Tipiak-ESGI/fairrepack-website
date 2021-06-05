@@ -43,9 +43,9 @@ if(isset($_POST["id_product"])) {
         $set[] = "quality = ?";
         $params[] = $_POST["quality"];
     }
-    if (isset($_POST["warehouse.php"])) {
-        $set[] = "warehouse.php = ?";
-        $params[] = $_POST["warehouse.php"];
+    if (isset($_POST["warehouse"])) {
+        $set[] = "warehouse = ?";
+        $params[] = $_POST["warehouse"];
     }
 
     $params[] = $uuid_product;
