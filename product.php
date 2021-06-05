@@ -1,5 +1,26 @@
 <?php include "includes/header.php"; ?>
 
+<div class="modal fade" id="colissimoModal" tabindex="-1" aria-labelledby="colissimoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="colissimoModalLabel">Colissimo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="mb-3" id="colissimoForm" onsubmit="return (productController.update(this), false)">
+                    <label for="colissimoInput" class="form-label">Bon colissimo</label>
+                    <input type="text" name="colissimo" class="form-control" id="colissimoInput" placeholder="ABCDEFG">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" form="colissimoForm" id="colissimoSubmit">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <main class="container my-5">
     <div class="row justify-content-center align-items-center">
         <section class="col-md-4 col-12">
@@ -17,7 +38,7 @@
                     <!-- Button visible by owner and admin -->
                     Reject
                 </button>
-                <button class="btn btn-primary my-1 d-none" id="getColissimo" type="button" onclick="productVue.getColissimo();">
+                <button class="btn btn-primary my-1 d-none" id="getColissimo" type="button" data-bs-toggle="modal" data-bs-target="#colissimoModal">
                     <!-- Button visible by user after product is accepted -->
                     Colissimo
                 </button>

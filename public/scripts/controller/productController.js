@@ -52,3 +52,20 @@ productController.updateState = function (state, id = getPage().pageId) {
         });
 
 }
+
+productController.update = async function (form, id = getPage().pageId) {
+    const formData = new FormData(form);
+    formData.set("id_product", id);
+
+    productModel.update(await formDataToJSON(formData))
+        .then(res => {
+            if (res.status === 201)
+                return res.json();
+            else
+                throw res;
+        })
+        .then(json => {
+            productVue.buildProductPage(document.querySelector('div#productInfo'), document.querySelector('div#offers'));
+        });
+
+}

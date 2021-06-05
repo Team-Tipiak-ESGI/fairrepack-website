@@ -271,11 +271,11 @@ productVue.buildProductPage = function (info_div, offer_div, image_div, page = 0
 
             // Hide offer form if user is not owner or admin or if product is already accepted
             const payload = getToken().payload;
-            const isOwner = payload?.uuid === product.user;
+            const isOwner = payload?.uuid === product.user_id;
             const isAdmin = payload?.type === "admin";
             const productRegistered = product.state === "registered";
             const lastOffer = product.offers[0];
-            const lastOfferIsMine = lastOffer.user === payload?.uuid;
+            const lastOfferIsMine = lastOffer.user_id === payload?.uuid;
 
             const acceptLastOffer = document.querySelector("button#acceptLastOffer");
             if (!lastOfferIsMine && productRegistered)
@@ -294,10 +294,23 @@ productVue.buildProductPage = function (info_div, offer_div, image_div, page = 0
                 addOfferForm.classList.add("d-none");
             }
 
-            if (isOwner && product.state === "accepted")
-                document.querySelector("button#getColissimo").classList.remove("d-none");
-            else
-                document.querySelector("button#getColissimo").classList.add("d-none");
+            if (product.state === "accepted") {
+                const colissimo = document.querySelector("button#getColissimo");
+                const colissimoModal = document.querySelector("#colissimoModal #colissimoInput");
+                const colissimoSubmit = document.querySelector("button#colissimoSubmit");
+
+                if (isAdmin) {
+                    colissimo.classList.remove("d-none");
+                    colissimoSubmit.classList.remove("d-none");
+                } else if (isOwner && product.colissimo) {
+                    colissimo.classList.remove("d-none");
+                    colissimoSubmit.classList.add("d-none");
+                    colissimoModal.value = product.colissimo;
+                    colissimoModal.disabled = product.colissimo;
+                } else {
+                    colissimo.classList.add("d-none");
+                }
+            }
 
             if (product.state === "in_stock") {
                 document.querySelector("button#addToCard").classList.remove("d-none");

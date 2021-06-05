@@ -48,6 +48,12 @@ if(isset($_POST["id_product"])) {
         $params[] = $_POST["warehouse"];
     }
 
+    // If user is admin, he can update colissimo
+    if (isset($_POST["colissimo"]) && getToken()->getPayload()["type"] === "admin") {
+        $set[] = "colissimo = ?";
+        $params[] = $_POST["colissimo"];
+    }
+
     $params[] = $uuid_product;
 
     $db = getDatabaseConnection();

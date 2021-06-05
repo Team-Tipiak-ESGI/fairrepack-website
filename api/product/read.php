@@ -7,6 +7,7 @@ if($_SERVER["REQUEST_METHOD"] !== "GET") {
 }
 
 require_once __DIR__ . "/../../utils/database.php";
+require_once __DIR__ . "/../../utils/user.php";
 
 $limit = intval($_GET["limit"] ?? $_GET["size"] ?? 20);
 $page = intval($_GET["page"] ?? 0);
@@ -54,6 +55,12 @@ $rows = [];
 
 if (isset($_GET["id"])) {
     $rows = databaseFindOne($db, $sql, $params);
+
+    // If user is owner of the product, add colissimo
+    if (getToken()->getPayload()["uuid"] === $rows["user_id"]) {
+        $colissimo = databaseFindOne($db, "select colissimo from product $whereSql", $params)["colissimo"];
+        $rows["colissimo"] = $colissimo;
+    }
 
     // Get offers
     $sql = "SELECT username as user, uuid_user as user_id, price, note, offer.created FROM offer
