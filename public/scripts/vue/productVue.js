@@ -311,9 +311,10 @@ productVue.buildProductPage = function (info_div, offer_div, image_div, page = 0
                 } else {
                     colissimo.classList.add("d-none");
                 }
-            }
-
-            if (product.state === "in_stock") {
+            } else if (product.state === "sent" && isAdmin) {
+                document.querySelector("button#inStock").classList.remove("d-none");
+            } else if (product.state === "in_stock") {
+                document.querySelector("button#inStock").classList.add("d-none");
                 document.querySelector("button#addToCard").classList.remove("d-none");
             }
         });
@@ -323,6 +324,8 @@ productVue.getColissimo = function () {
     const colissimoInput = document.querySelector("#colissimoModal #colissimoInput");
     const getColissimoButton = document.querySelector("button#getColissimoButton");
     const colissimoForm = document.querySelector("form#colissimoForm");
+
+    productController.updateState('sent');
 
     colissimoInput.classList.remove("d-none");
     getColissimoButton.classList.add("d-none");

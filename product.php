@@ -43,6 +43,10 @@
                     <!-- Button visible by user after product is accepted -->
                     Colissimo
                 </button>
+                <button class="btn btn-success my-1 d-none" id="inStock" type="button" onclick="productController.updateState('in_stock');">
+                    <!-- Button visible by admin only -->
+                    In stock
+                </button>
             </div>
         </section>
 
