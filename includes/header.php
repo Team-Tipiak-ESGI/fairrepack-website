@@ -60,6 +60,10 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link d-none" href="/backoffice/" id="headerAdmin">Admin</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="/references.php">Products</a>
                         </li>
 

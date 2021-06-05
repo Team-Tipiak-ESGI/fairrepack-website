@@ -60,8 +60,20 @@ function renewToken() {
     }, renewIn)
 }
 
+function updateHeaderAccount() {
+    const headerAccount = document.getElementById("headerAccount");
+    const token = getToken();
+
+    if (token.valid) {
+        if (token.payload?.type === "admin")
+            document.getElementById("headerAdmin").classList.remove("d-none");
+        headerAccount.innerText = "Profile/Sign out";
+    }
+}
+
 window.addEventListener("load", renewToken);
 window.addEventListener("load", cartVue.updateHeader);
+window.addEventListener("load", updateHeaderAccount);
 
 // Search bar
 (function () {

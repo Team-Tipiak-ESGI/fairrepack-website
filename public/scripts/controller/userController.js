@@ -61,6 +61,7 @@ UserController.logout = function() {
 
     window.localStorage.removeItem('token');
     userVue.updateAccountPage();
+    updateHeaderAccount();
 }
 
 UserController.remove = function() {
