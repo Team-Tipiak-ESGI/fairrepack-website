@@ -20,7 +20,7 @@ referenceVue.buildReferenceList = function (div, page = 0) {
                     return (b.stocks || 0) - (a.stocks || 0);
                 else
                     return (b.count || 0) - (a.count || 0);
-            })
+            });
 
             for (const reference of references) {
                 // Product card
@@ -28,7 +28,7 @@ referenceVue.buildReferenceList = function (div, page = 0) {
                 div_1.classList.add(`card`, `m-2`);
                 div_1.style.width = `18rem`;
                 const img_0 = document.createElement(`img`);
-                img_0.src = `/image/${reference?.image_url}`;
+                img_0.src = `/image/product/${reference?.image_url}`;
                 img_0.style.height = "150px";
                 img_0.style.objectFit = "cover";
                 img_0.classList.add(`card-img-top`);

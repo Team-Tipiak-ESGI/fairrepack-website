@@ -23,7 +23,7 @@
                         </label>
                         <label class="d-block mb-3">
                             Line 2
-                            <input name="address_line2" class="form-control" placeholder="Line 2" required>
+                            <input name="address_line2" class="form-control" placeholder="Line 2">
                         </label>
                         <label class="d-block mb-3">
                             City
@@ -39,7 +39,7 @@
                         </label>
                         <label class="d-block mb-3">
                             Phone number
-                            <input name="phone_number" class="form-control" placeholder="Phone number" required>
+                            <input name="phone_number" class="form-control" placeholder="Phone number">
                         </label>
                         <label class="d-block mb-3">
                             Additional information
