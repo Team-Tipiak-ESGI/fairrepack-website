@@ -3,34 +3,43 @@ require_once __DIR__ . '/../database.php';
 require_once __DIR__ . '/../UUIDv4.php';
 
 
-function insertAssociation(string $name, ?string $description, string $address){
+function insertAssociation(string $name, ?string $description, ?string $address, ?string $image, ?string $mime){
     $db = getDatabaseConnection();
 
-    $sql_assoc = "INSERT INTO association (uuid_association, name, description) VALUES (?, ?, ?) ";
+    $sql_assoc = "INSERT INTO association (uuid_association, name, description, image, mime) VALUES (?, ?, ?, ?, ?)";
 
     $param_assoc = [
         UUIDv4(),
-        $name
+        $name,
+        $description,
+        $address,
+        $image,
+        $mime,
     ];
 
-    $assoc_id = databaseInsert($db, $sql_assoc, $param_assoc);
-
-    $assoc_uuid = databaseFindOne($db, "select uuid_association from association where id_association = ?",
-        [$assoc_id])["uuid_assoc"];
+    return databaseInsert($db, $sql_assoc, $param_assoc);
 }
 
-function deleteAssociationById(string $id_association):string
+function deleteAssociationByUUID(string $uuid):string
 {
     $db = getDatabaseConnection();
-    $sql = "DELETE FROM association WHERE id_association = ?";
-    $params = [$id_association];
+    $sql = "DELETE FROM association WHERE uuid_association = ?";
+    $params = [$uuid];
     return databaseDelete($db, $sql, $params);
 }
 
 function getAssociationById(string $id_association): ?array
 {
     $db = getDatabaseConnection();
-    $sql = "SELECT name, description, coin, address FROM association WHERE id_association = ?";
+    $sql = "SELECT name, description, coin, address, image FROM association WHERE id_association = ?";
     $params = [$id_association];
+    return databaseFindOne($db, $sql, $params);
+}
+
+function getAssociationByUUID(string $uuid): ?array
+{
+    $db = getDatabaseConnection();
+    $sql = "SELECT name, description, coin, address, image FROM association WHERE uuid_association = ?";
+    $params = [$uuid];
     return databaseFindOne($db, $sql, $params);
 }

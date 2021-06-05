@@ -1,11 +1,12 @@
 <?php
 require_once __DIR__ . '/../../utils/user.php';
 
-// User not authenticated
-if (!getToken()->validate()) {
-    http_response_code(401);
+$err = verifyAccess("POST", true, "admin");
+if (!is_null($err)) {
+    http_response_code($err);
     die();
 }
+
 require_once __DIR__ . '/../../utils/dao/association.php';
 
 $body = file_get_contents("php://input");
@@ -25,12 +26,16 @@ if (isset($_POST["id_association"])){
         $params[] = $_POST["description"];
     }
     if (isset($_POST["address"])){
-        // $set[] = "address = ?"; // voir avec quozul
-        // $params[]  = $_POST["address]; // Doute ici voir avec quozul
+        $set[] = "address = ?";
+        $params[] = $_POST["address"];
     }
     if (isset($_POST["coin"])){
         $set[] = "coin = ?";
         $params[] = $_POST["coin"];
+    }
+    if (isset($_POST["image"])){
+        $set[] = "image = ?";
+        $params[] = $_POST["image"];
     }
 
     $params[] = $id_assoc;

@@ -110,7 +110,7 @@ create table fairrepack.user
     user_type enum ('normal', 'seller', 'admin') default 'normal'            not null,
     created   datetime                           default current_timestamp() not null,
     coin      int                                default 0                   not null,
-primary key (id_user, uuid_user),
+    primary key (id_user, uuid_user),
     constraint email_UNIQUE
         unique (email),
     constraint id_address
@@ -235,19 +235,20 @@ create table fairrepack.review
 
 create table fairrepack.association
 (
-    id_association int auto_increment,
-    uuid_association char(36) not null,
-    name varchar(256) not null,
-    coin int default 0 not null,
-    address int null,
-    description text null,
+    id_association   int auto_increment,
+    uuid_association char(36)      not null,
+    name             varchar(256)  not null,
+    coin             int default 0 not null,
+    address          int           null,
+    description      text          null,
+    image            blob          null,
+    mime             varchar(64)   null,
     constraint association_pk
         primary key (id_association, uuid_association),
     constraint association_address_id_address_fk
         foreign key (address) references address (id_address)
             on update cascade
 );
-
 
 create index product_idx
     on fairrepack.review (product);
