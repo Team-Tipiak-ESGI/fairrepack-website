@@ -21,19 +21,19 @@
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carousel-land-page" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+                <span class="visually-hidden"><span data-i18n>php.variables.prev_page</span></span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carousel-land-page" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+                <span class="visually-hidden"><span data-i18n>php.variables.next_page</span></span>
             </button>
         </div>
     </section>
-
+<--!
     <section>
         <div class="card text-center">
             <div class="card-header">
-                Affaire du moment
+                <span data-i18n>php.index.daily_deals</span>
             </div>
             <img src="public/assets/rx7Example.png" class="card-img-top">
             <div class="card-body">

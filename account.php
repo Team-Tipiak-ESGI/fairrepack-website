@@ -5,26 +5,26 @@
             <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Privacy policy</h5>
+                        <h5 class="modal-title"><span data-i18n>php.account.privacy_policy</span></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <h3>Collected data</h3>
-                        <p><strong>Disclaimer:</strong> None of your data is used for commercial use!</p>
+                        <h3><span data-i18n>php.account.collected_data</span></h3>
+                        <p><strong><span data-i18n>php.variables.disclaimer</span></strong><span data-i18n>php.account.no_data_used</span></p>
                         <ul>
-                            <li>Email address</li>
-                            <li>Login history which includes IP address, user agent and date of last login.</li>
+                            <li><span data-i18n>php.account.email_address</span></li>
+                            <li><span data-i18n>php.account.login_history</span></li>
                         </ul>
 
-                        <h3>Stored data on your browser</h3>
-                        <p><strong>Disclaimer:</strong> No cookies are used on this website! Everything is stored in your browser's cache.</p>
+                        <h3><span data-i18n>php.account.stored_datas</span></h3>
+                        <p><strong><span data-i18n>php.variables.disclaimer</span></strong><span data-i18n>php.account.no_cookies</span></p>
                         <ul>
-                            <li>JWT session token</li>
-                            <li>Your current shopping cart</li>
+                            <li><span data-i18n>php.account.jwt_session_token</span></li>
+                            <li><span data-i18n>php.account.current_shopping_cart</span></li>
                         </ul>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understood</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><span data-i18n>php.account.understood</span></button>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
         <div class="d-flex justify-content-around">
 
             <div class="d-flex flex-column">
-                <p>Already having an account ? Please, sign in.</p>
+                <p><span data-i18n>php.account.already_account</span></p>
                 <form id="accountForm" class="needs-validation" novalidate onsubmit="return (UserController.login(this), false);">
                     <div class="mb-3">
                         <label class="d-block" for="loginEmail">Email</label>
@@ -43,44 +43,44 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="d-block" for="loginPassword">Password</label>
+                        <label class="d-block" for="loginPassword"><span data-i18n>php.variables.password</span></label>
                         <input id="loginPassword" name="password" type="password" class="form-control" minlength="8"
                                autocomplete="current-password" placeholder="Password" required>
                         <div id="validationLoginFeedback" class="invalid-feedback">
-                            Invalid email address or password.
+                            <span data-i18n>php.account.invalid_pwd</span>
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary"><span data-i18n>php.account.login</span></button>
                 </form>
             </div>
 
             <div class="d-flex flex-column">
-                <p>New to Fair Repack ? We suggest you to sign up.</p>
+                <p><span data-i18n>php.account.new_on_fairrepack</span></p>
                 <form id="accountForm" class="needs-validation" novalidate onsubmit="return (UserController.signup(this), false);">
                     <div class="mb-3">
                         <label class="d-block" for="signupEmail">Email</label>
                         <input id="signupEmail" name="email" type="email" class="form-control" autocomplete="email"
                                placeholder="example@example.com" required>
                         <div id="validationLoginFeedback" class="invalid-feedback">
-                            Invalid email address.
+                            <span data-i18n>php.account.invalid_email</span>
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label class="d-block" for="signupPassword">Password</label>
+                        <label class="d-block" for="signupPassword"><span data-i18n>php.variables.password</span></label>
                         <input id="signupPassword" name="password" type="password" class="form-control"
                                autocomplete="current-password" placeholder="Password" required minlength="8">
                         <div id="validationLoginFeedback" class="invalid-feedback">
-                            Password too short.
+                            <span data-i18n>php.account.pwd_too_short</span>
                         </div>
                     </div>
 
                     <p class="fw-lighter">
-                        By signing up, you consent to our
-                        <a class="text-decoration-none" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalPP">privacy policy</a>.
+                        <span data-i18n>php.account.by_signing_in</span>
+                        <a class="text-decoration-none" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalPP"><span data-i18n>php.account.privacy_policy</span></a>.
                     </p>
-                    <button type="submit" class="btn btn-primary">Sign up</button>
+                    <button type="submit" class="btn btn-primary"><span data-i18n>php.account.sign_up</span></button>
                 </form>
             </div>
 
@@ -88,10 +88,10 @@
     </section>
 
     <section class="d-none" id="signedIn">
-        <button type="button" class="btn btn-danger" onclick="UserController.logout()">Logout</button>
-        <button type="button" class="btn btn-danger" onclick="UserController.remove()">Delete</button>
+        <button type="button" class="btn btn-danger" onclick="UserController.logout()"><span data-i18n>php.account.logout</span></button>
+        <button type="button" class="btn btn-danger" onclick="UserController.remove()"><span data-i18n>php.account.delete_ur_acc</span></button>
 
-        <h1>Your products</h1>
+        <h1><span data-i18n>php.variables.your_products</span></h1>
         <div id="userProducts" class="d-flex justify-content-center flex-wrap"></div>
     </section>
 </main>

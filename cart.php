@@ -4,14 +4,13 @@
     <section>
         <div id="cart" class="list-group"></div>
         <script src="https://js.stripe.com/v3/"></script>
-        <button type="button" id="checkout-button" class="btn btn-primary mt-3">Checkout</button>
+        <button type="button" id="checkout-button" class="btn btn-primary mt-3"><span data-i18n>php.cart.checkout</span></button>
     </section>
 </main>
 
 <script>
     cartVue.buildProductList(document.querySelector("#cart"));
 </script>
-
 <script src="https://js.stripe.com/v3/"></script>
 <script type="text/javascript">
     // Create an instance of the Stripe object with your publishable API key

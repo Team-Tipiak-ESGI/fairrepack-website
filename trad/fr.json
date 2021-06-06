@@ -1,0 +1,63 @@
+{
+    "php": {
+        "404": {
+            "": ""
+        },
+        "account": {
+            "": ""
+        },
+        "cards": {
+            "": ""
+        },
+        "cart": {
+            "": ""
+        },
+        "chest": {
+            "": ""
+        },
+        "index": {
+            "": ""
+        },
+        "product": {
+            "": ""
+        },
+        "reference": {
+            "": ""
+        },
+        "references": {
+            "": ""
+        },
+        "user": {
+            "": ""
+        }
+    },
+    "js": {
+        "addressVue": {
+            "": ""
+        },
+        "cartVue": {
+            "": ""
+        },
+        "categoryVue": {
+            "": ""
+        },
+        "pagination": {
+            "": ""
+        },
+        "productVue": {
+            "": ""
+        },
+        "referenceVue": {
+            "": ""
+        },
+        "typeVue": {
+            "": ""
+        },
+        "userVue": {
+            "": ""
+        },
+        "warehouseVue": {
+            "": ""
+        }
+    }
+}

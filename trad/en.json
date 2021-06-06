@@ -1,0 +1,152 @@
+{
+    "php": {
+        "variables": {
+            "home_page": "Home page",
+            "prev_page": "Previous page",
+            "next_page": "Next page",
+            "disclaimer": "Disclaimer:",
+            "password": "Password",
+            "sign_up": "Sign up",
+            "logout": "Logout",
+            "delete_ur_acc": "Delete your account",
+            "your_products": "Your products",
+            "close": "Close",
+            "save": "Save"
+
+        },
+        "404": {
+            "err_msg": "The page or resource you are trying to read does not exists.",
+            "go_back": "Go back to",
+            "or": "or"
+
+        },
+        "account": {
+            "privacy_policy": "Privacy policy",
+            "collected_data": "Collected datas",
+            "no_data_used": "None of your data is used for commercial use!",
+            "email_address": "Email address",
+            "login_history": "Login history which includes IP address, user agent and date of last login.",
+            "stored_datas": "Stored data on your browser",
+            "no_cookies": "No cookie are used on this website! Everything is stored in your browser's cache.",
+            "jwt_session_token": "JWT session token",
+            "current_shopping_cart": "Your current shopping cart",
+            "understood": "Understood",
+            "already_account": "Already having an account ? Please, sign in.",
+            "invalid_pwd": "Invalid email address or password.",
+            "login": "Login",
+            "new_on_fairrepack": "New to Fair Repack ? We suggest you to sign up.",
+            "invalid_email": "Invalid email address.",
+            "pwd_too_short": "Password too short.",
+            "by_signing_in": "By signing up, you consent to our"
+
+
+        },
+        "cart": {
+            "checkout": "Checkout"
+
+        },
+        "chest": {
+            "start_animation": "Start the animation"
+
+        },
+        "index": {
+            "daily_deals": "Daily Deals",
+            //Contenu Stage automobile
+            "a": "a",
+            //Contenu des produits
+            "b": "a"
+
+
+        },
+        "product": {
+            "add_to_cart": "Add to cart",
+            "accept": "Accept",
+            "reject": "Reject",
+            "offers": "Offers",
+            "price": "Price",
+            "make_offer": "Make an Offer"
+
+        },
+        "reference": {
+            "reference": "Reference",
+            "product_condition": "Product Condition",
+            "new": "New",
+            "nearly_new": "Nearly new",
+            "good": "Good conditions",
+            "damaged": "Battle Scarred",
+            "broken": "Broken",
+            "buy": "Buy"
+
+        },
+        "references": {
+            "reference": "Reference",
+            "product_condition": "Product Condition",
+            "new": "New",
+            "nearly_new": "Nearly new",
+            "good": "Good conditions",
+            "damaged": "Battle Scarred",
+            "broken": "Broken",
+            "buy": "Buy",
+            "add_product": "Add Product",
+            "page_size": "Page Size",
+            "price_filter": "Price Filter",
+            "brand_filter": "Brand Filter",
+            "year_filter": "Year Filter",
+            "display_results": "Displaying all Results",
+
+
+
+
+        },
+        "user": {
+            "informations": "Products",
+            "products": "Informations",
+
+
+
+        },
+        "footer": {
+            "about_fair_repack": "About Fair Repack",
+            "content_about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt\ndistinctio earum repellat quaerat voluptatibus placeat nam,\ncommodi optio pariatur est quia magnam eum harum corrupti dicta,\naliquam sequi voluptate quas.",
+            "links": "Our Links",
+            "social": "Our Social Networks",
+
+        },
+        "header": {
+            "home": "Home",
+            "account": "Account",
+            "products": "Products",
+            "cart": "Cart",
+            "search": "Search",
+        }
+    },
+    "js": {
+        "addressVue": {
+            "remove": "Remove"
+        },
+        "cartVue": {
+            "": ""
+        },
+        "categoryVue": {
+            "": ""
+        },
+        "pagination": {
+            "": ""
+        },
+        "productVue": {
+            "": ""
+        },
+        "referenceVue": {
+            "": ""
+        },
+        "typeVue": {
+            "": ""
+        },
+        "userVue": {
+            "": ""
+        },
+        "warehouseVue": {
+            "": ""
+        }
+    }
+}

@@ -77,7 +77,7 @@ addressVue.buildAddressList = function (tbody) {
                 tr_3d.append(td_xp);
 
                 const button = document.createElement("button");
-                button.innerText = "Remove";
+                button.innerText = i18n("js.addressVue.remove");
                 button.classList.add("btn", "btn-danger", "btn-sm");
                 button.addEventListener("click", (e) => {
                     if (window.confirm("Are you sure you want to delete this category and all types associated with it?"))
