@@ -1,51 +1,155 @@
 {
     "php": {
+        "variables": {
+            "home_page": "Accueil",
+            "prev_page": "Page précédente",
+            "next_page": "Page suivante",
+            "disclaimer": "Avertissement:",
+            "password": "Mot de passe",
+            "sign_up": "Se connecter",
+            "logout": "Déconnexion",
+            "delete_ur_acc": "Supprimer son compte",
+            "your_products": "Vos produits",
+            "close": "Fermer",
+            "save": "Sauvegarder"
+
+        },
         "404": {
-            "": ""
+            "err_msg": "La page ou la ressource à laquelle vous souhaitez accéder est introuvable",
+            "go_back": "Retourner à la ",
+            "or": "ou"
+
         },
         "account": {
-            "": ""
-        },
-        "cards": {
-            "": ""
+            "privacy_policy": "Politique de confidentialité",
+            "collected_data": "Données collectées",
+            "no_data_used": "Vos données ne sont pas utilisées à des fins commerciales! ",
+            "email_address": "Adresse E-mail",
+            "login_history": "Historique de connexion, incluant l'adresse IP, les agents utilisateurs et la date de votre dernière connexion ",
+            "stored_datas": "Les données stockées sur votre ordinateur",
+            "no_cookies": "Ce site ne contient aucun cookie!! Tout est géré de votre cache navigateur.",
+            "jwt_session_token": "token de session JWT",
+            "current_shopping_cart": "Votre Panier",
+            "understood": "j'ai compris !",
+            "already_account": "Vous avez déjà un compte ? Veuillez vous connecter.",
+            "invalid_pwd": "Email ou mot de passe incorrect.",
+            "login": "Se connecter",
+            "new_on_fairrepack": "Nouveau sur Fair Repack ? Il est conseillé de s'inscrire.",
+            "invalid_email": "Email invalide.",
+            "pwd_too_short": "Mot de passe trop court.",
+            "by_signing_in": "En validant votre inscription, vous acceptez notre"
+
+
         },
         "cart": {
-            "": ""
+            "checkout": "Passer au payement"
+
         },
         "chest": {
-            "": ""
+            "start_animation": "Lancer l'animation"
+
         },
         "index": {
-            "": ""
+            "daily_deals": "Deals du jour",
+            "_COMMENT1": "Contenu du truc automobile",
+            "a": "a",
+            "_COMMENT2": "Contenu des produits",
+            "b": "a"
+
+
         },
         "product": {
-            "": ""
+            "add_to_cart": "Ajouter au panier",
+            "accept": "Accepter",
+            "reject": "Rejeter",
+            "offers": "Offres",
+            "price": "Prix",
+            "make_offer": "Faire une offre"
+
         },
         "reference": {
-            "": ""
+            "reference": "Référence",
+            "product_condition": "Etat du produit",
+            "new": "Neuf",
+            "nearly_new": "Comme neuf",
+            "good": "Bon état",
+            "damaged": "En état de marche",
+            "broken": "Pour pièces",
+            "buy": "Acheter"
+
         },
         "references": {
-            "": ""
+            "reference": "Référence",
+            "product_condition": "Etat du produit",
+            "new": "Neuf",
+            "nearly_new": "Comme neuf",
+            "good": "Bon état",
+            "damaged": "En état de marche",
+            "broken": "Pour pièces",
+            "buy": "Acheter",
+            "add_product": "Ajouter le produit",
+            "page_size": "Taille de la page",
+            "price_filter": "Filtre par Prix",
+            "brand_filter": "Filtre par Marque",
+            "year_filter": "Filtre par Année",
+            "display_results": "Afficher tous les résultatd"
+
+
+
+
         },
         "user": {
-            "": ""
+            "informations": "Informations",
+            "products": "Produits"
+
+
+
+        },
+        "footer": {
+            "about_fair_repack": "À propos Fair Repack",
+            "content_about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt\ndistinctio earum repellat quaerat voluptatibus placeat nam,\ncommodi optio pariatur est quia magnam eum harum corrupti dicta,\naliquam sequi voluptate quas.",
+            "links": "Nos Liens",
+            "social": "Nos réseaux sociaux"
+
+        },
+        "header": {
+            "home": "Accueil",
+            "account": "Mon Compte",
+            "products": "Produits",
+            "cart": "Panier",
+            "search": "Rechercher"
         }
     },
     "js": {
+        "variables": {
+            "remove": "Retirer",
+            "want_2_delete": "Êtes vous certain de vouloir supprimer cette catégorie ainsi que tout ce qui lui est associé ? "
+
+        },
         "addressVue": {
-            "": ""
+
         },
         "cartVue": {
-            "": ""
+            "empty_cart" : "Votre panier est vide, <a href='/references.php'>start shopping now!</a>",
+            "delete": "Supprimer"
+
+
         },
         "categoryVue": {
-            "": ""
+
         },
         "pagination": {
-            "": ""
+
         },
         "productVue": {
-            "": ""
+            "seller": "Vendeur : ",
+            "product": "Produit : ",
+            "a": "Qualité : ${product.quality}",
+            "b": ""
+
+
+
+            i18n("js.carteVue.remove")
         },
         "referenceVue": {
             "": ""

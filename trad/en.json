@@ -121,20 +121,35 @@
         }
     },
     "js": {
+        "variables": {
+            "remove": "Remove",
+            "want_2_delete": "Are you sure you want to delete this category and all types associated with it?"
+
+        },
         "addressVue": {
-            "remove": "Remove"
+
         },
         "cartVue": {
-            "": ""
+            "empty_cart" : "Your cart is empty, <a href='/references.php'>start shopping now!</a>",
+            "delete": "Delete"
+
+
         },
         "categoryVue": {
-            "": ""
+
         },
         "pagination": {
-            "": ""
+
         },
         "productVue": {
-            "": ""
+            "seller": "Seller : ",
+            "product": "Product : ",
+            "a": "Qualité : ${product.quality}",
+            "b": ""
+
+
+
+
         },
         "referenceVue": {
             "": ""
