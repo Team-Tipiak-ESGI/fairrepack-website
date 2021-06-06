@@ -29,7 +29,7 @@
             </button>
         </div>
     </section>
-<--!
+<!-- à traduire par la suite-->
     <section>
         <div class="card text-center">
             <div class="card-header">
