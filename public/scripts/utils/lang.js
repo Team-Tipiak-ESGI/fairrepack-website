@@ -23,7 +23,11 @@ const i18n = (() => {
     }
 
     return (msg, ...params) => {
-        let translation = languages[lang][msg];
+        msg = msg.split(/\./g);
+        let translation = languages[lang];
+        for (const element of msg) {
+            translation = translation[element];
+        }
         if (params.length === 0) return translation;
 
         const iter = translation.matchAll(/\$(\d+)/g);

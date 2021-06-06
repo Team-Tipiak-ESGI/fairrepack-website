@@ -66,7 +66,7 @@
                 </div>
                 <!-- div pour filtres marques, checkbox -->
                 <div class="d-flex flex-column mb-3">
-                    <label class="fs-6 fw-lighter text-muted"><span data-i18n>php.references.</span>brand_filter</label>
+                    <label class="fs-6 fw-lighter text-muted"><span data-i18n>php.references.brand_filter</span></label>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="checkBrand1">
                         <label class="form-check-label" for="checkBrand1">Apple</label>
