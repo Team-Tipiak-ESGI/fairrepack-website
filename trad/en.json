@@ -51,9 +51,9 @@
         },
         "index": {
             "daily_deals": "Daily Deals",
-            //Contenu Stage automobile
+            "_COMMENT1": "Contenu du truc automobile",
             "a": "a",
-            //Contenu des produits
+            "_COMMENT2": "Contenu des produits",
             "b": "a"
 
 
@@ -92,7 +92,7 @@
             "price_filter": "Price Filter",
             "brand_filter": "Brand Filter",
             "year_filter": "Year Filter",
-            "display_results": "Displaying all Results",
+            "display_results": "Displaying all Results"
 
 
 
@@ -100,7 +100,7 @@
         },
         "user": {
             "informations": "Products",
-            "products": "Informations",
+            "products": "Informations"
 
 
 
@@ -109,7 +109,7 @@
             "about_fair_repack": "About Fair Repack",
             "content_about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt\ndistinctio earum repellat quaerat voluptatibus placeat nam,\ncommodi optio pariatur est quia magnam eum harum corrupti dicta,\naliquam sequi voluptate quas.",
             "links": "Our Links",
-            "social": "Our Social Networks",
+            "social": "Our Social Networks"
 
         },
         "header": {
@@ -117,7 +117,7 @@
             "account": "Account",
             "products": "Products",
             "cart": "Cart",
-            "search": "Search",
+            "search": "Search"
         }
     },
     "js": {
