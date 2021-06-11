@@ -1,4 +1,7 @@
-<?php include "includes/header.php"; ?>
+<?php include "includes/header.php";
+require_once "utils/database.php";
+require_once "utils/dao/product.php";?>
+
 
 <main class="container my-5">
     <section>
@@ -44,7 +47,31 @@
         </div>
     </section>
 
-    <section>
+    <!-- en attendant meilleure séparation-->
+    <br><br>
+
+        <section>
+            <div class="row">
+            <?php
+            #trouver le moyen de récupérer les données du produit
+            for ($i=0; $i < 4; $i++) {
+                ?>
+                <div class="col">
+                    <div class="card text-center" style="width: 18rem;">
+                        <img src="<?php echo $bddResult[3];?>" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $bddResult[2];?></h5>
+                            <p class="card-text"><?php echo $bddResult[1];?></p>
+                            <a href="<?php echo $bddResult[0];?>" class="btn btn-primary">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
+        </section>
+<br><br>
+    <!--<section>
         <div class="row">
             <div class="col">
                 <div class="card text-center" style="width: 18rem;">
@@ -87,7 +114,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
 
     <section>
         <div>

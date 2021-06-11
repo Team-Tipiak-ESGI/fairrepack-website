@@ -9,6 +9,7 @@
 
     <script src="/public/scripts/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/public/styles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/styles/heart.css">
 
     <link rel="icon" type="image/png" href="/public/assets/favicon_140.png">
 </head>
@@ -42,7 +43,7 @@
     <script src="/public/scripts/vue/pagination.js"></script>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fairrepack_navbar">
             <div class="container">
                 <a class="navbar-brand" href="/">
                     <img src="/public/assets/favicon_140.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
@@ -78,7 +79,7 @@
                     </ul>
                     <form class="d-flex mb-0" id="searchForm">
                         <input class="form-control me-2" id="searchBar" name="search" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button class="btn btn-success" type="submit">Search</button>
                     </form>
                 </div>
             </div>

@@ -129,3 +129,4 @@ function getProductImage(string $product_id, string $row): ?array
     $con = getDatabaseConnection();
     return databaseFindOne($con, $sql, [$product_id, $row]);
 }
+
