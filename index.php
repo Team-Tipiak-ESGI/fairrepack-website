@@ -56,16 +56,17 @@ require_once "utils/dao/product.php";?>
 
             $bddResult = getProducts();
 
-            $imgUrl = getProductsImageUrls($bddResult[0]["uuid_product"]);
 
-            if (count($imgUrl) > 0) {
-                $imgUrl = $imgUrl[0];
-            } else {
-                $imgUrl = "/image/product/";
-            }
+
+
 
             for ($i=0; $i < 2; $i++) {
-
+                $imgUrl = getProductsImageUrls($bddResult[$i]["uuid_product"]);
+                if (count($imgUrl) > 0) {
+                    $imgUrl = $imgUrl[0];
+                } else {
+                    $imgUrl = "/image/product/";
+                }
                 ?>
                 <div class="col">
                     <div class="card text-center" style="width: 18rem;">
