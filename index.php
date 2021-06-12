@@ -36,10 +36,11 @@ require_once "utils/dao/product.php";?>
     <section>
         <div class="card text-center">
             <div class="card-header">
-                Affaire du moment
+                Derniers produits enregistrés
             </div>
             <br>
-            <div class="row">
+            <div>
+            <div class="row padding-dernieres-sorties">
                 <?php $bddResult = getProducts();
                 for ($i=0; $i < 4; $i++) {
                     $imgUrl = getProductsImageUrls($bddResult[$i]["uuid_product"]);
@@ -62,6 +63,7 @@ require_once "utils/dao/product.php";?>
                 <?php
                 }
                 ?>
+            </div>
             </div>
         </div>
     </section>
