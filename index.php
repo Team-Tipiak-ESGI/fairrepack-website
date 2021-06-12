@@ -60,7 +60,7 @@ require_once "utils/dao/product.php";?>
 
 
 
-            for ($i=0; $i < 2; $i++) {
+            for ($i=0; $i < 8; $i++) {
                 $imgUrl = getProductsImageUrls($bddResult[$i]["uuid_product"]);
                 if (count($imgUrl) > 0) {
                     $imgUrl = $imgUrl[0];
