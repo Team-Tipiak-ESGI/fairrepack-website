@@ -40,7 +40,7 @@ require_once "utils/dao/product.php";?>
             </div>
             <br>
             <div>
-            <div class="row padding-dernieres-sorties">
+            <div class="row" style="padding: 10px" ><!-- désolé j'ai pas réussi à faire mieux, ça marchait pas sinon :c -->
                 <?php $bddResult = getProducts();
                 for ($i=0; $i < 4; $i++) {
                     $imgUrl = getProductsImageUrls($bddResult[$i]["uuid_product"]);
@@ -50,7 +50,7 @@ require_once "utils/dao/product.php";?>
                         $imgUrl = "/image/product/";
                     }
                     ?>
-                    <div class="col">
+                    <div class="col padding-dernieres-sorties">
                         <div class="card text-center" style="width: 18rem;">
                             <img src="<?php echo $imgUrl;?>" class="card-img-top">
                             <div class="card-body">
