@@ -38,6 +38,7 @@ require_once "utils/dao/product.php";?>
             <div class="card-header">
                 Affaire du moment
             </div>
+            <br>
             <div class="row">
                 <?php $bddResult = getProducts();
                 for ($i=0; $i < 4; $i++) {
