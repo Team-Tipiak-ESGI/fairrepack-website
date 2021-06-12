@@ -32,26 +32,17 @@ require_once "utils/dao/product.php";?>
             </button>
         </div>
     </section>
-
-    <section>
-        <div class="card text-center">
-            <div class="card-header">
-                Affaire du moment
-            </div>
-            <img src="public/assets/rx7Example.png" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">Stage automobile</h5>
-                <p class="card-text">Apprennez a ne pas faire comme N. Mazepin et Sortez du premier virage avec ce stage !</p>
-                <a href="#" class="btn btn-primary">Commander</a>
-            </div>
-        </div>
-    </section>
+    <br> <br>
 
     <!-- en attendant meilleure séparation-->
     <br><br>
 
         <section>
             <div class="row">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Affaire du moment
+                    </div>
             <?php
 
             $bddResult = getProducts();
@@ -77,6 +68,7 @@ require_once "utils/dao/product.php";?>
                             <a href="<?php echo 'product.php?id='.$bddResult[$i]['uuid_product'];?>" class="btn btn-primary">Acheter</a>
                         </div>
                     </div>
+
                 </div>
             <?php
             }
