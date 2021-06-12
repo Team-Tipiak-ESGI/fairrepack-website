@@ -9,18 +9,18 @@ require_once "utils/dao/product.php";?>
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carousel-land-page" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carousel-land-page" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carousel-land-page" data-bs-slide-to="2" aria-label="Slide 3"></button>
+               <!-- <button type="button" data-bs-target="#carousel-land-page" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="./public/assets/carousel/carousel1.png">
+                    <img class="d-block w-100" src="./public/models/Banner1.png">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="./public/assets/carousel/carousel2.png">
+                    <img class="d-block w-100" src="./public/models/Banner2.png">
                 </div>
-                <div class="carousel-item">
+  <!--              <div class="carousel-item">
                     <img class="d-block w-100" src="./public/assets/carousel/carousel3.png">
-                </div>
+                </div>-->
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carousel-land-page" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
