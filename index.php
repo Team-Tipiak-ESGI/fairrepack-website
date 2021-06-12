@@ -68,7 +68,7 @@ require_once "utils/dao/product.php";?>
                             <a href="<?php echo 'product.php?id='.$bddResult[$i]['uuid_product'];?>" class="btn btn-primary">Acheter</a>
                         </div>
                     </div>
-
+                </div>
                 </div>
             <?php
             }
