@@ -56,7 +56,7 @@ require_once "utils/dao/product.php";?>
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $bddResult[$i]['name'];?></h5>
                                 <p class="card-text"><?php echo $bddResult[$i]['description'];?></p>
-                                <a href="<?php echo 'product.php?id='.$bddResult[$i]['uuid_product'];?>" class="btn btn-primary">Acheter</a>
+                                <a href="<?php echo 'product.php?id='.$bddResult[$i]['uuid_product'];?>" class="btn btn-primary">Voir le produit</a>
                             </div>
                         </div>
                     </div>
