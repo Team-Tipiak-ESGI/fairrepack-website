@@ -130,3 +130,10 @@ function getProductImage(string $product_id, string $row): ?array
     return databaseFindOne($con, $sql, [$product_id, $row]);
 }
 
+function getProducts()
+{
+    $db = getDatabaseConnection();
+    $sql = "SELECT uuid_product, description, name, brand FROM product join reference r on r.id_reference = product.reference order by product.created desc limit 4";
+
+    return databaseSelectAll($db,$sql);
+}

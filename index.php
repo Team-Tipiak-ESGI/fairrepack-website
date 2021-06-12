@@ -53,16 +53,27 @@ require_once "utils/dao/product.php";?>
         <section>
             <div class="row">
             <?php
-            #trouver le moyen de récupérer les données du produit
-            for ($i=0; $i < 4; $i++) {
+
+            $bddResult = getProducts();
+
+            $imgUrl = getProductsImageUrls($bddResult[0]["uuid_product"]);
+
+            if (count($imgUrl) > 0) {
+                $imgUrl = $imgUrl[0];
+            } else {
+                $imgUrl = "/image/product/";
+            }
+
+            for ($i=0; $i < 2; $i++) {
+
                 ?>
                 <div class="col">
                     <div class="card text-center" style="width: 18rem;">
-                        <img src="<?php echo $bddResult[3];?>" class="card-img-top">
+                        <img src="<?php echo $imgUrl;?>" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $bddResult[2];?></h5>
-                            <p class="card-text"><?php echo $bddResult[1];?></p>
-                            <a href="<?php echo $bddResult[0];?>" class="btn btn-primary">Acheter</a>
+                            <h5 class="card-title"><?php echo $bddResult[$i]['name'];?></h5>
+                            <p class="card-text"><?php echo $bddResult[$i]['description'];?></p>
+                            <a href="<?php echo 'product.php?id='.$bddResult[$i]['uuid_product'];?>" class="btn btn-primary">Acheter</a>
                         </div>
                     </div>
                 </div>
