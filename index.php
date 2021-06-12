@@ -70,6 +70,7 @@ require_once "utils/dao/product.php";?>
                     </div>
                 </div>
                 </div>
+            </div>
             <?php
             }
             ?>
