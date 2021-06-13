@@ -27,6 +27,7 @@ const i18n = (() => {
                 languages[available_languages[i]] = json[i];
             }
             window.localStorage.setItem("languages", JSON.stringify(languages));
+            window.addEventListener("load", translatePage);
             translatePage();
         })
         .catch(err => console.error(err));

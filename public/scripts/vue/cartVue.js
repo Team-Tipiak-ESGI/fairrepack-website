@@ -45,7 +45,7 @@ cartVue.buildCartElement = function(uuid, product) {
     button_4k.classList.add(`btn`, `btn-danger`, `btn-sm`);
 
     div_g.append(button_4k);
-    button_4k.innerText = i18n("js.carteVue.delete");
+    button_4k.innerText = i18n("js.cartVue.delete");
 
     button_4k.addEventListener("click", (e) => {
         cartController.updateCount(uuid, 0);
