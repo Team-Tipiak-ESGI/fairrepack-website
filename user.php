@@ -11,4 +11,13 @@
     </section>
 </main>
 
+<script>
+    const uuid = getPage().pageId;
+    if (uuid !== undefined) {
+        userVue.basicUserInfo(document.querySelector("div#userInfo"), document.querySelector("div#userProducts"), uuid);
+    }
+
+    userVue.updateAccountPage();
+</script>
+
 <?php include "includes/footer.php"; ?>
