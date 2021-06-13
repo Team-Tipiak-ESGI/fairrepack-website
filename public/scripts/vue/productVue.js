@@ -373,18 +373,20 @@ productVue.buildProductList = function (div, products) {
         
 
         p_40.innerText = `${product.description || "-"}\nEtat : ${product.state}\nOffres : ${product.offer_count}`; // Card content
-        const a_42 = document.createElement(`a`);
-        a_42.href = `/product.php?id=${product.id}`;
-        a_42.classList.add(`btn`, `btn-primary`);
 
-        div_e.append(a_42);
-        a_42.innerText = `View product`;
 
         div_1.append(div_e);
 
 
         const div_f = document.createElement("div");
         div_f.classList.add("card-footer");
+
+        const a_42 = document.createElement(`a`);
+        a_42.href = `/product.php?id=${product.id}`;
+        a_42.classList.add(`btn`, `btn-primary`);
+
+        div_f.append(a_42);
+        a_42.innerText = `View product`;
 
         if (product.state === "in_stock") {
             const btn_43 = document.createElement(`btn`);
