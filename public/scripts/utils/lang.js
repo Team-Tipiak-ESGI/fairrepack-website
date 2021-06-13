@@ -7,8 +7,11 @@ const i18n = (() => {
     const default_language = "en";
     let lang = window.localStorage.getItem("lang");
 
-    if (lang === null || !available_languages.includes(lang))
+    if (lang === null)
         window.localStorage.setItem("lang", navigator.language.split("-")[0]);
+
+    if (!available_languages.includes(lang))
+        lang = default_language;
 
     // Get languages
     const languages = {};
