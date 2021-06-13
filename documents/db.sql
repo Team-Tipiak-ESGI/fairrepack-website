@@ -39,7 +39,7 @@ create table fairrepack.history_useragent
 (
     id_history_useragent int auto_increment
         primary key,
-    useragent            varchar(1000) collate latin1_general_cs not null,
+    useragent            varchar(254) collate latin1_general_cs not null,
     constraint useragent_UNIQUE
         unique (useragent)
 )
