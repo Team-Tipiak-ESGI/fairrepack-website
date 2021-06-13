@@ -51,7 +51,7 @@ require_once "utils/dao/product.php";?>
                     }
                     ?>
                     <div class="col padding-dernieres-sorties">
-                        <div class="card text-center" style="width: 18rem;">
+                        <div class="card text-center h-100" style="width: 18rem;">
                             <img src="<?php echo $imgUrl;?>" class="card-img-top" style="height: 150px; object-fit: cover;">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $bddResult[$i]['name'];?></h5>
