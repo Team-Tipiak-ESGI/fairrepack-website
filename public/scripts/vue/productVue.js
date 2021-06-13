@@ -370,7 +370,7 @@ productVue.buildProductList = function (div, products) {
         p_40.classList.add(`card-text`);
 
         div_e.append(p_40);
-
+        
 
         p_40.innerText = `${product.description || "-"}\nEtat : ${product.state}\nOffres : ${product.offer_count}`; // Card content
         const a_42 = document.createElement(`a`);
@@ -386,6 +386,14 @@ productVue.buildProductList = function (div, products) {
         const div_f = document.createElement("div");
         div_f.classList.add("card-footer");
 
+        if (product.state === "in_stock") {
+            const btn_43 = document.createElement(`btn`);
+            btn_43.classList.add(`btn`, `btn-secondary`, `me-2`);
+            btn_43.innerText = `Add to cart`;
+            btn_43.addEventListener("click", (e) => {
+                cartController.addProduct(product.id);
+            });
+            div_f.append(btn_43);
         }
         div_1.append(div_f);
 
