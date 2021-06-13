@@ -15,6 +15,8 @@
 </head>
 <body class="min-vh-100 d-flex flex-column justify-content-between">
 
+    <script src="/public/scripts/utils/lang.js"></script>
+
     <script src="/public/scripts/utils/utils.js"></script>
     <script src="/public/scripts/model/productModel.js"></script>
     <script src="/public/scripts/model/referenceModel.js"></script>

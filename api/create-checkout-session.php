@@ -8,6 +8,7 @@ $body = file_get_contents("php://input");
 $_POST = json_decode($body, true);
 
 $line_items = [];
+$products = [];
 
 $db = getDatabaseConnection();
 
@@ -21,6 +22,8 @@ foreach ($_POST as $id => $count) {
 
     // If product is in stock
     if ($product["state"] !== "in_stock") continue;
+
+    $products[] = $id;
 
     // Get reference (for name and brand)
     $reference = getReferenceByUUID($product["uuid_reference"]);
@@ -58,5 +61,12 @@ $checkout_session = \Stripe\Checkout\Session::create([
     'success_url' => $DOMAIN . '/cart.php',
     'cancel_url' => $DOMAIN . '/cart.php',
 ]);
+
+$id = $checkout_session->payment_intent;
+
+$db = getDatabaseConnection();
+foreach ($products as $product) {
+    databaseInsert($db, "insert into payment (id_intent, product) values (?, (select id_product from product where uuid_product = ?))", [$id, $product]);
+}
 
 echo json_encode(['id' => $checkout_session->id]);

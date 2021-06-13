@@ -14,22 +14,28 @@ const i18n = (() => {
         lang = default_language;
 
     // Get languages
-    const languages = {};
+    const languages = JSON.parse(window.localStorage.getItem("languages") || "{}");
+    const promises = [];
     for (const l of available_languages) {
-        fetch(`/trad/${l}.json`)
-            .then(res => res.json())
-            .then(json => {
-                languages[l] = json;
-                translatePage();
-            })
-            .catch(err => console.error(err));
+        promises.push(fetch(`/trad/${l}.json`)
+            .then(res => res.json()));
     }
+
+    Promise.all(promises)
+        .then(json => {
+            for (let i = 0; i < json.length; i++) {
+                languages[available_languages[i]] = json[i];
+            }
+            window.localStorage.setItem("languages", JSON.stringify(languages));
+            translatePage();
+        })
+        .catch(err => console.error(err));
 
     return (msg, ...params) => {
         msg = msg.split(/\./g);
         let translation = languages[lang];
         for (const element of msg) {
-            translation = translation[element];
+            translation = translation?.[element];
         }
         if (params.length === 0) return translation;
 

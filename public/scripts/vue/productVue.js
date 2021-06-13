@@ -170,7 +170,7 @@ productVue.buildElement = function (div, product) {
     const text_0_1_6_2_8_1 = document.createTextNode(`Seller: `);
     li_0_1_6_2_8.append(text_0_1_6_2_8_1);
     const a_0_1_6_2_8_2 = document.createElement(`a`);
-    a_0_1_6_2_8_2.href = `/user.php?id=${product.user || product.user_id}`;
+    a_0_1_6_2_8_2.href = `/user.php?id=${product.user_id}`;
     li_0_1_6_2_8.append(a_0_1_6_2_8_2);
     a_0_1_6_2_8_2.innerText = `${product.user || product.user_id}`;
 

@@ -59,7 +59,7 @@ if (isset($_GET["id"])) {
     // If user is owner of the product, add colissimo
     $token = getToken();
     if (!is_null($token) && getToken()->getPayload()["uuid"] === $rows["user_id"]) {
-        $colissimo = databaseFindOne($db, "select colissimo from product $whereSql", $params)["colissimo"];
+        $colissimo = databaseFindOne($db, "select colissimo from product $whereSql", $params) ?? "";
         $rows["colissimo"] = $colissimo;
     }
 
