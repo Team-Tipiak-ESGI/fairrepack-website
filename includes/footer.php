@@ -4,16 +4,13 @@
         </div>
         <div class="row">
             <div class="col">
-                <h5 class="text-uppercase">Fair Repack en Bref</h5>
+                <h5 class="text-uppercase"><span data-i18n>php.footer.about_fair_repack</span></h5>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                    distinctio earum repellat quaerat voluptatibus placeat nam,
-                    commodi optio pariatur est quia magnam eum harum corrupti dicta,
-                    aliquam sequi voluptate quas.
+                    <span data-i18n>php.footer.content_about</span>
                 </p>
             </div>
             <div class="col">
-                <h5 class="text-uppercase">Nos liens</h5>
+                <h5 class="text-uppercase"><span data-i18n>php.footer.links</span></h5>
                 <ul class="list-unstyled">
                     <li>
                         <a href="#!">Link 1</a>
@@ -30,7 +27,7 @@
                 </ul>
             </div>
             <div class="col">
-                <h5 class="text-uppercase">Socials</h5>
+                <h5 class="text-uppercase"><span data-i18n>php.footer.social</span></h5>
                 <ul class="list-unstyled">
                     <li>
                         <a href="#!">Link 1</a>
@@ -55,6 +52,7 @@
 </footer>
 
 <script src="/public/scripts/utils/global.js"></script>
+<script src="/public/scripts/utils/lang.js"></script>
 
 <script src="/public/scripts/bootstrap.bundle.min.js"></script>
 </body>

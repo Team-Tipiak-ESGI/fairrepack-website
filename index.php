@@ -24,11 +24,11 @@ require_once "utils/dao/product.php";?>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carousel-land-page" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+                <span class="visually-hidden"><span data-i18n>php.variables.prev_page</span></span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carousel-land-page" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+                <span class="visually-hidden"><span data-i18n>php.variables.next_page</span></span>
             </button>
         </div>
     </section>
@@ -36,7 +36,7 @@ require_once "utils/dao/product.php";?>
     <section>
         <div class="card text-center">
             <div class="card-header">
-                Derniers produits enregistrés
+                php.index.daily_deals
             </div>
             <br>
             <div>

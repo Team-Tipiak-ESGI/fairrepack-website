@@ -55,7 +55,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/">Home</a>
+                            <a class="nav-link" aria-current="page" href="/"><span data-i18n>php.header.home</span></a>
                         </li>
 
                         <li class="nav-item">
@@ -67,19 +67,19 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/references.php">Products</a>
+                            <a class="nav-link" href="/references.php"><span data-i18n>php.header.products</span></a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center" href="/cart.php">
-                                Cart
+                                <span data-i18n>php.header.cart</span>
                                 <span class="badge rounded-pill bg-primary ms-1" id="headerCart">0</span>
                             </a>
                         </li>
                     </ul>
                     <form class="d-flex mb-0" id="searchForm">
                         <input class="form-control me-2" id="searchBar" name="search" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-success" type="submit">Search</button>
+                        <button class="btn btn-success" type="submit"><span data-i18n>php.header.search</span></button>
                     </form>
                 </div>
             </div>
