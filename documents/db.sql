@@ -164,6 +164,7 @@ create table fairrepack.product
     reference    int                                                                                         not null,
     warehouse    int                                                                                         null,
     created      datetime                                                        default current_timestamp() not null,
+    colissimo    varchar(45)                                                                                 null,
     primary key (id_product, uuid_product),
     constraint reference
         foreign key (reference) references fairrepack.reference (id_reference)
