@@ -92,7 +92,7 @@
             "price_filter": "Filtre par Prix",
             "brand_filter": "Filtre par Marque",
             "year_filter": "Filtre par Année",
-            "display_results": "Afficher tous les résultatd"
+            "display_results": "Afficher tous les résultats"
 
 
 
@@ -149,7 +149,6 @@
 
 
 
-            i18n("js.carteVue.remove")
         },
         "referenceVue": {
             "": ""

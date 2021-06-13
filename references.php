@@ -18,11 +18,11 @@
                     <label class="d-block mb-3">
                         <span data-i18n>php.reference.product_condition</span>
                         <select name="quality" class="form-select">
-                            <option value="new"><span data-i18n>php.reference.new</span></option>
-                            <option value="high"><span data-i18n>php.reference.nearly_new</span></option>
-                            <option value="medium"><span data-i18n>php.reference.good</span></option>
-                            <option value="low"><span data-i18n>php.reference.damaged</span></option>
-                            <option value="broken"><span data-i18n>php.reference.broken</span></option>
+                            <option value="new" data-i18n>php.reference.new</option>
+                            <option value="high" data-i18n>php.reference.nearly_new</option>
+                            <option value="medium" data-i18n>php.reference.good</option>
+                            <option value="low" data-i18n>php.reference.damaged</option>
+                            <option value="broken" data-i18n>php.reference.broken</option>
                         </select>
                     </label>
 
