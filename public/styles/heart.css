@@ -1,3 +1,10 @@
+@font-face{
+    font-family: "Army_Wide";
+    src: url("Army_Wide.woff") format("woff");
+}
+.military-font{
+    font-family: "Army_Wide", serif;
+}
 .bg-light {
     background-color: #BABABA!important;
 }
@@ -36,3 +43,4 @@
 .padding-dernieres-sorties{
     padding: 10px;
 }
+

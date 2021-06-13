@@ -47,7 +47,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light fairrepack_navbar">
             <div class="container">
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand military-font" href="/">
                     <img src="/public/assets/favicon_140.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
                     Fair Repack
                 </a>
