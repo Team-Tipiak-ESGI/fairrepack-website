@@ -372,19 +372,7 @@ productVue.buildProductList = function (div, products) {
         div_e.append(p_40);
 
 
-        const div_f = document.createElement("div");
-        div_f.classList.add("card-footer");
 
-        if (product.state === "in_stock") {
-            const btn_43 = document.createElement(`btn`);
-            btn_43.classList.add(`btn`, `btn-secondary`, `me-2`);
-            btn_43.innerText = `Add to cart`;
-            btn_43.addEventListener("click", (e) => {
-                cartController.addProduct(product.id);
-            });
-            div_e.append(btn_43);
-        }
-        div_e.append(div_f)
 
 
 
@@ -399,6 +387,20 @@ productVue.buildProductList = function (div, products) {
         a_42.innerText = `View product`;
 
         div_1.append(div_e);
+
+        const div_f = document.createElement("div");
+        div_f.classList.add("card-footer");
+
+        if (product.state === "in_stock") {
+            const btn_43 = document.createElement(`btn`);
+            btn_43.classList.add(`btn`, `btn-secondary`, `me-2`);
+            btn_43.innerText = `Add to cart`;
+            btn_43.addEventListener("click", (e) => {
+                cartController.addProduct(product.id);
+            });
+            div_f.append(btn_43);
+        }
+        div_1.append(div_f);
 
         div.append(div_1);
     }
