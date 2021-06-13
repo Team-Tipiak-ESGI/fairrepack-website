@@ -379,7 +379,7 @@ productVue.buildProductList = function (div, products) {
 
 
         const div_f = document.createElement("div");
-        div_f.classList.add("card-footer");
+        div_f.classList.add("card-footer","d-flex","justify-content-center");
 
         const a_42 = document.createElement(`a`);
         a_42.href = `/product.php?id=${product.id}`;

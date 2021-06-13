@@ -36,14 +36,14 @@ require_once "utils/dao/product.php";?>
     <section>
         <div class="card text-center">
             <div class="card-header">
-                php.index.daily_deals
+                <span data-i18n>php.index.daily_deals</span>
             </div>
             <br>
             <div>
             <div class="row" style="padding: 10px" ><!-- désolé j'ai pas réussi à faire mieux, ça marchait pas sinon :c -->
                 <?php $bddResult = getProducts();
-                for ($i=0; $i < 4; $i++) {
-                    $imgUrl = getProductsImageUrls($bddResult[$i]["uuid_product"]);
+                foreach ($bddResult as $Product) {
+                    $imgUrl = getProductsImageUrls($Product["uuid_product"]);
                     if (count($imgUrl) > 0) {
                         $imgUrl = $imgUrl[0];
                     } else {
@@ -54,11 +54,11 @@ require_once "utils/dao/product.php";?>
                         <div class="card text-center h-100" style="width: 18rem;">
                             <img src="<?php echo $imgUrl;?>" class="card-img-top" style="height: 150px; object-fit: cover;">
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo $bddResult[$i]['name'];?></h5>
-                                <p class="card-text "><?php echo $bddResult[$i]['description'];?></p>
+                                <h5 class="card-title"><?php echo $Product['name'];?></h5>
+                                <p class="card-text "><?php echo $Product['description'];?></p>
                             </div>
                             <div class="card-footer">
-                                <a href="<?php echo 'product.php?id='.$bddResult[$i]['uuid_product'];?>" class="btn btn-primary">Voir le produit</a>
+                                <a href="<?php echo 'product.php?id='.$Product['uuid_product'];?>" class="btn btn-primary"><span data-i18n>php.index.see_product</span></a>
                             </div>
                         </div>
                     </div>

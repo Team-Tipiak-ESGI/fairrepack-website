@@ -52,12 +52,8 @@
 
         },
         "index": {
-            "daily_deals": "Daily Deals",
-            "_COMMENT1": "Contenu du truc automobile",
-            "a": "a",
-            "_COMMENT2": "Contenu des produits",
-            "b": "a"
-
+            "daily_deals": "Last Products Added",
+            "see_product": "See Product"
 
         },
         "product": {
