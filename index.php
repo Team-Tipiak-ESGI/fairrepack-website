@@ -50,7 +50,7 @@ require_once "utils/dao/product.php";?>
                         $imgUrl = "/image/product/";
                     }
                     ?>
-                    <div class="col padding-dernieres-sorties">
+                    <div class="col">
                         <div class="card text-center h-100" style="width: 18rem;">
                             <img src="<?php echo $imgUrl;?>" class="card-img-top" style="height: 150px; object-fit: cover;">
                             <div class="card-body">
