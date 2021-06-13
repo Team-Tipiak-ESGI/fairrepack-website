@@ -4,6 +4,8 @@
 }
 .military-font{
     font-family: "Army_Wide", serif;
+    display: flex;
+    align-items: center;
 }
 .bg-light {
     background-color: #BABABA!important;

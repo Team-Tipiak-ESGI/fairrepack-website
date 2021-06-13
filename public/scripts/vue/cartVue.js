@@ -4,7 +4,7 @@ cartVue.buildProductList = function(div = document.querySelector("#cart"), produ
     div.innerHTML = "";
 
     if (Object.keys(products).length === 0) {
-        div.innerHTML = "<span>Your cart is empty, <a href='/references.php'>start shopping now!</a></span>";
+        div.innerHTML = i18n("js.cartVue.empty_cart");
         return;
     }
 

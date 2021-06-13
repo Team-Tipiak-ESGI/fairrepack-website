@@ -45,7 +45,7 @@
     <script src="/public/scripts/vue/pagination.js"></script>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fairrepack_navbar">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fairrepack_navbar">
             <div class="container">
                 <a class="navbar-brand military-font" href="/">
                     <img src="/public/assets/favicon_140.png" alt="" width="30" height="30" class="d-inline-block align-text-top">

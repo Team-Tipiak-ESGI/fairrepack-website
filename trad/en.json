@@ -105,7 +105,7 @@
         },
         "footer": {
             "about_fair_repack": "About Fair Repack",
-            "content_about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt\ndistinctio earum repellat quaerat voluptatibus placeat nam,\ncommodi optio pariatur est quia magnam eum harum corrupti dicta,\naliquam sequi voluptate quas.",
+            "content_about": "Fair Repack is an online sales platform allowing everyone to give new life to their electronic devices and appliances by reselling them to anyone who needs them.",
             "links": "Our Links",
             "social": "Our Social Networks"
 
@@ -152,7 +152,8 @@
 
         },
         "referenceVue": {
-            "": ""
+            "view_product": "Voir le produit",
+            "stock_registered": "Stocks : $1\nRegistered : $2"
         },
         "typeVue": {
             "": ""

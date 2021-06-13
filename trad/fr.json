@@ -103,8 +103,8 @@
 
         },
         "footer": {
-            "about_fair_repack": "À propos Fair Repack",
-            "content_about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt\ndistinctio earum repellat quaerat voluptatibus placeat nam,\ncommodi optio pariatur est quia magnam eum harum corrupti dicta,\naliquam sequi voluptate quas.",
+            "about_fair_repack": "À propos de Fair Repack",
+            "content_about": "Fair Repack est une plateforme de vente en ligne permettant à chacun de donner une nouvelle vie à ses appareils électroniques et électroménagers en les revendant à quiconque en aurait besoin.",
             "links": "Nos Liens",
             "social": "Nos réseaux sociaux"
 
@@ -129,7 +129,7 @@
 
         },
         "cartVue": {
-            "empty_cart" : "Votre panier est vide, <a href='/references.php'>start shopping now!</a>",
+            "empty_cart" : "<span>Votre panier est vide, <a href='/references.php'>Acheter maintenant.</a></span",
             "delete": "Supprimer"
 
 
@@ -150,7 +150,8 @@
 
         },
         "referenceVue": {
-            "": ""
+            "view_product": "Voir le produit",
+            "stock_registered": "Stocks : $1\nEnregistrés : $2"
         },
         "typeVue": {
             "": ""
