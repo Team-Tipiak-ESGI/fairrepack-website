@@ -59,7 +59,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/account.php" id="headerAccount">Log in</a>
+                            <a class="nav-link" href="/account.php" id="headerAccount"><span data-i18n>php.header.login</span></a>
                         </li>
 
                         <li class="nav-item">

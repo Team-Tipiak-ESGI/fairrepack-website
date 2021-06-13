@@ -37,7 +37,9 @@
             "new_on_fairrepack": "New to Fair Repack ? We suggest you to sign up.",
             "invalid_email": "Invalid email address.",
             "pwd_too_short": "Password too short.",
-            "by_signing_in": "By signing up, you consent to our"
+            "by_signing_in": "By signing up, you consent to our",
+            "logout": "Log out",
+            "delete_ur_acc": "Delete your account"
 
 
         },
@@ -117,7 +119,9 @@
             "account": "Account",
             "products": "Products",
             "cart": "Cart",
-            "search": "Search"
+            "search": "Search",
+            "login": "Log in",
+            "profil": "Profile/Sign out"
         }
     },
     "js": {

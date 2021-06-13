@@ -67,7 +67,7 @@ function updateHeaderAccount() {
     if (token.valid) {
         if (token.payload?.type === "admin")
             document.getElementById("headerAdmin").classList.remove("d-none");
-        headerAccount.innerText = "Profile/Sign out";
+        headerAccount.innerText = i18n("php.header.profil");
     }
 }
 

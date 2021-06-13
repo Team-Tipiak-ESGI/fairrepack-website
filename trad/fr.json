@@ -37,8 +37,9 @@
             "new_on_fairrepack": "Nouveau sur Fair Repack ? Il est conseillé de s'inscrire.",
             "invalid_email": "Email invalide.",
             "pwd_too_short": "Mot de passe trop court.",
-            "by_signing_in": "En validant votre inscription, vous acceptez notre"
-
+            "by_signing_in": "En validant votre inscription, vous acceptez notre",
+            "logout": "Déconnexion",
+            "delete_ur_acc": "Supprimer votre compte"
 
         },
         "cart": {
@@ -114,10 +115,12 @@
         },
         "header": {
             "home": "Accueil",
-            "account": "Mon Compte",
+            "account": "Mon compte",
             "products": "Produits",
             "cart": "Panier",
-            "search": "Rechercher"
+            "search": "Rechercher",
+            "login": "Connexion",
+            "profil": "Profil/Déconnexion"
         }
     },
     "js": {
