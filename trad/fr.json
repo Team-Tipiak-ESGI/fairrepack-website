@@ -143,15 +143,21 @@
         "productVue": {
             "seller": "Vendeur : ",
             "product": "Produit : ",
-            "a": "Qualité : ${product.quality}",
-            "b": ""
+            "quality": "Qualité : $1",
+            "description": "Description : $1",
+            "last_price": "Dernier prix : $1",
+            "state": "Etat : $1",
+            "ask": "$1 Vous Propose $2€",
+            "hour": "Le %yyyy-%MM-%dd à %hh:%mm",
+            "added": "Ajouté le $1"
 
 
 
         },
         "referenceVue": {
             "view_product": "Voir le produit",
-            "stock_registered": "Stocks : $1\nEnregistrés : $2"
+            "stock_registered": "Stocks : $1\nEnregistrés : $2",
+            "image_available": "Aucune Image Disponible"
         },
         "typeVue": {
             "": ""

@@ -32,7 +32,7 @@ referenceVue.buildReferenceList = function (div, page = 0) {
                 img_0.style.height = "150px";
                 img_0.style.objectFit = "cover";
                 img_0.classList.add(`card-img-top`);
-                img_0.setAttribute(`alt`, `No image available.`);
+                img_0.setAttribute(`alt`, i18n("js.referenceVue.image_available"));
                 div_1.append(img_0);
 
                 const div_e = document.createElement(`div`);

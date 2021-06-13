@@ -144,8 +144,14 @@
         "productVue": {
             "seller": "Seller : ",
             "product": "Product : ",
-            "a": "Qualité : ${product.quality}",
-            "b": ""
+            "quality": "Qualité : $1",
+            "description": "Description: $1",
+            "last_price": "Last Price : $1",
+            "state": "State : $1",
+            "seller": "Seller : ",
+            "ask": "$1 Asks $2€",
+            "hour": "%yyyy-%MM-%dd on %hh:%mm",
+            "added": "Added : $1"
 
 
 
@@ -153,7 +159,8 @@
         },
         "referenceVue": {
             "view_product": "Voir le produit",
-            "stock_registered": "Stocks : $1\nRegistered : $2"
+            "stock_registered": "Stocks : $1\nRegistered : $2",
+            "image_available": "No Image Available"
         },
         "typeVue": {
             "": ""

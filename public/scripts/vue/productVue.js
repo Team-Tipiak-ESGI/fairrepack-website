@@ -32,7 +32,7 @@ productVue.buildInfoDiv = function (div, product) {
     const li_i = document.createElement(`li`);
 
     ul_1.append(li_i);
-    li_i.innerText = `Qualité : ${product.quality}`;
+    li_i.innerText = i18n("js.productVue.quality",product.quality);
 
     const li_j = document.createElement(`li`);
 
@@ -56,7 +56,7 @@ productVue.buildElement = function (div, product) {
     div_0_1_2.classList.add(`card-header`);
     const h5_0_1_2_2 = document.createElement(`h5`);
     h5_0_1_2_2.classList.add(`card-title`);
-    const text_0_1_2_2_1 = document.createTextNode(`Product: `);
+    const text_0_1_2_2_1 = document.createTextNode(i18n('js.productVue.product'));
     h5_0_1_2_2.append(text_0_1_2_2_1);
     const a_4i = document.createElement(`a`);
     a_4i.href = `/reference.php?id=${product.reference}`;
@@ -143,31 +143,31 @@ productVue.buildElement = function (div, product) {
 
     const li_0_1_6_2_1 = document.createElement(`li`);
     li_0_1_6_2_1.classList.add(`list-group-item`, `card-text`);
-    const text_0_1_6_2_2_0 = document.createTextNode(`Description: ${product.description || 'N/A'}`);
+    const text_0_1_6_2_2_0 = document.createTextNode(i18n("js.productVue.description",product.description || "N/A"));
     li_0_1_6_2_1.append(text_0_1_6_2_2_0);
     ul_0_1_6_2.append(li_0_1_6_2_1);
 
     const li_0_1_6_2_2 = document.createElement(`li`);
     li_0_1_6_2_2.classList.add(`list-group-item`, `card-text`);
-    const text_0_1_6_2_2_1 = document.createTextNode(`Quality: ${product.quality}`);
+    const text_0_1_6_2_2_1 = document.createTextNode(i18n("js.productVue.quality",product.quality));
     li_0_1_6_2_2.append(text_0_1_6_2_2_1);
     ul_0_1_6_2.append(li_0_1_6_2_2);
 
     const li_0_1_6_2_4 = document.createElement(`li`);
     li_0_1_6_2_4.classList.add(`list-group-item`, `card-text`);
-    const text_0_1_6_2_4_1 = document.createTextNode(`Last price: ${product.offers?.[0]?.price || 'N/A'}`);
+    const text_0_1_6_2_4_1 = document.createTextNode(i18n("js.productVue.last_price",product.offers?.[0]?.price || 'N/A'));
     li_0_1_6_2_4.append(text_0_1_6_2_4_1);
     ul_0_1_6_2.append(li_0_1_6_2_4);
 
     const li_0_1_6_2_6 = document.createElement(`li`);
     li_0_1_6_2_6.classList.add(`list-group-item`, `card-text`);
-    const text_0_1_6_2_6_1 = document.createTextNode(`State: ${product.state}`);
+    const text_0_1_6_2_6_1 = document.createTextNode(i18n("js.productVue.state",product.state));
     li_0_1_6_2_6.append(text_0_1_6_2_6_1);
 
     ul_0_1_6_2.append(li_0_1_6_2_6);
     const li_0_1_6_2_8 = document.createElement(`li`);
     li_0_1_6_2_8.classList.add(`list-group-item`, `card-text`);
-    const text_0_1_6_2_8_1 = document.createTextNode(`Seller: `);
+    const text_0_1_6_2_8_1 = document.createTextNode(i18n('js.productVue.seller'));
     li_0_1_6_2_8.append(text_0_1_6_2_8_1);
     const a_0_1_6_2_8_2 = document.createElement(`a`);
     a_0_1_6_2_8_2.href = `/user.php?id=${product.user_id}`;
@@ -181,7 +181,7 @@ productVue.buildElement = function (div, product) {
     div_0_1.append(div_0_1_6);
     const div_0_1_8 = document.createElement(`div`);
     div_0_1_8.classList.add(`card-footer`, `text-muted`);
-    const text_0_1_8_1 = document.createTextNode(`Added: ${new Date(product.created).format("%yyyy-%MM-%dd on %hh:%mm")}`);
+    const text_0_1_8_1 = document.createTextNode(i18n("js.productVue.added",new Date(product.created).format(i18n("js.productVue.hour"))));
     div_0_1_8.append(text_0_1_8_1);
 
     div_0_1.append(div_0_1_8);
@@ -205,7 +205,7 @@ productVue.buildOfferDiv = function (div, product) {
         h5_66.classList.add(`mb-1`);
 
         div_m.append(h5_66);
-        h5_66.innerText = `${offer.user || offer.user_id} asks ${offer.price}€`; // Title
+        h5_66.innerText = i18n("js.productVue.ask",offer.user || offer.user_id,offer.price); // Title
         const small_68 = document.createElement(`small`);
         small_68.classList.add(`text-muted`);
 
@@ -222,7 +222,7 @@ productVue.buildOfferDiv = function (div, product) {
         small_q.classList.add(`text-muted`);
 
         a_2.append(small_q);
-        small_q.innerText = `${new Date(offer.created).format("%yyyy-%MM-%dd on %hh:%mm")}`; // Footer
+        small_q.innerText = `${new Date(offer.created).format(i18n("js.productVue.hour"))}`; // Footer
 
         div.append(a_2);
     }
@@ -356,7 +356,7 @@ productVue.buildProductList = function (div, products) {
         img_0.style.height = "150px";
         img_0.style.objectFit = "cover";
         img_0.classList.add(`card-img-top`);
-        img_0.setAttribute(`alt`, `No image available.`);
+        img_0.setAttribute(`alt`,i18n("js.referenceVue.image_available"));
         div_1.append(img_0);
 
         const div_e = document.createElement(`div`);
