@@ -1,6 +1,6 @@
 const productVue = {};
 
-productVue.buildInfoDiv = function(div, product) {
+productVue.buildInfoDiv = function (div, product) {
     div.innerHTML = '';
 
     // Product info
@@ -76,12 +76,12 @@ productVue.buildElement = function (div, product) {
     const count = parseInt(product.image_count);
     const uuid = product.id;
 
-    for (let i = 0; i < count; i++){
-        const url = `/image/product/${uuid}/${i+1}`;
+    for (let i = 0; i < count; i++) {
+        const url = `/image/product/${uuid}/${i + 1}`;
 
         const image_div = document.createElement(`div`);
         image_div.classList.add(`carousel-item`);
-        if (i === 0){
+        if (i === 0) {
             image_div.classList.add(`active`);
         }
         image_div.setAttribute(`data-bs-interval`, `10000`);
@@ -189,7 +189,7 @@ productVue.buildElement = function (div, product) {
     div.append(div_0_1);
 }
 
-productVue.buildOfferDiv = function(div, product) {
+productVue.buildOfferDiv = function (div, product) {
     div.innerHTML = '';
 
     if (product.offers === undefined) return;
@@ -228,7 +228,7 @@ productVue.buildOfferDiv = function(div, product) {
     }
 }
 
-productVue.buildImageDiv = function(image_div, product) {
+productVue.buildImageDiv = function (image_div, product) {
     const count = parseInt(product.image_count);
     const uuid = product.id;
 
@@ -371,12 +371,15 @@ productVue.buildProductList = function (div, products) {
 
         div_e.append(p_40);
 
-
-
-
-
-
-
+        if (product.state === "in_stock") {
+            const btn_43 = document.createElement(`btn`);
+            btn_43.classList.add(`btn`, `btn-secondary`, `me-2`);
+            btn_43.innerText = `Add to cart`;
+            btn_43.addEventListener("click", (e) => {
+                cartController.addProduct(product.id);
+            });
+            div_e.append(btn_43);
+        }
 
         p_40.innerText = `${product.description || "-"}\nEtat : ${product.state}\nOffres : ${product.offer_count}`; // Card content
         const a_42 = document.createElement(`a`);
@@ -387,6 +390,7 @@ productVue.buildProductList = function (div, products) {
         a_42.innerText = `View product`;
 
         div_1.append(div_e);
+
 
         const div_f = document.createElement("div");
         div_f.classList.add("card-footer");
@@ -402,7 +406,7 @@ productVue.buildProductList = function (div, products) {
         }
         div_1.append(div_f);
 
-        div.append(div_1);
+    div.append(div_1);
     }
 }
 
