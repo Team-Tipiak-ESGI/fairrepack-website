@@ -16,6 +16,9 @@ if (!$token->validate()) {
 
 require_once __DIR__ . "/../../utils/database.php";
 
+$body = file_get_contents("php://input");
+$_POST = json_decode($body, true);
+
 $db = getDatabaseConnection();
 
 $uuid_user = $token->getPayload()["uuid"];
