@@ -8,37 +8,44 @@ if ($_SERVER["REQUEST_METHOD"] !== "GET") {
 require_once __DIR__ . "/../../utils/database.php";
 require_once __DIR__ . "/../../utils/user.php";
 
+$uuid = NULL;
+$token = getToken();
+$token_uuid = NULL;
+
+if (!is_null($token) && $token->validate())
+    $token_uuid = $token->getPayload()['uuid'];
+
 if (isset($_GET["id"])) {
     $uuid = $_GET["id"];
-    $token = getToken();
-    $token_uuid = NULL;
+} else if (!empty($token_uuid)) {
+    $uuid = $token_uuid;
+}
 
-    if (!is_null($token))
-        $token_uuid = $token->getPayload()['uuid'];
+if (!empty($uuid)) {
     $same = strcmp($token_uuid, $uuid) === 0;
-
 
     $db = getDatabaseConnection();
     header("Content-Type: application/json");
 
     $sql = NULL;
 
-    if ($same)
-        $sql = "select username, email, language, user_type, created
+    if ($same) {
+        $sql = "select username, email, language, user_type, created, coins, waiting_coins
                     from user
                     where uuid_user = ?";
-    else
+    } else {
         $sql = "select username, language, user_type, created
                 from user
                 where uuid_user = ?";
-    $user = databaseFindOne($db, $sql, [$_GET["id"]]);
+    }
+    $user = databaseFindOne($db, $sql, [$uuid]);
 
     if ($same) {
         $sql = "select country, owner_name, address_line1, address_line2, city, state, postal_code, phone_number, additional_info
                     from user
                     join address a on user.address = a.id_address
                     where user.uuid_user = ?";
-        $address = databaseFindOne($db, $sql, [$_GET["id"]]);
+        $address = databaseFindOne($db, $sql, [$uuid]);
     }
 
     $sql = "select uuid_product as id, state, quality, description, p.created,
@@ -50,21 +57,21 @@ if (isset($_GET["id"])) {
                 join type t on r.type = t.id_type
                 join category c on t.category = c.id_category
                 where user.uuid_user = ?";
-    $products = databaseSelectAll($db, $sql, [$_GET["id"]]);
+    $products = databaseSelectAll($db, $sql, [$uuid]);
 
     $sql = "select uuid_product, note, price, o.created
                 from user
                 join product p on user.id_user = p.user
                 join offer o on user.id_user = o.user and p.id_product = o.product
                 where user.uuid_user = ?";
-    $offers = databaseSelectAll($db, $sql, [$_GET["id"]], PDO::FETCH_GROUP);
+    $offers = databaseSelectAll($db, $sql, [$uuid], PDO::FETCH_GROUP);
 
     $sql = "select uuid_product, r.note, r.content, r.date
                 from user
                 join product p on user.id_user = p.user
                 join review r on user.id_user = r.user and p.id_product = r.product
                 where user.uuid_user = ?";
-    $reviews = databaseSelectAll($db, $sql, [$_GET["id"]], PDO::FETCH_GROUP);
+    $reviews = databaseSelectAll($db, $sql, [$uuid], PDO::FETCH_GROUP);
 
     echo json_encode([
         "information" => $user,
