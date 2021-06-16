@@ -80,3 +80,7 @@ UserController.remove = function() {
             }
         });
 }
+
+UserController.update = async function(form) {
+    authenticatedFetch(`/api/user/update.php`, "POST", await formDataToJSON(new FormData(form)))
+}
