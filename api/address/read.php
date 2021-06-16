@@ -34,7 +34,7 @@ if (isset($_GET["id"])) {
 
     echo json_encode($address);
 } else if ($token->getPayload()["type"] === "admin") {
-    $type = $_GET["type"];
+    $type = $_GET["type"] ?? NULL;
     $whereSql = isset($type) ? "where type = ?" : "";
 
     $sql = "select id_address, country, owner_name, address_line1, address_line2, city, state, postal_code, phone_number, additional_info from address $whereSql";
