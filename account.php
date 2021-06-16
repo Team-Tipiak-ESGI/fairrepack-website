@@ -80,7 +80,7 @@
                         <span data-i18n>php.account.by_signing_in</span>
                         <a class="text-decoration-none" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalPP"><span data-i18n>php.account.privacy_policy</span></a>.
                     </p>
-                    <button type="submit" class="btn btn-primary"><span data-i18n>php.account.sign_up</span></button>
+                    <button type="submit" class="btn btn-primary"><span data-i18n>php.variables.sign_up</span></button>
                 </form>
             </div>
 
