@@ -16,23 +16,34 @@ $user_datas = getUserByUUID($uuid);
 
 
 $email = $_POST["email"];
-$username = $_POST["username"]; // Récupère le "username" entré dans le formulaire
+$username = $_POST["username"];
 $lastpwd = $_POST["lastpwd"];
 $newpwd = $_POST["newpwd"];
 $confirmpwd = $_POST["confirmpwd"];
+$phone = $_POST["phone"];
+
+//Adresse
+$country = $_POST["country"];
+$zipcode = $_POST["zipcode"];
+$city = $_POST["city"];
 $address = $_POST["address"];
+$owner_name = $_POST["owner_name"];
+
+//complémentaire
+$add_infos = $_POST["add_infos"];
 
 $error = false;
 $errors = [];
 
+$set = [];
+$params = [];
+$set1 = [];
+$params1 = [];
+
 if (!empty($email)) {
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $set = [];
-        $params = [];
-
         if (!empty($email)) {
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-
                 $set[] = "email = ?";
                 $params[] = $email;
             } else {
@@ -42,13 +53,10 @@ if (!empty($email)) {
         }
     }
 }
-
 if (!empty($username)) {
     if (strlen($username) < 2 || strlen($username) > 30) {
-        $datas_to_send = ["username" => $username];
         if (!empty($username)) {
             if (strlen($username) > 2 && strlen($username) < 30) {
-
                 $set[] = "username = ?";
                 $params[] = $username;
             } else {
@@ -88,22 +96,88 @@ if (!empty($lastpwd)) {
         $errors[] = "Le mot de passe d'origine ne correspond pas.";
     }
 }
-
-if (!empty($address)) {
-    if (strlen($address) < 20 || strlen($address) > 200) {
-
-        $set[] = "address";
-        $params[] = $address;
+if (!empty($phone)) {
+    if (!preg_match("#^0[1-9][0-9]{8}$#", $phone)) {
+        $error = true;
+        $errors[] = "Numéro incorrect";
+    } else {
+        $set1[] = "phone_number = ?";
+        $params1[] = $phone;
+    }
+}
+if (!empty($country)) {
+    if (strlen($country) > 2 && strlen($country) < 20) {
+        $set1[] = "state = ?";
+        $params1[] = $country;
     } else {
         $error = true;
-        $errors[] = "Entrez un format d'adresse valide";
+        $errors = ["nom du pays invalide"];
+    }
+}
+if (!empty($zipcode)) {
+    if (strlen($zipcode) > 2 && strlen($zipcode) < 10) {
+        $set1[] = "postal_code = ?";
+        $params1[] = $zipcode;
+    } else {
+        $error = true;
+        $errors = ["code postal invalide"];
+    }
+}
+if (!empty($city)) {
+    if (strlen($city) > 2 && strlen($city) < 30) {
+        $set1[] = "city = ?";
+        $params1[] = $city;
+    } else {
+        $error = true;
+        $errors = ["Format de ville invalide"];
+    }
+}
+if (!empty($address)) {
+    if (strlen($address) > 10 && strlen($address) < 80) {
+        $set1[] = "address_line1 = ?";
+        $params1[] = $address;
+    } else {
+        $error = true;
+        $errors = ["Mauvais format de l'adresse"];
+    }
+}
+if (!empty($owner_name)) {
+    if (strlen($owner_name) > 10 && strlen($owner_name) < 70) {
+        $set1[] = "owner_name = ?";
+        $params1[] = $owner_name;
+    } else {
+        $error = true;
+        $errors = ["Nom invalide"];
+    }
+}
+if (!empty($add_infos)) {
+    if (strlen($add_infos) > 1 && strlen($add_infos) < 1000) {
+        $set1[] = "additional_info = ?";
+        $params1[] = $add_infos;
+    } else {
+        $error = true;
+        $errors = ["Visiblement on aime pas ce que t'as écrit"];
     }
 }
 
-$params[] = $uuid;
 $db = getDatabaseConnection();
-$sql = "UPDATE user SET " . join(", ", $set) . " WHERE uuid_user = ?";
-$success = databaseUpdate($db, $sql, $params);
+
+$address_id = databaseFindOne($db, "SELECT address FROM user WHERE uuid_user = ?", [$uuid])["address"];
+if (is_null($address_id)) {
+    $sqladdress = "INSERT INTO address SET (" . join(", ", $set1) . ")";
+    databaseInsert($db, $sqladdress, $params1);
+} else {
+    $params1 = [$address_id];
+    $sqladdress = "UPDATE address SET " . join(", ", $set1) . " WHERE id_address = ?";
+    databaseUpdate($db, $sqladdress, $params1);
+}
+
+
+$params[] = $uuid;
+
+$sqluser = "UPDATE user SET " . join(", ", $set) . " WHERE uuid_user = ?";
+$success = databaseUpdate($db, $sqluser, $params);
+
 
 if ($success) {
     http_response_code(201); // CREATED
