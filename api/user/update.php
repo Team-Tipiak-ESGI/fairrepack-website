@@ -25,6 +25,9 @@ $address = $_POST["address"];
 $error = false;
 $errors = [];
 
+$set = [];
+$params = [];
+
 if (!empty($email)){
     if (filter_var($email, FILTER_VALIDATE_EMAIL)){
         $datas_to_send = ["email"=>$email];
@@ -36,7 +39,7 @@ if (!empty($email)){
     }
 }
 if (!empty($username)){
-    if (strlen($username) <2 || strlen($username) >30 ){
+    if (strlen($username) > 2 && strlen($username) < 30 ){
         $datas_to_send = ["username"=>$username];
         $set[] = "username = ?";
         $params[] = $username;
@@ -48,7 +51,7 @@ if (!empty($username)){
 if (!empty($lastpwd)){
     $connection = getDatabaseConnection();
     $hashed_password = hash('sha256', $lastpwd . SECRET);
-    $sql = "select uuid_user from `user` where uuid = ? and password = ?";
+    $sql = "select uuid_user from `user` where uuid_user = ? and password = ?";
     $res = databaseFindOne($connection, $sql, [$uuid, $hashed_password]);
     if (!$res){
         if( strlen($newpwd)<6
@@ -86,6 +89,8 @@ if (!empty($address)) {
         $errors[] = "Entrez un format d'adresse valide";
     }
 }
+
+$params[] = $uuid;
 
 $db = getDatabaseConnection();
 $sql = "UPDATE user SET " . join(", ", $set) . " WHERE uuid_user = ?";

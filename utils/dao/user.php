@@ -58,7 +58,7 @@ function loginUser($email, $password): ?Token
 function getUserByUUID(string $uuid_user): array
 {
     $db = getDatabaseConnection();
-    $sql = "SELECT id_user, username, password, email, avatar, language, address, user_type, created, coin FROM user WHERE uuid_user = ?";
+    $sql = "SELECT id_user, username, password, email, avatar, language, address, user_type, created, coins FROM user WHERE uuid_user = ?";
     $params = [$uuid_user];
     return databaseFindOne($db, $sql, $params);
 }
