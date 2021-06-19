@@ -90,55 +90,45 @@
     <section class="d-none" id="signedIn">
 
         <h1>Modifiez vos informations personnelles</h1>
+        <h4>Laisser vide si pas de changement</h4>
+        <br>
 
         <form id="updateAccountForm" class="needs-validation" novalidate onsubmit="return (UserController.update(this), false)">
                 <div class="row">
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-6">
                         <label for="inputEmail">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="insérer contenu de la bdd">
+                        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="insérer contenu de la bdd">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputusername">Nom d'utilisateur</label>
+                        <input type="email" class="form-control" id="inputUsername" name="username" placeholder="insérer contenu de la bdd OU Vide si ça l'est">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inputPassword">Entrer votre ancien mot de passe</label>
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Enter last Password">
+                        <input type="lastpassword" class="form-control" id="lastPassword" name="lastpwd" placeholder="Enter last Password">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="confirmPassword">Entrer votre nouveau de passe</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Enter new Password">
+                        <label for="newPassword">Entrer votre nouveau de passe</label>
+                        <input type="password" class="form-control" id="newPassword" name="newpwd" placeholder="Enter new Password">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="confirmPassword">Confirmer votre nouveau mot de passe</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new Password">
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmpwd" placeholder="Confirm new Password">
                     </div>
                 </div>
 
              <div class="form-group">
-                    <label for="inputAddress">Adresse Actuelle</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="insérer contenu de la bdd">
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="inputCity">Ville</label>
-                        <input type="text" class="form-control" id="inputCity" placeholder="insérer contenu de la bdd">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputState">Pays</label>
-                        <input type="text" class="form-control" id="inputCountry" placeholder="insérer contenu de la bdd">
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="inputZip">Code Postal</label>
-                        <input type="text" class="form-control" id="inputZip" placeholder="insérer contenu de la bdd">
-                    </div>
+                    <label for="inputAddress">Adresse Complète</label>
+                    <input type="text" class="form-control" id="inputAddress" name="address" placeholder="insérer contenu de la bdd">
                 </div>
             <br>
-                <button type="submit" class="btn btn-primary">Mettre à jour vos informations</button>
+            <br>
+            <button type="submit" class="btn btn-primary">Mettre à jour vos informations</button>
             <button type="button" class="btn btn-danger" onclick="UserController.remove()"><span data-i18n>php.account.delete_ur_acc</span></button>
             <button type="button" class="btn btn-danger" onclick="UserController.logout()"><span data-i18n>php.account.logout</span></button>
         </form>
-
-
-
-
-
+        <br>
+        <br>
         <h1><span data-i18n>php.variables.your_products</span></h1>
         <div id="userProducts" class="d-flex justify-content-center flex-wrap"></div>
     </section>
