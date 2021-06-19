@@ -95,4 +95,3 @@ if ($success) {
 } else {
     http_response_code(400);
 }
-?>
