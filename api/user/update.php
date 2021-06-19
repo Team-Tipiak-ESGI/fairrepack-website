@@ -4,6 +4,8 @@ require_once __DIR__ . '/../../utils/database.php';
 require_once __DIR__ . '/../../utils/UUIDv4.php';
 require_once __DIR__ . '/../../utils/Token.php';
 require_once __DIR__ . "/../../utils/user.php";
+require_once __DIR__ . "/../../utils/dao/user.php";
+
 
 $uuid = getToken()->getPayload()["uuid"];
 
