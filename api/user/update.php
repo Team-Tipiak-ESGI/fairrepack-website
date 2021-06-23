@@ -164,7 +164,7 @@ $db = getDatabaseConnection();
 
 $address_id = databaseFindOne($db, "SELECT address FROM user WHERE uuid_user = ?", [$uuid])["address"];
 if (is_null($address_id)) {
-    $sqladdress = "INSERT INTO address SET (" . join(", ", $set1) . ")";
+    $sqladdress = "INSERT INTO address SET " . join(", ", $set1);
     databaseInsert($db, $sqladdress, $params1);
 } else {
     $params1 = [$address_id];
