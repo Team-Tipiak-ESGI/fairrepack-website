@@ -107,33 +107,33 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="inputEmail">Email</label>
-                        <input type="email" class="form-control" id="inputEmail" name="email"
-                               placeholder="insérer contenu de la bdd">
+                        <input type="email" class="form-control" id="inputEmail" name="email" data-name="email"
+                               placeholder="example@example.com">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputusername"><span data-i18n>php.account.username</span></label>
-                        <input type="email" class="form-control" id="inputUsername" name="username"
-                               placeholder="insérer contenu de la bdd OU Vide si ça l'est">
+                        <input type="text" class="form-control" id="inputUsername" name="username" data-name="username"
+                               placeholder="Manu75">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inputPassword"><span data-i18n>php.account.last_pwd</span></label>
                         <input type="lastpassword" class="form-control" id="lastPassword" name="lastpwd"
-                               placeholder="Enter last Password">
+                               placeholder="Enter your current password">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="newPassword"><span data-i18n>php.account.new_pwd</span></label>
                         <input type="password" class="form-control" id="newPassword" name="newpwd"
-                               placeholder="Enter new Password">
+                               placeholder="Enter new password">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="confirmPassword"><span data-i18n>php.account.confirm_new_pwd</span></label>
                         <input type="password" class="form-control" id="confirmPassword" name="confirmpwd"
-                               placeholder="Confirm new Password">
+                               placeholder="Confirm new password">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="phone"><span data-i18n>php.account.phone_number</span></label>
-                        <input type="text" class="form-control" id="phone" name="phone"
-                               placeholder="insérer contenu de la bdd">
+                        <input type="tel" class="form-control" id="phone" name="phone" data-name="phone"
+                               placeholder="01 23 45 67 89">
                     </div>
                     <div class="form-group col-md-9"></div>
                 </div>
@@ -142,28 +142,28 @@
                 <div class="row">
                     <div class="form-group col-md-2">
                         <label for="Country"><span data-i18n>php.account.country</span></label>
-                        <input type="text" class="form-control" id="country" name="country"
-                               placeholder="insérer contenu de la bdd">
+                        <input type="text" class="form-control" id="country" name="country" data-name="state"
+                               placeholder="France">
                     </div>
                     <div class="form-group col-md-1">
                         <label for="zipcode"><span data-i18n>php.account.zip_code</span></label>
-                        <input type="text" class="form-control" id="zipcode" name="zipcode"
-                               placeholder="insérer contenu de la bdd">
+                        <input type="text" class="form-control" id="zipcode" name="zipcode" data-name="postal_code"
+                               placeholder="75008">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="city"><span data-i18n>php.account.city</span></label>
-                        <input type="text" class="form-control" id="city" name="city"
-                               placeholder="insérer contenu de la bdd">
+                        <input type="text" class="form-control" id="city" name="city" data-name="city"
+                               placeholder="Paris">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="Address"><span data-i18n>php.account.address</span> </label>
-                        <input type="text" class="form-control" id="Address" name="address"
-                               placeholder="insérer contenu de la bdd">
+                        <input type="text" class="form-control" id="Address" name="address" data-name="address_line1"
+                               placeholder="55 Rue du Faubourg Saint-Honoré">
                     </div>
                     <div class="form-group col-md-5">
                         <label for="owner_name"><span data-i18n>php.account.owner_name</span></label>
-                        <input type="text" class="form-control" id="owner_name" name="owner_name"
-                               placeholder="insérer contenu de la bdd">
+                        <input type="text" class="form-control" id="owner_name" name="owner_name" data-name="owner_name"
+                               placeholder="Emmanuel Macron">
                     </div>
                 </div>
                 <br>
@@ -171,8 +171,8 @@
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label for="add_infos"><span data-i18n>php.account.supinfo</span></label>
-                        <textarea type="text" class="form-control" id="add_infos" name="add_infos"
-                                  placeholder="insérer contenu de la bdd" rows="5"></textarea>
+                        <textarea type="text" class="form-control" id="add_infos" name="add_infos" data-name="additional_info"
+                                  placeholder="Le palais de l'Élysée, dit l'Élysée, est un ancien hôtel particulier parisien, situé au nᵒ 55 de la rue du Faubourg-Saint-Honoré, dans le 8ᵉ arrondissement de Paris. Il est le siège de la présidence de la République française et la résidence officielle du chef de l'État depuis la IIᵉ République." rows="5"></textarea>
                     </div>
 
                 </div>
@@ -197,7 +197,7 @@
             userVue.buildProductDiv(document.querySelector("div#userProducts"), uuid);
         }
 
-        userVue.updateAccountPage();
+        userVue.updateAccountPage(uuid);
     </script>
 
 <?php include "includes/footer.php"; ?>
