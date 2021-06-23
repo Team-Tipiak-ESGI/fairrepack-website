@@ -47,7 +47,7 @@
             "phone_number": "Phone Number",
             "Address": "Address",
             "country": "Country",
-            "zipcode": "Zip Code",
+            "zip_code": "Zip Code",
             "city": "City",
             "owner_name": "Address Owner Name",
             "supinfo": "Additional Information",
