@@ -39,7 +39,21 @@
             "pwd_too_short": "Mot de passe trop court.",
             "by_signing_in": "En validant votre inscription, vous acceptez notre",
             "logout": "Déconnexion",
-            "delete_ur_acc": "Supprimer votre compte"
+            "delete_ur_acc": "Supprimer votre compte",
+            "username": "Nom d'Utilisateur",
+            "last_pwd": "Ancien Mot de passe",
+            "new_pwd": "Nouveau Mot de passe",
+            "confirm_new_pwd": "Confirmer Nouveau Mot de passe",
+            "phone_number": "Numéro de Téléphone",
+            "address": "Adresse",
+            "country": "Pays",
+            "zipcode": "Code Postal",
+            "city": "Ville",
+            "owner_name": "Nom & Prénom du Propriétaire",
+            "supinfo": "Informations complémentaires",
+            "update_informations": "Mettre à jour vos informations",
+            "modify_personal_info": "Modifiez vos informations personnelles",
+            "let_empty": "Laisser vide si pas de changement"
 
         },
         "cart": {

@@ -98,8 +98,8 @@
 
         <section class="d-none" id="signedIn">
 
-            <h1>Modifiez vos informations personnelles</h1>
-            <h4>Laisser vide si pas de changement</h4>
+            <h1><span data-i18n>php.account.modify_personal_info</span></h1>
+            <h4><span data-i18n>php.account.let_empty</span></h4>
             <br>
 
             <form id="updateAccountForm" class="needs-validation" novalidate
@@ -111,57 +111,57 @@
                                placeholder="insérer contenu de la bdd">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputusername">Nom d'utilisateur</label>
+                        <label for="inputusername"><span data-i18n>php.account.username</span></label>
                         <input type="email" class="form-control" id="inputUsername" name="username"
                                placeholder="insérer contenu de la bdd OU Vide si ça l'est">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inputPassword">Entrer votre ancien mot de passe</label>
+                        <label for="inputPassword"><span data-i18n>php.account.last_pwd</span></label>
                         <input type="lastpassword" class="form-control" id="lastPassword" name="lastpwd"
                                placeholder="Enter last Password">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="newPassword">Entrer votre nouveau de passe</label>
+                        <label for="newPassword"><span data-i18n>php.account.new_pwd</span></label>
                         <input type="password" class="form-control" id="newPassword" name="newpwd"
                                placeholder="Enter new Password">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="confirmPassword">Confirmer votre nouveau mot de passe</label>
+                        <label for="confirmPassword"><span data-i18n>php.account.confirm_new_pwd</span></label>
                         <input type="password" class="form-control" id="confirmPassword" name="confirmpwd"
                                placeholder="Confirm new Password">
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="phone">Numéro de téléphone</label>
+                        <label for="phone"><span data-i18n>php.account.phone_number</span></label>
                         <input type="text" class="form-control" id="phone" name="phone"
                                placeholder="insérer contenu de la bdd">
                     </div>
                     <div class="form-group col-md-9"></div>
                 </div>
                 <br>
-                <h5>Adresse</h5>
+                <h5><span data-i18n>php.account.address</span></h5>
                 <div class="row">
                     <div class="form-group col-md-2">
-                        <label for="Country">Pays</label>
+                        <label for="Country"><span data-i18n>php.account.country</span></label>
                         <input type="text" class="form-control" id="country" name="country"
                                placeholder="insérer contenu de la bdd">
                     </div>
                     <div class="form-group col-md-1">
-                        <label for="zipcode">Code Postal</label>
+                        <label for="zipcode"><span data-i18n>php.account.zip_code</span></label>
                         <input type="text" class="form-control" id="zipcode" name="zipcode"
                                placeholder="insérer contenu de la bdd">
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="city">Ville</label>
+                        <label for="city"><span data-i18n>php.account.city</span></label>
                         <input type="text" class="form-control" id="city" name="city"
                                placeholder="insérer contenu de la bdd">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="Address">Adresse </label>
+                        <label for="Address"><span data-i18n>php.account.address</span> </label>
                         <input type="text" class="form-control" id="Address" name="address"
                                placeholder="insérer contenu de la bdd">
                     </div>
                     <div class="form-group col-md-5">
-                        <label for="owner_name">Nom & Prénom du Propriétaire</label>
+                        <label for="owner_name"><span data-i18n>php.account.owner_name</span></label>
                         <input type="text" class="form-control" id="owner_name" name="owner_name"
                                placeholder="insérer contenu de la bdd">
                     </div>
@@ -170,7 +170,7 @@
                 <br>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label for="add_infos">Informations complémentaires</label>
+                        <label for="add_infos"><span data-i18n>php.account.supinfo</span></label>
                         <textarea type="text" class="form-control" id="add_infos" name="add_infos"
                                   placeholder="insérer contenu de la bdd" rows="5"></textarea>
                     </div>
@@ -178,7 +178,7 @@
                 </div>
                 <br>
                 <br>
-                <button type="submit" class="btn btn-primary">Mettre à jour vos informations</button>
+                <button type="submit" class="btn btn-primary"><span data-i18n>php.account.update_informations</span></button>
                 <button type="button" class="btn btn-danger" onclick="UserController.remove()"><span data-i18n>php.account.delete_ur_acc</span>
                 </button>
                 <button type="button" class="btn btn-danger" onclick="UserController.logout()"><span data-i18n>php.account.logout</span>

@@ -1,13 +1,7 @@
 <?php include "../includes/header.php"; ?>
-
     <main class="container my-5">
-        <section class="container">
-            <a href="warehouses.php">Warehouses</a>
-            <a href="categories.php">Categories</a>
-            <a href="types.php">Types</a>
-            <a href="addresses.php">Addresses</a>
-            <a href="associations.php">Associations</a>
-        </section>
+        <h1>Index Back Office</h1>
+        <?php $page = "index";
+        include "i.php"; ?>
     </main>
-
 <?php include "../includes/footer.php"; ?>
