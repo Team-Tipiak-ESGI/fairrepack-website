@@ -3,7 +3,7 @@ require_once __DIR__ . '/../database.php';
 
 function addCoin(int $amount, string $user){
     $db = getDatabaseConnection();
-    $sql = "UPDATE user SET coin = (SELECT coin from user where uuid_user = ?) + ? WHERE uuid_user = ?";
+    $sql = "UPDATE user SET coins = (SELECT coins from user where uuid_user = ?) + ? WHERE uuid_user = ?";
 
     $params = [
         $user,

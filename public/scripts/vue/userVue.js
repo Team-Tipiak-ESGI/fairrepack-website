@@ -36,7 +36,7 @@ userVue.buildInfoDiv = function (div, user) {
     div.append(div_i);
 }
 
-userVue.updateAccountPage = () => {
+userVue.updateAccountPage = (uuid) => {
     if (getToken().valid) {
         document.getElementById("signedOut")?.classList.add("d-none");
         document.getElementById("signedIn")?.classList.remove("d-none");
@@ -44,6 +44,18 @@ userVue.updateAccountPage = () => {
         document.getElementById("signedOut")?.classList.remove("d-none");
         document.getElementById("signedIn")?.classList.add("d-none");
     }
+
+    authenticatedFetch(`/api/user/read.php?id=${uuid}`)
+        .then(res => res.json())
+        .then(json => {
+            console.log(json);
+            const form = document.getElementById("updateAccountForm");
+            for (const element of form.elements) {
+                if (!element.hasAttribute("data-name")) continue;
+                const k = element.getAttribute("data-name");
+                element.value = json.information[k] ?? json.address[k] ?? "";
+            }
+        });
 }
 
 userVue.buildProductDiv = function (div, id) {
