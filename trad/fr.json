@@ -47,7 +47,7 @@
             "phone_number": "Numéro de Téléphone",
             "address": "Adresse",
             "country": "Pays",
-            "zipcode": "Code Postal",
+            "zip_code": "Code Postal",
             "city": "Ville",
             "owner_name": "Nom & Prénom du Propriétaire",
             "supinfo": "Informations complémentaires",
