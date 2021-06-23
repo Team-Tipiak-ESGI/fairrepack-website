@@ -40,31 +40,27 @@ $params = [];
 $set1 = [];
 $params1 = [];
 
+
 if (!empty($email)) {
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        if (!empty($email)) {
-            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $set[] = "email = ?";
-                $params[] = $email;
-            } else {
-                $error = true;
-                $errors = ["Format de l'email invalide"];
-            }
-        }
+        $set[] = "email = ?";
+        $params[] = $email;
+    } else {
+        $error = true;
+        $errors = ["Format de l'email invalide"];
     }
 }
+
+
 if (!empty($username)) {
-    if (strlen($username) < 2 || strlen($username) > 30) {
-        if (!empty($username)) {
-            if (strlen($username) > 2 && strlen($username) < 30) {
-                $set[] = "username = ?";
-                $params[] = $username;
-            } else {
-                $error = true;
-                $errors = ["Nom d'utilisateur invalide"];
-            }
-        }
+    if (strlen($username) > 2 && strlen($username) < 30) {
+        $set[] = "username = ?";
+        $params[] = $username;
+    } else {
+        $error = true;
+        $errors = ["Nom d'utilisateur invalide"];
     }
+
 }
 if (!empty($lastpwd)) {
     $connection = getDatabaseConnection();
@@ -160,29 +156,39 @@ if (!empty($add_infos)) {
     }
 }
 
+
 $db = getDatabaseConnection();
-
-$address_id = databaseFindOne($db, "SELECT address FROM user WHERE uuid_user = ?", [$uuid])["address"];
-if (is_null($address_id)) {
-    $sqladdress = "INSERT INTO address SET " . join(", ", $set1);
-    databaseInsert($db, $sqladdress, $params1);
-} else {
-    $params1 = [$address_id];
-    $sqladdress = "UPDATE address SET " . join(", ", $set1) . " WHERE id_address = ?";
-    databaseUpdate($db, $sqladdress, $params1);
+if (!empty($params1) && !empty($set1)) {
+    var_dump($params1);
+    var_dump($set1);
+    $address_id = databaseFindOne($db, "SELECT address FROM user WHERE uuid_user = ?", [$uuid])["address"];
+    var_dump($address_id);
+    if (is_null($address_id)) {
+        $sqladdress = "INSERT INTO address SET " . join(", ", $set1);
+        var_dump($sqladdress);
+        $address_id = databaseInsert($db, $sqladdress, $params1);
+        databaseUpdate($db,"update user set address = ? WHERE uuid_user = ?", [$address_id,$uuid]);
+    } else {
+        $params1[]= $address_id;
+        $sqladdress = "UPDATE address SET " . join(", ", $set1) . " WHERE id_address = ?";
+        var_dump($sqladdress);
+        databaseUpdate($db, $sqladdress, $params1);
+    }
 }
+if (!empty($params) && !empty($set)) {
+    $params[] = $uuid;
+    var_dump($params);
+    var_dump($set);
+    $sqluser = "UPDATE user SET " . join(", ", $set) . " WHERE uuid_user = ?";
+    var_dump($sqluser);
+    $success = databaseUpdate($db, $sqluser, $params);
 
 
-$params[] = $uuid;
-
-$sqluser = "UPDATE user SET " . join(", ", $set) . " WHERE uuid_user = ?";
-$success = databaseUpdate($db, $sqluser, $params);
-
-
-if ($success) {
-    http_response_code(201); // CREATED
-    header("Content-Type: application/json");
-} else {
-    http_response_code(400);
+    if ($success) {
+        http_response_code(201); // CREATED
+        header("Content-Type: application/json");
+    } else {
+        http_response_code(400);
+    }
 }
 
