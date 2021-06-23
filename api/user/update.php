@@ -137,8 +137,9 @@ if (!empty($address)) {
         $errors = ["Mauvais format de l'adresse"];
     }
 }
+
 if (!empty($owner_name)) {
-    if (strlen($owner_name) > 10 && strlen($owner_name) < 70) {
+    if (strlen($owner_name) > 1 && strlen($owner_name) < 70) {
         $set1[] = "owner_name = ?";
         $params1[] = $owner_name;
     } else {
@@ -159,28 +160,26 @@ if (!empty($add_infos)) {
 
 $db = getDatabaseConnection();
 if (!empty($params1) && !empty($set1)) {
-    var_dump($params1);
-    var_dump($set1);
+
     $address_id = databaseFindOne($db, "SELECT address FROM user WHERE uuid_user = ?", [$uuid])["address"];
-    var_dump($address_id);
+
     if (is_null($address_id)) {
         $sqladdress = "INSERT INTO address SET " . join(", ", $set1);
-        var_dump($sqladdress);
+
         $address_id = databaseInsert($db, $sqladdress, $params1);
-        databaseUpdate($db,"update user set address = ? WHERE uuid_user = ?", [$address_id,$uuid]);
+        databaseUpdate($db, "update user set address = ? WHERE uuid_user = ?", [$address_id, $uuid]);
     } else {
-        $params1[]= $address_id;
+        $params1[] = $address_id;
         $sqladdress = "UPDATE address SET " . join(", ", $set1) . " WHERE id_address = ?";
-        var_dump($sqladdress);
+
         databaseUpdate($db, $sqladdress, $params1);
     }
 }
 if (!empty($params) && !empty($set)) {
     $params[] = $uuid;
-    var_dump($params);
-    var_dump($set);
+
     $sqluser = "UPDATE user SET " . join(", ", $set) . " WHERE uuid_user = ?";
-    var_dump($sqluser);
+
     $success = databaseUpdate($db, $sqluser, $params);
 
 
