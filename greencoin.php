@@ -42,7 +42,7 @@
                             <h5 class="card-title">Lien de Téléchargement de l'Application</h5>
                             <p class="card-text">En cliquant sur le lien çi-dessous, vous téléchargerez un fichier .apk<br>
                             Vous aurez ensuite à le lancer sur votre smartphone pour que l'application s'installe.</p>
-                            <a href="#" class="btn btn-primary">Télécharger <b>Greencoin.apk</b></a>
+                            <a href="\public\assets\greencoin.apk" class="btn btn-primary">Télécharger <b>Greencoin.apk</b></a>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
