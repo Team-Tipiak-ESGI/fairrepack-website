@@ -103,7 +103,7 @@ if (!empty($phone)) {
 }
 if (!empty($country)) {
     if (strlen($country) > 2 && strlen($country) < 20) {
-        $set1[] = "state = ?";
+        $set1[] = "country = ?";
         $params1[] = $country;
     } else {
         $error = true;
