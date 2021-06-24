@@ -73,6 +73,10 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" href="/greencoin.php"><span data-i18n>GreenCoins</span></a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link d-flex align-items-center" href="/cart.php">
                                 <span data-i18n>php.header.cart</span>
                                 <span class="badge rounded-pill bg-primary ms-1" id="headerCart">0</span>
