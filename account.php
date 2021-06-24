@@ -171,14 +171,17 @@
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label for="add_infos"><span data-i18n>php.account.supinfo</span></label>
-                        <textarea type="text" class="form-control" id="add_infos" name="add_infos" data-name="additional_info"
-                                  placeholder="Le palais de l'Élysée, dit l'Élysée, est un ancien hôtel particulier parisien, situé au nᵒ 55 de la rue du Faubourg-Saint-Honoré, dans le 8ᵉ arrondissement de Paris. Il est le siège de la présidence de la République française et la résidence officielle du chef de l'État depuis la IIᵉ République." rows="5"></textarea>
+                        <textarea type="text" class="form-control" id="add_infos" name="add_infos"
+                                  data-name="additional_info"
+                                  placeholder="Le palais de l'Élysée, dit l'Élysée, est un ancien hôtel particulier parisien, situé au nᵒ 55 de la rue du Faubourg-Saint-Honoré, dans le 8ᵉ arrondissement de Paris. Il est le siège de la présidence de la République française et la résidence officielle du chef de l'État depuis la IIᵉ République."
+                                  rows="5"></textarea>
                     </div>
 
                 </div>
                 <br>
                 <br>
-                <button type="submit" class="btn btn-primary"><span data-i18n>php.account.update_informations</span></button>
+                <button type="submit" class="btn btn-primary"><span data-i18n>php.account.update_informations</span>
+                </button>
                 <button type="button" class="btn btn-danger" onclick="UserController.remove()"><span data-i18n>php.account.delete_ur_acc</span>
                 </button>
                 <button type="button" class="btn btn-danger" onclick="UserController.logout()"><span data-i18n>php.account.logout</span>
