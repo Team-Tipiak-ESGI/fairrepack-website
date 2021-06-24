@@ -73,7 +73,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/greencoin.php"><span data-i18n>GreenCoins</span></a>
+                            <a class="nav-link" href="/greencoin.php">GreenCoins</a>
                         </li>
 
                         <li class="nav-item">
