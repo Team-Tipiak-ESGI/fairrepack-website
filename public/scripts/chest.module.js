@@ -7,7 +7,7 @@ const clock = new THREE.Clock();
 
 let chest, phone;
 let animation_duration = 0;
-window.webgl_animated = false;
+window.webgl_animated = false; // Boolean used to toggle the animation
 
 
 function init() {
@@ -36,8 +36,8 @@ function init() {
 
     const texture = new THREE.TextureLoader().load('public/models/Diffuse.png');
 
-    // model
     const loader = new FBXLoader();
+    // Load chest model
     loader.load('./public/models/chest.fbx', function (object) {
         chest = new THREE.AnimationMixer(object);
         const action = chest.clipAction(object.animations[0]);
@@ -54,6 +54,7 @@ function init() {
         scene.add(object);
     });
 
+    // Load phone model
     loader.load('./public/models/phone.fbx', function (object) {
         object.castShadow = true;
         object.receiveShadow = true;

@@ -1,5 +1,10 @@
 const productVue = {};
 
+/**
+ * Build product's information div
+ * @param {HTMLDivElement} div
+ * @param {object} product Product object
+ */
 productVue.buildInfoDiv = function (div, product) {
     div.innerHTML = '';
 
@@ -46,6 +51,11 @@ productVue.buildInfoDiv = function (div, product) {
     div.append(ul_1);
 }
 
+/**
+ * Build product element
+ * @param div
+ * @param product
+ */
 productVue.buildElement = function (div, product) {
 
     div.innerHTML = '';
@@ -189,6 +199,11 @@ productVue.buildElement = function (div, product) {
     div.append(div_0_1);
 }
 
+/**
+ * Build product's offer div
+ * @param div
+ * @param product
+ */
 productVue.buildOfferDiv = function (div, product) {
     div.innerHTML = '';
 
@@ -228,6 +243,11 @@ productVue.buildOfferDiv = function (div, product) {
     }
 }
 
+/**
+ * Build product's image div
+ * @param image_div
+ * @param product
+ */
 productVue.buildImageDiv = function (image_div, product) {
     const count = parseInt(product.image_count);
     const uuid = product.id;
@@ -263,9 +283,7 @@ productVue.buildProductPage = function (info_div, offer_div, image_div, page = 0
             const product = json.items;
 
             productVue.buildElement(info_div, product);
-            //productVue.buildInfoDiv(info_div, product);
             productVue.buildOfferDiv(offer_div, product);
-            //productVue.buildImageDiv(image_div, product);
 
             // Update page info & buttons
 
@@ -295,6 +313,7 @@ productVue.buildProductPage = function (info_div, offer_div, image_div, page = 0
             }
 
             if (product.state === "accepted") {
+                // Get buttons to toggle visibility
                 const colissimo = document.querySelector("button#getColissimo");
                 const colissimoInput = document.querySelector("#colissimoModal #colissimoInput");
                 const colissimoSubmit = document.querySelector("button#colissimoSubmit");
@@ -320,6 +339,9 @@ productVue.buildProductPage = function (info_div, offer_div, image_div, page = 0
         });
 }
 
+/**
+ *
+ */
 productVue.getColissimo = function () {
     const colissimoInput = document.querySelector("#colissimoModal #colissimoInput");
     const getColissimoButton = document.querySelector("button#getColissimoButton");

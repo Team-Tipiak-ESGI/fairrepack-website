@@ -57,24 +57,3 @@ UserModel.login = function(form) {
             });
     });
 }
-
-/**
- * Remove your account
- * @returns Promise<*>
- */
-UserModel.remove = function() {
-    return new Promise((resolve, reject) => {
-
-    });
-}
-
-/**
- * Update your profile
- * @param {HTMLFormElement} form
- * @returns Promise<*>
- */
-UserModel.update = function(form) {
-    return new Promise((resolve, reject) => {
-
-    });
-}

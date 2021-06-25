@@ -1,7 +1,7 @@
 const associationVue = {};
 
 /**
- *
+ * Build a table of all associations
  * @param {HTMLTableElement} tbody
  */
 associationVue.buildAssociationList = function (tbody) {

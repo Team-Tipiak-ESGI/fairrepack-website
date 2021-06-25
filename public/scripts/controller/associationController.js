@@ -1,5 +1,10 @@
 const associationController = {};
 
+/**
+ * Makes a request to the API to create a new association from the given form
+ * @param {HTMLFormElement} form Form with the association' information
+ * @returns {Promise<void>}
+ */
 associationController.create = async function(form) {
     const formData = new FormData(form);
 
@@ -13,6 +18,10 @@ associationController.create = async function(form) {
         });
 }
 
+/**
+ * Delete the association with the given ID
+ * @param {string} id association' ID
+ */
 associationController.delete = function(id) {
     authenticatedFetch(`/api/association/delete.php`, "POST", JSON.stringify({id: id}))
         .then(res => {

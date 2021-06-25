@@ -1,22 +1,34 @@
 const cartVue = {};
 
+/**
+ * Build the cart list
+ * @param {HTMLDivElement} div HTML div element to add the product list to
+ * @param products
+ */
 cartVue.buildProductList = function(div = document.querySelector("#cart"), products = cartController.get()) {
     div.innerHTML = "";
 
+    // If cart has no products
     if (Object.keys(products).length === 0) {
         div.innerHTML = i18n("js.cartVue.empty_cart");
         return;
     }
 
+    // Build all cart elements and add to the div
     for (const key in products) {
         if (products.hasOwnProperty(key)) {
             const reference = products[key];
-
             div.append(this.buildCartElement(key, reference))
         }
     }
 }
 
+/**
+ * Build a cart element
+ * @param uuid
+ * @param product
+ * @returns {HTMLLIElement}
+ */
 cartVue.buildCartElement = function(uuid, product) {
     const li_1 = document.createElement(`li`);
     li_1.classList.add(`list-group-item`);
@@ -47,6 +59,7 @@ cartVue.buildCartElement = function(uuid, product) {
     div_g.append(button_4k);
     button_4k.innerText = i18n("js.cartVue.delete");
 
+    // Remove product from cart button
     button_4k.addEventListener("click", (e) => {
         cartController.updateCount(uuid, 0);
         li_1.remove();
@@ -56,6 +69,9 @@ cartVue.buildCartElement = function(uuid, product) {
     return li_1;
 }
 
+/**
+ * Update amount badge of cart in the website's navbar
+ */
 cartVue.updateHeader = function() {
-    document.getElementById("headerCart").innerHTML = cartController?.getTotal() ?? 0;
+    document.getElementById("headerCart").innerHTML = (cartController?.getTotal() ?? 0).toString();
 }

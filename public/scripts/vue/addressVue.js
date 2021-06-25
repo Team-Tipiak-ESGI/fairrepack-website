@@ -1,5 +1,10 @@
 const addressVue = {};
 
+/**
+ * Make a request and adds all the addresses to the select element
+ * @param {HTMLSelectElement} select
+ * @param {string} type Address type, "pro" is used to get all the addresses but requires admin privileges
+ */
 addressVue.buildAddressSelect = function (select, type = "pro") {
     select.innerHTML = "";
 
@@ -8,6 +13,7 @@ addressVue.buildAddressSelect = function (select, type = "pro") {
         .then(json => {
             const addresses = json.items;
             for (const address of addresses) {
+                // Build option element and add it to the select
                 const option = document.createElement('option');
 
                 option.value = address.id_address;
@@ -19,7 +25,7 @@ addressVue.buildAddressSelect = function (select, type = "pro") {
 }
 
 /**
- *
+ * Build a table of all addresses
  * @param {HTMLTableElement} tbody
  */
 addressVue.buildAddressList = function (tbody) {
@@ -29,6 +35,7 @@ addressVue.buildAddressList = function (tbody) {
         .then(res => res.json())
         .then(json => {
             const addresses = json.items;
+            // Build a row for each addresses
             for (const address of addresses) {
                 const tr_3d = document.createElement(`tr`);
 
@@ -76,12 +83,13 @@ addressVue.buildAddressList = function (tbody) {
                 const td_xp = document.createElement(`td`);
                 tr_3d.append(td_xp);
 
+                // Remove address button
                 const button = document.createElement("button");
-                button.innerText = i18n("js.addressVue.remove");
+                button.innerText = i18n("js.addressVue.variables.remove");
                 button.classList.add("btn", "btn-danger", "btn-sm");
                 button.addEventListener("click", (e) => {
                     if (window.confirm(i18n("js.variables.want_2_delete")))
-                        categoryController.delete(address.id_category);
+                        addressController.delete(address.id_address);
                 });
                 td_xp.append(button);
 

@@ -1,5 +1,10 @@
 const userVue = {};
 
+/**
+ * Build user's information div
+ * @param {HTMLDivElement} div
+ * @param {object} user User object
+ */
 userVue.buildInfoDiv = function (div, user) {
     const h1_c = document.createElement("h2");
     h1_c.innerText = user.information.username ?? "";
@@ -36,7 +41,12 @@ userVue.buildInfoDiv = function (div, user) {
     div.append(div_i);
 }
 
+/**
+ * Update user's own account page
+ * @param {string} uuid User's uuid
+ */
 userVue.updateAccountPage = (uuid) => {
+    // If is logged in, show some buttons
     if (getToken().valid) {
         document.getElementById("signedOut")?.classList.add("d-none");
         document.getElementById("signedIn")?.classList.remove("d-none");
@@ -45,10 +55,11 @@ userVue.updateAccountPage = (uuid) => {
         document.getElementById("signedIn")?.classList.add("d-none");
     }
 
+    // Get user information and update page
     authenticatedFetch(`/api/user/read.php?id=${uuid}`)
         .then(res => res.json())
         .then(json => {
-            console.log(json);
+            // Fill up the account form with current values
             const form = document.getElementById("updateAccountForm");
             for (const element of form.elements) {
                 if (!element.hasAttribute("data-name")) continue;
@@ -58,6 +69,11 @@ userVue.updateAccountPage = (uuid) => {
         });
 }
 
+/**
+ * Get and display all products from a user onto the page
+ * @param {HTMLDivElement} div
+ * @param {string} id User uuid
+ */
 userVue.buildProductDiv = function (div, id) {
     authenticatedFetch(`/api/product/read.php?user=${id}`)
         .then(res => {
@@ -69,6 +85,12 @@ userVue.buildProductDiv = function (div, id) {
         });
 }
 
+/**
+ * Build user page
+ * @param {HTMLDivElement} info_div
+ * @param {HTMLDivElement} products_div
+ * @param {string} id User uuid
+ */
 userVue.basicUserInfo = function (info_div, products_div, id) {
     authenticatedFetch(`/api/user/read.php?id=${id}`)
         .then(res => {

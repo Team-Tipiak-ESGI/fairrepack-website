@@ -39,6 +39,11 @@ productController.create = async function (e) {
     return false;
 }
 
+/**
+ * Update the state of the product
+ * @param {string} state New product's state
+ * @param {string} id Product's UUID
+ */
 productController.updateState = function (state, id = getPage().pageId) {
     productModel.update(JSON.stringify({id_product: id, state: state}))
         .then(res => {
@@ -53,6 +58,12 @@ productController.updateState = function (state, id = getPage().pageId) {
 
 }
 
+/**
+ * Update a product information
+ * @param {HTMLFormElement} form Input form
+ * @param {string} id UUID of the product, default to page's ID
+ * @returns {Promise<void>}
+ */
 productController.update = async function (form, id = getPage().pageId) {
     const formData = new FormData(form);
     formData.set("id_product", id);

@@ -25,7 +25,7 @@ function authenticatedFetch(url, method = 'GET', body = undefined) {
 }
 
 /**
- * Return Token
+ * Return the user's token
  * @type {function(): {headers: {alg: string, typ: string}|null, payload: {expiry: number, lang: string, type: string, username: string, uuid: string}|null, token: string|null, valid: boolean}}
  */
 const getToken = () => {
@@ -40,9 +40,11 @@ const getToken = () => {
         };
     }
 
+    // Decode token's headers and payload
     const headers = JSON.parse(atob(token?.split('.')[0]));
     const payload = JSON.parse(atob(token?.split('.')[1]));
 
+    // Verify expiring date
     const valid = payload.expiry * 1000 > Date.now();
 
     return {
@@ -53,6 +55,11 @@ const getToken = () => {
     };
 };
 
+/**
+ * Converts a File to a base 64 string, useful to send file in json
+ * @param {File|Blob} file
+ * @returns {Promise<string>}
+ */
 const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -69,10 +76,12 @@ async function formDataToJSON(formData) {
     const entriesArray = Array.from(formData.entries());
     const entries = {};
 
+    // Construct json object
     for (const entry of entriesArray) {
         let value = entry[1];
         const previous_value = entries[entry[0]];
 
+        // If the value is a file, convert it
         if (value instanceof File)
             value = await toBase64(value);
 
@@ -88,6 +97,11 @@ async function formDataToJSON(formData) {
     return JSON.stringify(entries);
 }
 
+/**
+ * Format a date to a given format
+ * @param format
+ * @returns {string}
+ */
 Date.prototype.format = function (format) {
     const associations = {"%yyyy": "getFullYear", "%dd": "getDate", "%hh": "getHours", "%mmmm": "getMilliseconds", "%mm": "getMinutes", "%MM": "getMonth", "%ss": "getSeconds" }
 
@@ -114,11 +128,14 @@ function getPageId() {
  * @returns {{pageId: string, pageSize: number, pageNumber: number, urlParams: string, search: string, setPageInput: function}}
  */
 function getPage(pageNumber = 0) {
+    // Get url parameters
     const urlSearchParams = new URLSearchParams(window.location.search.substr(1));
     const pageId = urlSearchParams.get('id');
     const search = urlSearchParams.get('search');
+
+    // Get page size
     const pageSize = parseInt(window.localStorage.getItem("pageSize")) || 20;
-    let urlParams = `page=${pageNumber}&limit=${pageSize}`;
+    let urlParams = `page=${pageNumber}&limit=${pageSize}`; // Pre-construct request params
 
     if (search)
         urlParams += `&search=${search}`;
@@ -129,8 +146,12 @@ function getPage(pageNumber = 0) {
         pageNumber: pageNumber,
         urlParams: urlParams,
         search: search,
+        /**
+         * Create an event to change page size from a select element
+         * @param {HTMLSelectElement} input
+         */
         setPageInput: (input) => {
-            input.value = pageSize;
+            input.value = pageSize.toString();
             input.addEventListener("change", (e) => {
                 window.localStorage.setItem("pageSize", e.target.value);
                 window?.nav.updatePagination();
@@ -139,10 +160,23 @@ function getPage(pageNumber = 0) {
     };
 }
 
+/**
+ * Forces a value to be between 2 other values
+ * @param {number} value
+ * @param {number} min Minimum value
+ * @param {number} max Maximum value
+ * @returns {number}
+ */
 function between(value, min, max) {
     return Math.min(Math.max(value, min), max);
 }
 
+/**
+ * Build a bootstrap toast component
+ * @param {string} title Title of the toast
+ * @param {string|HTMLElement} c Content of the toast, can be an HTML element or a string
+ * @returns {HTMLDivElement} The newly created toast
+ */
 function buildToast(title, c) {
     let content = c;
     if (typeof c === "string") {
@@ -185,9 +219,17 @@ function buildToast(title, c) {
     return div_1;
 }
 
+/**
+ * Creates and adds a toast to the top right of the website's window
+ * @param title
+ * @param content
+ * @param date
+ * @returns {HTMLDivElement}
+ */
 function addNotificationToast(title, content = '', date = new Date()) {
     const toastContainer = document.getElementById('toastContainer');
 
+    // Creates and instantiate the toast
     const toast = buildToast(title, content);
     new bootstrap.Toast(toast);
 
@@ -197,6 +239,7 @@ function addNotificationToast(title, content = '', date = new Date()) {
     const timeNotice = toast.querySelector('small');
     timeNotice.innerText = `Just now`;
 
+    // Create an interval to update the time
     const interval = setInterval(() => {
         const minutes = Math.floor((Date.now() - date.getTime()) / (60 * 1000));
         if (minutes === 0)
@@ -205,8 +248,9 @@ function addNotificationToast(title, content = '', date = new Date()) {
             timeNotice.innerText = `${minutes} minutes ago`;
     }, 1000 * 60);
 
+    // On toast hidden
     toast.addEventListener('hidden.bs.toast', function () {
-        clearInterval(interval);
+        clearInterval(interval); // Clear the interval for performance
     });
 
     toastContainer.append(toast);
@@ -215,8 +259,8 @@ function addNotificationToast(title, content = '', date = new Date()) {
 }
 
 /**
- * Add a spinner to the given button
- * @param button
+ * Add a Bootstrap spinner to the given button
+ * @param {HTMLButtonElement} button
  * @returns {Function} Function to reset to the previous state
  */
 function buttonSpinner(button) {
