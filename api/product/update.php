@@ -61,7 +61,7 @@ if(isset($_POST["id_product"])) {
     $success = databaseUpdate($db, $sql, $params);
 
     if ($success) {
-        $product = getProductbyId($uuid_product);
+        $product = getProductByUUID($uuid_product);
 
         http_response_code(201); // CREATED
         header("Content-Type: application/json");
