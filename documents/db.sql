@@ -100,18 +100,18 @@ create index id_category_idx
 
 create table fairrepack.user
 (
-    id_user      int auto_increment,
-    uuid_user    char(36)                                                       not null,
-    username     varchar(128)                                                   null,
-    password     char(64)                                                       not null,
-    email        varchar(256)                                                   not null,
-    avatar       blob                                                           null,
-    language     enum ('fr', 'en')                  default 'fr'                not null,
-    address      int                                                            null,
-    user_type    enum ('normal', 'seller', 'admin') default 'normal'            not null,
-    created      datetime                           default current_timestamp() not null,
-    coin         int                                default 0                   not null,
-    waiting_coin int                                default 0                   not null,
+    id_user       int auto_increment,
+    uuid_user     char(36)                                                       not null,
+    username      varchar(128)                                                   null,
+    password      char(64)                                                       not null,
+    email         varchar(256)                                                   not null,
+    avatar        blob                                                           null,
+    language      enum ('fr', 'en')                  default 'fr'                not null,
+    address       int                                                            null,
+    user_type     enum ('normal', 'seller', 'admin') default 'normal'            not null,
+    created       datetime                           default current_timestamp() not null,
+    coins         int                                default 0                   not null,
+    waiting_coins int                                default 0                   not null,
     primary key (id_user, uuid_user),
     constraint email_UNIQUE
         unique (email),
@@ -241,16 +241,13 @@ create table fairrepack.association
     id_association   int auto_increment,
     uuid_association char(36)      not null,
     name             varchar(256)  not null,
-    coin             int default 0 not null,
-    address          int           null,
+    coins            int default 0 not null,
+    address          varchar(256)  null,
     description      text          null,
     image            longblob      null,
     mime             varchar(64)   null,
     constraint association_pk
-        primary key (id_association, uuid_association),
-    constraint association_address_id_address_fk
-        foreign key (address) references address (id_address)
-            on update cascade
+        primary key (id_association, uuid_association)
 );
 
 create index product_idx

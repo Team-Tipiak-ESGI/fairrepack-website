@@ -1,4 +1,14 @@
-<?php include "includes/header.php"; ?>
+<?php include "includes/header.php";
+require_once "utils/database.php";
+require_once "utils/UUIDv4.php";
+require_once "utils/Token.php";
+require_once "utils/user.php";
+require_once "utils/dao/user.php";
+require_once "utils/dao/association.php";
+
+$associations = getAssociations();
+
+?>
 
     <main class="container my-5">
         <section class="container">
@@ -64,7 +74,14 @@
                         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                             <div class="card-body">
                                 <h5 class="card-title">Consulter mon solde GreenCoin</h5>
-                                <p class="card-text">Vous possédez pour l'instant X Greencoin(s)</p>
+                                <p class="card-text">Vous possédez pour l'instant <span id="coin-amount">X</span> Greencoin(s)</p>
+
+                                <script>
+                                    authenticatedFetch("/api/user/read.php")
+                                        .then(res => res.json())
+                                        .then(json => document.getElementById("coin-amount").innerText = json.information.coins);
+                                </script>
+
                             </div>
                         </div>
                     </div>
@@ -79,33 +96,26 @@
                 </div>
                 <br>
                 <div class="row" style="padding: 10px;">
-                    <div class="col-md-6" style="padding: 10px;">
-                        <div>
-                            <div class="card h-100">
-                                <img src="\public\assets\msf.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title"><b>Médecins sans Frontières</b></h5>
-                                    <p class="card-text"><b>Médecins Sans Frontières est une association médicale humanitaire internationale, créée en 1971 à Paris par des médecins et des journalistes.</b><br><br>
+                    <?php foreach ($associations as $association) { ?>
 
-                                        <b>Depuis près de cinquante ans</b>, Médecins Sans Frontières apporte une <b>assistance médicale</b> à des populations dont la vie ou la santé sont menacées, en France ou à l’étranger : principalement en cas de conflits armés, mais aussi d'épidémies, de pandémies, de catastrophes naturelles ou encore d'exclusion des soins.</p>
-                                    <p class="card-text"><small class="text-muted"><a href="https://www.msf.fr/">Médecins sans frontières</a></small></p>
+                        <div class="col-md-6" style="padding: 10px;">
+                            <div>
+                                <div class="card h-100">
+                                    <img src="/image/association/<?php echo $association["uuid_association"] ?>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $association["name"]; ?></h5>
+                                        <p class="card-text"><?php echo $association["description"]; ?>
+                                        <p class="card-text"><small class="text-muted"><a
+                                                        href="<?php echo $association["address"]; ?>"><?php echo $association["name"]; ?></a></small>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6" style="padding: 10px;">
-                        <div>
-                            <div class="card h-100">
-                                <img src="\public\assets\seashepherd.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text"><b>Défendre et Protéger les Océans</b><br><br>
-                                        La mission de Sea Shepherd est de lutter contre la destruction de la vie et de l’habitat marin dans son ensemble. Depuis 1977, nous utilisons des stratégies novatrices d’action directe pour défendre, conserver et protéger la biodiversité fragile de nos mers, océans, et faire respecter les lois internationales de conservation, trop souvent bafouées.</p>
-                                    <p class="card-text"><small class="text-muted"><a href="https://seashepherd.fr/">Sea Shepherd France</a></small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    <?php } ?>
+
+
                 </div>
 
             </div>

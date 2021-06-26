@@ -31,8 +31,8 @@ include "i.php";
                         </label>
 
                         <div class="mb-3">
-                            <label for="address">Association address</label>
-                            <select name="address" id="address" class="form-select"></select>
+                           Association Address
+                            <input name="address" type="address" class="form-control" placeholder="URL">
                         </div>
                     </form>
                 </div>

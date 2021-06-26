@@ -29,9 +29,9 @@ if (isset($_POST["id_association"])){
         $set[] = "address = ?";
         $params[] = $_POST["address"];
     }
-    if (isset($_POST["coin"])){
-        $set[] = "coin = ?";
-        $params[] = $_POST["coin"];
+    if (isset($_POST["coins"])){
+        $set[] = "coins = ?";
+        $params[] = $_POST["coins"];
     }
     if (isset($_POST["image"])){
         $set[] = "image = ?";

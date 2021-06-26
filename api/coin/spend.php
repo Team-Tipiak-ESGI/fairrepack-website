@@ -38,7 +38,7 @@ if ($coins_to_spend > $user_coins) {
     die();
 }
 
-$update = "update association set coin = ? where uuid_association = ?";
+$update = "update association set coins = ? where uuid_association = ?";
 $params = [$coins_to_spend, $association];
 databaseUpdate($db, $update, $params);
 

@@ -35,7 +35,7 @@ if (count($where) > 0) {
 }
 
 $db = getDatabaseConnection();
-$sql = "SELECT uuid_association, name, description, coin, address FROM association $whereSql LIMIT $offset, $limit";
+$sql = "SELECT uuid_association, name, description, coins, address FROM association $whereSql LIMIT $offset, $limit";
 $rows = databaseSelectAll($db, $sql, $params);
 header("Content-Type: application/json");
 

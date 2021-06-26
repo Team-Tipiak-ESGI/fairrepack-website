@@ -31,7 +31,7 @@ function deleteAssociationByUUID(string $uuid):string
 function getAssociationById(string $id_association): ?array
 {
     $db = getDatabaseConnection();
-    $sql = "SELECT name, description, coin, address FROM association WHERE id_association = ?";
+    $sql = "SELECT name, description, coins, address FROM association WHERE id_association = ?";
     $params = [$id_association];
     return databaseFindOne($db, $sql, $params);
 }
@@ -39,7 +39,16 @@ function getAssociationById(string $id_association): ?array
 function getAssociationByUUID(string $uuid): ?array
 {
     $db = getDatabaseConnection();
-    $sql = "SELECT name, description, coin, address FROM association WHERE uuid_association = ?";
+    $sql = "SELECT name, description, coins, address FROM association WHERE uuid_association = ?";
     $params = [$uuid];
     return databaseFindOne($db, $sql, $params);
 }
+
+function getAssociations(): ?array
+{
+    $db = getDatabaseConnection();
+    $sql = "SELECT uuid_association, name, address, description, image FROM association";
+
+    return databaseSelectAll($db,$sql);
+}
+
