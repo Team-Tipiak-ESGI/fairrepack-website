@@ -70,51 +70,6 @@ require_once "utils/dao/product.php";?>
         </div>
     </section>
 <br><br>
-    <!--<section>
-        <div class="row">
-            <div class="col">
-                <div class="card text-center" style="width: 18rem;">
-                    <img src="public/assets/bonnetExample.png" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Super Bonnet <br> Hors de son Temps</h5>
-                        <p class="card-text">Ce super bonnet cheap et classe permettra d'ajouter un peu de noel autour de vous.</p>
-                        <a href="#" class="btn btn-primary">Acheter</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card text-center" style="width: 18rem;">
-                    <img src="public/assets/bonnetExample.png" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Super Bonnet <br> Hors de son Temps</h5>
-                        <p class="card-text">Ce super bonnet cheap et classe permettra d'ajouter un peu de noel autour de vous.</p>
-                        <a href="#" class="btn btn-primary">Acheter</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card text-center" style="width: 18rem;">
-                    <img src="public/assets/bonnetExample.png" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Super Bonnet <br> Hors de son Temps</h5>
-                        <p class="card-text">Ce super bonnet cheap et classe permettra d'ajouter un peu de noel autour de vous.</p>
-                        <a href="#" class="btn btn-primary">Acheter</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card text-center" style="width: 18rem;">
-                    <img src="public/assets/bonnetExample.png" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Super Bonnet <br> Hors de son Temps</h5>
-                        <p class="card-text">Ce super bonnet cheap et classe permettra d'ajouter un peu de noel autour de vous.</p>
-                        <a href="#" class="btn btn-primary">Acheter</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>-->
-
     <section>
         <div>
 

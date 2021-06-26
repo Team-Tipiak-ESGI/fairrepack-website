@@ -106,7 +106,7 @@ $associations = getAssociations();
                                         <h5 class="card-title"><?php echo $association["name"]; ?></h5>
                                         <p class="card-text"><?php echo $association["description"]; ?>
                                         <p class="card-text"><small class="text-muted"><a
-                                                        href="<?php echo $association["address"]; ?>"><?php echo $association["name"]; ?></a></small>
+                                                        href="<?php echo $association["address"]; ?>" class="btn btn-primary"><?php echo $association["name"]; ?></a></small>
                                         </p>
                                     </div>
                                 </div>
